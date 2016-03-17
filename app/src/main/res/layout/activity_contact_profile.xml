@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.awesomesauce.companion4me.Profile"
+>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee"
+    android:theme="@style/Theme.AppCompat.NoActionBar"
+    android:id="@+id/contact_layout"
+    android:visibility="invisible"
+    >
+
+    <!--=====================================================================Contact Profile View-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--======================================================================Avatar/Name/Age-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imgUserAvatar"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_margin="10dip"
+                android:background="#000000" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/txtUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jane Doe"
+                    android:textColor="#000000"
+                    android:textSize="30dp"/>
+
+                <TextView
+                    android:id="@+id/txtUserAge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="24"
+                    android:textColor="#808080"
+                    android:textSize="20dp"/>
+
+            </LinearLayout>
+
+            <!--===================================================================Add to Contact-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:weightSum="1">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add to Contact"
+                    android:id="@+id/btnAddUser"
+                    android:background="@drawable/button_login"
+                    android:padding="10dip"
+                    android:layout_weight="0.26" />
+            </LinearLayout>
+
+            <!--========================================================================Functions-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#FFFFFF"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center">
+
+                <!--======================================================================Message-->
+                <ImageButton
+                    android:id="@+id/btnMessageUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/newmessage"
+                    android:layout_margin="7dip" />
+
+                <!--=========================================================================Call-->
+                <ImageButton
+                    android:id="@+id/btnCallUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/phone"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"/>
+
+                <!--========================================================================Block-->
+                <ImageButton
+                    android:id="@+id/Block_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/block"
+                    android:layout_margin="7dip" />
+
+            </LinearLayout>
+
+            <!--===========================================================================Gender-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="#FFFFFF">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gender"
+                    android:layout_marginRight="15dp"
+                    android:textColor="#000000"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill_horizontal"
+                    android:text="Female"
+                    android:textColor="#a1a0a0"
+                    android:id="@+id/txtUserGender" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="#FFFFFF">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nationality: "
+                    android:layout_marginRight="15dp"
+                    android:textColor="#000000"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill_horizontal"
+                    android:text=""
+                    android:textColor="#a1a0a0"
+                    android:id="@+id/txtNationFriend" />
+
+            </LinearLayout>
+
+            <!--=============================================================================City-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="#FFFFFF">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="City"
+                    android:layout_marginRight="15dp"
+                    android:textColor="#000000"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill_horizontal"
+                    android:text="London"
+                    android:textColor="#a1a0a0"
+                    android:id="@+id/txtCity" />
+
+            </LinearLayout>
+
+            <!--==========================================================================Country-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="#FFFFFF">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Country"
+                    android:layout_marginRight="15dp"
+                    android:textColor="#000000"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="United Kingdom"
+                    android:textColor="#a1a0a0"
+                    android:id="@+id/txtUserCity" />
+
+            </LinearLayout>
+
+            <!--========================================================================Education-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="#FFFFFF">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Education"
+                    android:layout_marginRight="15dp"
+                    android:textColor="#000000"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill_horizontal"
+                    android:text="History"
+                    android:textColor="#a1a0a0"/>
+
+            </LinearLayout>
+
+            <!--========================================================================Interests-->
+            <!--Interests-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill_horizontal"
+                    android:text="Interests"
+                    android:textStyle="bold"
+                    android:textColor="#000000"/>
+
+                <!--Sub Box-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:orientation="horizontal"
+                    android:background="#FFFFFF"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Film Gender"
+                        android:layout_marginRight="15dp"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:text="Interests"
+                        android:textColor="#a1a0a0"/>
+
+                </LinearLayout>
+
+                <!--Sub Box-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:orientation="horizontal"
+                    android:background="#FFFFFF">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sports"
+                        android:layout_marginRight="15dp"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:text="Interests"
+                        android:textColor="#a1a0a0"/>
+
+                </LinearLayout>
+
+                <!--Sub Box-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:orientation="horizontal"
+                    android:background="#FFFFFF">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Music"
+                        android:layout_marginRight="15dp"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:text="Interests"
+                        android:textColor="#a1a0a0"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:orientation="horizontal"
+                    android:background="#FFFFFF"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Religion"
+                        android:layout_marginRight="15dp"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:text="Interests"
+                        android:textColor="#a1a0a0"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:orientation="horizontal"
+                    android:background="#FFFFFF"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hobbies"
+                        android:layout_marginRight="15dp"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:text="Interests"
+                        android:textColor="#a1a0a0"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
+
+
+<LinearLayout
+android:orientation="vertical"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:weightSum="1"
+android:paddingLeft="30dp"
+android:paddingRight="30dp"
+android:paddingTop="30dp"
+android:paddingBottom="30dp"
+android:id="@+id/call_window"
+android:visibility="invisible"
+    >
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Incoming Call From.."
+    android:id="@+id/textView4"
+    android:layout_gravity="center_horizontal"
+    android:textColor="#000000"
+    android:textSize="20dp"
+    android:layout_weight="0.05"
+    android:gravity="center"/>
+
+<ImageView
+    android:layout_width="179dp"
+    android:layout_height="100dp"
+    android:id="@+id/imageView2"
+    android:layout_below="@+id/textView4"
+    android:layout_gravity="center_horizontal"
+    android:layout_weight="0.31"
+    android:src="@drawable/oldman"/>
+
+<TextView
+    android:layout_width="136dp"
+    android:layout_height="wrap_content"
+    android:text="Ze oldman"
+    android:id="@+id/textView5"
+    android:layout_gravity="center_horizontal"
+    android:layout_weight="0.06"
+    android:gravity="center"
+    android:textColor="#ae042bff"
+    android:textSize="15dp"/>
+
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="173dp"
+    android:layout_weight="0.67">
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/end_call"
+        android:layout_weight="0.05"
+        android:layout_below="@+id/textView5"
+        android:layout_gravity="bottom|center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/end_call"/>
+
+</LinearLayout>
+
+</LinearLayout>
+</RelativeLayout>

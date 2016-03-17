@@ -67,7 +67,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".UserProfile.Password.NewPassword" />
         <activity android:name=".UserProfile.UserInterests" />
-        <activity android:name=".UserProfile.Profile.EditUserProfile"></activity>
+        <activity android:name=".UserProfile.Profile.EditUserProfile" />
+        <activity android:name=".UserProfile.testActivity"></activity>
     </application>
 
 </manifest>

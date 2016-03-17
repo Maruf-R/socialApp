@@ -39,6 +39,17 @@ public class UserSettings extends AppCompatActivity {
             }
         });
 
+        //TODO delete this method
+        // testing if stuff is stored
+        final Button test = (Button)findViewById(R.id.btnTest);
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserSettings.this, testActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 

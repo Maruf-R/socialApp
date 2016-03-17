@@ -35,12 +35,62 @@ public class UserInterests extends AppCompatActivity {
 
     //Variables that need to be stored in the database
     private String userAvatar;
-    private String userBiography;
+    public String userBiography;
     private String userMusic;
     private String userMovies;
     private String userSports;
     private String userFood;
     private String userHobbies;
+
+    private void setInterests(String interest, String interestValue) {
+        if(interest.equals("avatar")) {
+            userAvatar = interestValue;
+        }
+        else if(interest.equals("biography")) {
+            userBiography = interestValue;
+        }
+        else if(interest.equals("music")) {
+            userMusic = interestValue;
+        }
+        else if(interest.equals("movies")) {
+            userMovies = interestValue;
+        }
+        else if(interest.equals("sports")) {
+            userSports = interestValue;
+        }
+        else if(interest.equals("food")) {
+            userFood = interestValue;
+        }
+        else if(interest.equals("hobbies")) {
+            userHobbies = interestValue;
+        }
+
+    }
+
+    public String getInterests(String interest) {
+        if(interest.equals("avatar")) {
+            return userAvatar;
+        }
+        else if(interest.equals("biography")) {
+            return userBiography;
+        }
+        else if(interest.equals("music")) {
+            return userMusic;
+        }
+        else if(interest.equals("movies")) {
+            return userMovies;
+        }
+        else if(interest.equals("sports")) {
+            return userSports;
+        }
+        else if(interest.equals("food")) {
+            return userFood;
+        }
+        else if(interest.equals("hobbies")) {
+            return userHobbies;
+        }
+        return null;
+    }
 
 
     @Override
@@ -84,10 +134,12 @@ public class UserInterests extends AppCompatActivity {
 
                 try {
 
-                    userAvatar = radioAvatar.getText().toString();
+                    setInterests("avatar", radioAvatar.getText().toString());
+                    Log.d("Avatar", userAvatar);
+                    //userAvatar = radioAvatar.getText().toString();
                     // TODO remove toast
                     Toast.makeText(UserInterests.this, userAvatar, Toast.LENGTH_SHORT).show();
-                    Log.d("Godam avatar text", radioAvatar.getText().toString());
+                    //Log.d("Godam avatar text", radioAvatar.getText().toString());
                     firstLayout.setVisibility(View.INVISIBLE);
                     secondLayout.setVisibility(View.VISIBLE);
 
@@ -126,7 +178,8 @@ public class UserInterests extends AppCompatActivity {
             public void onClick(View v) {
                 thirdLayout.setVisibility(View.VISIBLE);
                 secondLayout.setVisibility(View.INVISIBLE);
-                userBiography = editBiography.getText().toString();
+                //userBiography = editBiography.getText().toString();
+                setInterests("biography", editBiography.getText().toString());
                 Log.d("Bio", userBiography);
             }
         });
@@ -167,7 +220,8 @@ public class UserInterests extends AppCompatActivity {
                     }
                 }
 
-                userMusic = result.toString();
+                setInterests("music", result.toString());
+                //userMusic = result.toString();
                 // TODO get rid of toast for FINAL version
                 Toast.makeText(UserInterests.this, userMusic, Toast.LENGTH_SHORT).show();
 
@@ -212,7 +266,8 @@ public class UserInterests extends AppCompatActivity {
                     }
                 }
 
-                userMovies = result.toString();
+                setInterests("movies", result.toString());
+                //userMovies = result.toString();
                 // TODO get rid of toast for FINAL version
                 Toast.makeText(UserInterests.this, userMovies, Toast.LENGTH_SHORT).show();
 
@@ -251,7 +306,8 @@ public class UserInterests extends AppCompatActivity {
                     }
                 }
 
-                userSports = result.toString();
+                setInterests("sports", result.toString());
+                //userSports = result.toString();
                 // TODO get rid of toast for FINAL version
                 Toast.makeText(UserInterests.this, userSports, Toast.LENGTH_SHORT).show();
 
@@ -290,7 +346,8 @@ public class UserInterests extends AppCompatActivity {
                     }
                 }
 
-                userFood = result.toString();
+                setInterests("food", result.toString());
+                //userFood = result.toString();
                 // TODO get rid of toast for FINAL version
                 Toast.makeText(UserInterests.this, userFood, Toast.LENGTH_SHORT).show();
 
@@ -326,7 +383,8 @@ public class UserInterests extends AppCompatActivity {
                     }
                 }
 
-                userHobbies = result.toString();
+                setInterests("hobbies", result.toString());
+                //userHobbies = result.toString();
                 // TODO get rid of toast for FINAL version
                 Toast.makeText(UserInterests.this, userHobbies, Toast.LENGTH_SHORT).show();
 
@@ -338,6 +396,9 @@ public class UserInterests extends AppCompatActivity {
         });
     }
 
+    public String getUserSettings() {
+        return "Avatar: " + userAvatar + " Hobbies: " + userHobbies + " Movies: " + userMovies + " Bio: " + userBiography + " Food: " + userFood + " Sports: " + userSports + " Music: " + userMusic;
+    }
 
 
 

@@ -142,7 +142,11 @@
             android:text="Next"
             android:id="@+id/btnFirstLayout"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_login"/>
+
+
 
     </RelativeLayout>
 
@@ -181,18 +185,25 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:layout_width="0dip"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:text="Back"
                     android:id="@+id/btnSecondLayoutBack"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:background="@drawable/button_login"
+                    android:layout_margin="5dp"
+                    android:textColor="#FFFFFF" />
 
                 <Button
-                    android:layout_width="0dip"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:text="Next"
                     android:id="@+id/btnSecondLayoutNext"
-                    android:layout_weight="2" />
+                    android:layout_weight="1"
+                    android:background="@drawable/button_login"
+                    android:layout_margin="5dp"
+                    android:textColor="#FFFFFF" />
+
             </LinearLayout>
         </LinearLayout>
 
@@ -214,7 +225,9 @@
             android:text="Music"
             android:id="@+id/textView9"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:textColor="#CDDC39"
+            android:textStyle="bold"/>
 
         <GridLayout
             android:layout_width="wrap_content"
@@ -296,18 +309,25 @@
             android:layout_centerHorizontal="true">
 
             <Button
-                android:layout_width="0dip"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="Back"
                 android:id="@+id/btnThirdLayoutBack"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:background="@drawable/button_login"
+                android:layout_margin="5dp"
+                android:textColor="#FFFFFF" />
 
             <Button
-                android:layout_width="0dip"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="Next"
                 android:id="@+id/btnThirdLayoutNext"
-                android:layout_weight="2" />
+                android:layout_weight="1"
+                android:background="@drawable/button_login"
+                android:layout_margin="5dp"
+                android:textColor="#FFFFFF" />
+
         </LinearLayout>
 
         <TextView
@@ -410,18 +430,25 @@
             android:layout_centerHorizontal="true" >
 
             <Button
-                android:layout_width="0dip"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="Back"
                 android:id="@+id/btnFourthLayoutBack"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:background="@drawable/button_login"
+                android:layout_margin="5dp"
+                android:textColor="#FFFFFF" />
 
             <Button
-                android:layout_width="0dip"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="Next"
                 android:id="@+id/btnFourthLayoutNext"
-                android:layout_weight="2" />
+                android:layout_weight="1"
+                android:background="@drawable/button_login"
+                android:layout_margin="5dp"
+                android:textColor="#FFFFFF" />
+
         </LinearLayout>
 
         <TextView
@@ -431,7 +458,9 @@
             android:text="Movies"
             android:id="@+id/textView10"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:textColor="#CDDC39"
+            android:textStyle="bold"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -532,18 +561,25 @@
             android:layout_centerHorizontal="true" >
 
             <Button
-                android:layout_width="0dip"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="Back"
                 android:id="@+id/btnFifthLayoutBack"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:background="@drawable/button_login"
+                android:layout_margin="5dp"
+                android:textColor="#FFFFFF" />
 
             <Button
-                android:layout_width="0dip"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="Next"
                 android:id="@+id/btnFifthLayoutNext"
-                android:layout_weight="2" />
+                android:layout_weight="1"
+                android:background="@drawable/button_login"
+                android:layout_margin="5dp"
+                android:textColor="#FFFFFF" />
+
         </LinearLayout>
 
         <TextView
@@ -553,13 +589,15 @@
             android:text="Sports"
             android:id="@+id/textView13"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:textColor="#CDDC39"
+            android:textStyle="bold"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Tell us what sports you enjoy."
+            android:text="Tell us youre fauvorite sports"
             android:id="@+id/textView14"
             android:layout_below="@+id/textView13"
             android:layout_centerHorizontal="true" />
@@ -654,18 +692,25 @@
             android:layout_centerHorizontal="true" >
 
             <Button
-                android:layout_width="0dip"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="Back"
                 android:id="@+id/btnSixthLayoutBack"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:background="@drawable/button_login"
+                android:layout_margin="5dp"
+                android:textColor="#FFFFFF" />
 
             <Button
-                android:layout_width="0dip"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="Next"
                 android:id="@+id/btnSixthLayoutNext"
-                android:layout_weight="2" />
+                android:layout_weight="1"
+                android:background="@drawable/button_login"
+                android:layout_margin="5dp"
+                android:textColor="#FFFFFF" />
+
         </LinearLayout>
 
         <TextView
@@ -675,13 +720,15 @@
             android:text="Food"
             android:id="@+id/textView15"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:textColor="#CDDC39"
+            android:textStyle="bold"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Tell us about what cuisine(s) you enjoy."
+            android:text="What foods do you enjoy?"
             android:id="@+id/textView16"
             android:layout_below="@+id/textView15"
             android:layout_centerHorizontal="true" />

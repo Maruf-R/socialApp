@@ -1,6 +1,7 @@
 package com.example.mikey.database.UserProfile;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -329,7 +330,10 @@ public class UserInterests extends AppCompatActivity {
                 // TODO get rid of toast for FINAL version
                 Toast.makeText(UserInterests.this, userHobbies, Toast.LENGTH_SHORT).show();
 
-                //seventhLayout.setVisibility(View.INVISIBLE);
+                Intent intent = new Intent(UserInterests.this, Home.class);
+                startActivity(intent);
+
+
             }
         });
     }

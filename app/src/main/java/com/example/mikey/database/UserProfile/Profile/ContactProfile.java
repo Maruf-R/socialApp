@@ -1,6 +1,7 @@
 package com.example.mikey.database.UserProfile.Profile;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.media.AudioManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import com.example.mikey.database.Database.DatabaseHandlerContacts;
 import com.example.mikey.database.Database.DatabaseUsernameId;
 import com.example.mikey.database.Database.JSONParser;
 import com.example.mikey.database.R;
+import com.example.mikey.database.UserProfile.VoiceCall.AudioPlayer;
 import com.sinch.android.rtc.PushPair;
 import com.sinch.android.rtc.Sinch;
 import com.sinch.android.rtc.SinchClient;
@@ -113,10 +115,15 @@ public class ContactProfile extends AppCompatActivity {
         this._nationality = _nationality;
     }
 
+
+  AudioPlayer ap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_profile);
+
+
+        ap = new AudioPlayer(this);
         dbHandlerId = new DatabaseUsernameId(this);
 
         idUserHash = dbHandlerId.getUserDetails();
@@ -164,6 +171,10 @@ public class ContactProfile extends AppCompatActivity {
                /////// call = sinchClient.getCallClient().callUser(hashC.get("namef"));
 
                 call.addCallListener(callListener);
+
+
+
+
                 /*else {
                     call.hangup();
                     call = null;
@@ -174,8 +185,8 @@ public class ContactProfile extends AppCompatActivity {
         endCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 call.hangup();
+
                 call.addCallListener(callListener);
                 callWin.setVisibility(View.INVISIBLE);
                 contactProf.setVisibility(View.VISIBLE);
@@ -192,6 +203,7 @@ public class ContactProfile extends AppCompatActivity {
     class SinchCallListener implements CallListener {
         @Override
         public void onCallEnded(Call endedCall) {
+            ap.stopProgressTone();
             callWin.setVisibility(View.INVISIBLE);
             contactProf.setVisibility(View.VISIBLE);
             Toast.makeText(ContactProfile.this,"Call ended by your friend."+ "SHOULD I PUT USER'S NAME?." , Toast.LENGTH_LONG).show();
@@ -200,13 +212,17 @@ public class ContactProfile extends AppCompatActivity {
         }
         @Override
         public void onCallEstablished(Call establishedCall) {
+            ap.stopProgressTone();
             setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
             Toast.makeText(ContactProfile.this,"Conected" , Toast.LENGTH_LONG).show();
+            ap.stopProgressTone();
+
 
         }
         @Override
         public void onCallProgressing(Call progressingCall) {
             //call is ringing
+            ap.playProgressTone();
         }
         @Override
         public void onShouldSendPushNotification(Call call, List<PushPair> pushPairs) {

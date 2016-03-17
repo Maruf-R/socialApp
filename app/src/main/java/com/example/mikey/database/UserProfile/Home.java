@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.mikey.database.Database.DatabaseUsernameId;
 import com.example.mikey.database.R;
 import com.example.mikey.database.UserProfile.Profile.Profile;
+import com.example.mikey.database.UserProfile.VoiceCall.AudioPlayer;
 import com.sinch.android.rtc.PushPair;
 import com.sinch.android.rtc.Sinch;
 import com.sinch.android.rtc.SinchClient;
@@ -35,6 +36,7 @@ public class Home extends TabActivity{
     TabHost tablay;
     LinearLayout sec;
     private Call call;
+    AudioPlayer ap;//holds the audio player
 
 /*ReceiveCallHolder mike;*/
     @Override
@@ -43,16 +45,16 @@ public class Home extends TabActivity{
         setContentView(R.layout.activity_main);
         tablay = (TabHost)findViewById(android.R.id.tabhost);
         tablay.setVisibility(View.VISIBLE);
-sec = (LinearLayout) findViewById(R.id.call_window);
+        sec = (LinearLayout) findViewById(R.id.call_window);
       /*  mike = new ReceiveCallHolder(this);
         mike.startMike(this);*/
-
+ap = new AudioPlayer(this);
 
       dbHandlerId = new DatabaseUsernameId(this);
 
         idUserHash = dbHandlerId.getUserDetails();
 
-
+///////////////////////////////////////////////////////////////////////////// this is receiving calls
         SinchClient sinchClient = Sinch.getSinchClientBuilder()
                 .context(this)
                 .userId(idUserHash.get("email"))
@@ -88,6 +90,8 @@ sec = (LinearLayout) findViewById(R.id.call_window);
             public void onClick(View v) {
 
                 call.hangup();
+                ap.stopRingtone();
+
                 call.addCallListener(new SinchCallListener() {
                 });
 
@@ -101,7 +105,7 @@ sec = (LinearLayout) findViewById(R.id.call_window);
         });
 
 
-
+///////////////////////////////////////////////////////////////////////////////
 
 
         // create the TabHost that will contain the Tabs
@@ -146,11 +150,8 @@ public class SinchCallClientListener implements CallClientListener {
         //Pick up the call!
         tablay.setVisibility(View.INVISIBLE);
         sec.setVisibility(View.VISIBLE);
-       // Home.this.setContentView(R.layout.receivecalls_layout);
-        /*
-      Intent inCall = new Intent(Home.this,receiveCallTest.class);
-        startActivity(inCall);
-*/
+        ap.playRingtone();
+
         Toast.makeText(Home.this, "receiving call", Toast.LENGTH_LONG).show();
 
         call = incomingCall;
@@ -165,12 +166,15 @@ public class SinchCallClientListener implements CallClientListener {
         public void onCallEnded(Call endedCall) {
           //  Toast.makeText(ContactProfile.this, "Call ended by your friend." + "SHOULD I PUT USER'S NAME?.", Toast.LENGTH_LONG).show();
            call.hangup();
+            ap.stopRingtone();
             setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
         }
 
         @Override
         public void onCallEstablished(Call establishedCall) {
             setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
+            ap.stopRingtone();
+
          //   Toast.makeText(ContactProfile.this,"Conected" , Toast.LENGTH_LONG).show();
 
         }

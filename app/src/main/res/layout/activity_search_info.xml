@@ -254,7 +254,7 @@
             android:layout_height="wrap_content"
             android:text="Search"
             android:layout_weight="1"
-            android:textColor="#3F51B5"
+            android:textColor="#FFFFFF"
             android:background="@drawable/button_signup"
             android:layout_gravity="center"
             android:onClick=""

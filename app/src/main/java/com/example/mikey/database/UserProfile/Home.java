@@ -114,11 +114,16 @@ sec = (LinearLayout) findViewById(R.id.call_window);
 
         // Set the Tab name and Activity
         // that will be opened when particular Tab will be selected
+
+
+
         tab1.setIndicator("Contacts");
         tab1.setContent(new Intent(this, Profile.class));
 
+
         tab2.setIndicator("Search");
         tab2.setContent(new Intent(this, Search.class));
+
 
         tab3.setIndicator("Settings");
         tab3.setContent(new Intent(this, UserSettings.class));
@@ -130,6 +135,10 @@ sec = (LinearLayout) findViewById(R.id.call_window);
 
 
     }
+
+
+
+
 
 public class SinchCallClientListener implements CallClientListener {
     @Override

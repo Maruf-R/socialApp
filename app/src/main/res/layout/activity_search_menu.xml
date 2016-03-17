@@ -6,25 +6,13 @@
     android:layout_height="match_parent"
     android:background="#03A9F4">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Select Method"
-        android:textSize="20dp"
-        android:textColor="#CDDC39"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:padding="5dp"
-        android:allowUndo="true"
-        android:textStyle="bold" />
-
     <!--Search options-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginTop="30dp">
 
         <!--Map Search-->
         <ImageButton
@@ -32,14 +20,16 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_weight="1"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/map"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="People around you"
-            android:textSize="15dp"/>
+            android:text="Near Me"
+            android:textSize="15dp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
 
         <!--Specification Search-->
         <ImageButton
@@ -47,14 +37,17 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_weight="1"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="70dp"
             android:background="@drawable/search"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Search by age range, gender, location or interests"
-            android:textSize="15dp"/>
+            android:text="Search By Criteria"
+            android:textSize="15dp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp" />
 
     </LinearLayout>
 

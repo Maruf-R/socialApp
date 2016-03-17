@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Edit User Interests"
-            android:id="@+id/button2"
+            android:id="@+id/btnEditUserInterests"
             android:background="@drawable/button_login"
             android:padding="5dp"
             android:layout_margin="5dp"

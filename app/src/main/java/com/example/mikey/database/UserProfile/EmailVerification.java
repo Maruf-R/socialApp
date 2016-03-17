@@ -153,6 +153,8 @@ public class EmailVerification extends AppCompatActivity implements DialogInterf
                     else {
                     new CreateUser().execute();
                 }
+
+
               /*else if (getSuccess() == 0) {
 
                     lauchDialog();
@@ -239,10 +241,12 @@ public class EmailVerification extends AppCompatActivity implements DialogInterf
 
                 if (success == 1) {
                     Log.d("User Created!", json.toString());
-                    Intent i = new Intent(EmailVerification.this, Home.class);
-                    //  finish();
-                    startActivity(i);
+//                    Intent i = new Intent(EmailVerification.this, Home.class);
+//                    //  finish();
+//                    startActivity(i);
 
+                    Intent intent = new Intent(EmailVerification.this, UserInterests.class);
+                    startActivity(intent);
 
                     finish();
                     return json.getString(TAG_MESSAGE);

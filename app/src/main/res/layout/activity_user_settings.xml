@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Block Contact"
-            android:id="@+id/button"
+            android:id="@+id/btnBlockContact"
             android:background="@drawable/button_login"
             android:layout_margin="5dp"
             android:textColor="#FFFFFF" />
@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Log Out"
-            android:id="@+id/button4"
+            android:id="@+id/btnLogOut"
             android:background="@drawable/button_login"
             android:layout_margin="5dp"
             android:textColor="#FFFFFF" />
@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Delete Account"
-            android:id="@+id/btnTest"
+            android:id="@+id/btnDeleteAccount"
             android:background="@drawable/button_login"
             android:layout_margin="5dp"
             android:textColor="#FFFFFF" />

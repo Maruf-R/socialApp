@@ -8,12 +8,12 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.awesomesauce.companion4me.Profile"
->
+    android:background="#03A9F4">
 
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#eeeeee"
+    android:background="#03A9F4"
     android:theme="@style/Theme.AppCompat.NoActionBar"
     android:id="@+id/contact_layout"
     android:visibility="invisible"
@@ -30,14 +30,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:background="#03A9F4">
 
             <ImageView
                 android:id="@+id/imgUserAvatar"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_margin="10dip"
-                android:background="#000000" />
+                android:background="@drawable/oldwoman" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -52,7 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Jane Doe"
-                    android:textColor="#000000"
+                    android:textColor="#FFFFFF"
                     android:textSize="30dp"/>
 
                 <TextView
@@ -61,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="24"
-                    android:textColor="#808080"
+                    android:textColor="#FFFFFF"
                     android:textSize="20dp"/>
 
             </LinearLayout>
@@ -76,7 +77,7 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add to Contact"
+                    android:text="Add to Contacts"
                     android:id="@+id/btnAddUser"
                     android:background="@drawable/button_login"
                     android:padding="10dip"
@@ -88,7 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="#FFFFFF"
+                android:background="#03A9F4"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:gravity="center">
@@ -98,7 +99,7 @@
                     android:id="@+id/btnMessageUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/newmessage"
+                    android:background="@drawable/messagebox"
                     android:layout_margin="7dip" />
 
                 <!--=========================================================================Call-->
@@ -106,16 +107,16 @@
                     android:id="@+id/btnCallUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/phone"
+                    android:background="@drawable/phonebox"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"/>
+                    android:layout_marginRight="20dp" />
 
                 <!--========================================================================Block-->
                 <ImageButton
                     android:id="@+id/Block_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/block"
+                    android:background="@drawable/blockbox"
                     android:layout_margin="7dip" />
 
             </LinearLayout>
@@ -128,7 +129,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:orientation="horizontal"
-                android:background="#FFFFFF">
+                android:background="@drawable/curved_corner"
+                android:padding="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -155,7 +157,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:orientation="horizontal"
-                android:background="#FFFFFF">
+                android:background="@drawable/curved_corner"
+                android:padding="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -183,7 +186,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:orientation="horizontal"
-                android:background="#FFFFFF">
+                android:background="@drawable/curved_corner"
+                android:padding="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -211,7 +215,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:orientation="horizontal"
-                android:background="#FFFFFF">
+                android:background="@drawable/curved_corner"
+                android:padding="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -239,7 +244,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:orientation="horizontal"
-                android:background="#FFFFFF">
+                android:background="@drawable/curved_corner"
+                android:padding="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -284,8 +290,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
                     android:orientation="horizontal"
-                    android:background="#FFFFFF"
-                    >
+                    android:background="@drawable/curved_corner"
+                    android:padding="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -312,7 +318,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
                     android:orientation="horizontal"
-                    android:background="#FFFFFF">
+                    android:background="@drawable/curved_corner"
+                    android:padding="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -340,7 +347,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
                     android:orientation="horizontal"
-                    android:background="#FFFFFF">
+                    android:background="@drawable/curved_corner"
+                    android:padding="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -366,8 +374,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
                     android:orientation="horizontal"
-                    android:background="#FFFFFF"
-                    >
+                    android:background="@drawable/curved_corner"
+                    android:padding="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -393,8 +401,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
                     android:orientation="horizontal"
-                    android:background="#FFFFFF"
-                    >
+                    android:background="@drawable/curved_corner"
+                    android:padding="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -420,8 +428,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
                     android:orientation="horizontal"
-                    android:background="#FFFFFF"
-                    >
+                    android:background="@drawable/curved_corner"
+                    android:padding="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"

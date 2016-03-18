@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -98,6 +99,19 @@ public class ContactProfile extends AppCompatActivity {
     private TextView sportsv;
     private TextView biographyv;
     private TextView moviesv;
+
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    private String avatar;
+    private ImageView avatarv;
+
 
 
     public String getMusic() {
@@ -348,6 +362,8 @@ public class ContactProfile extends AppCompatActivity {
                     setMusic(c.getString("music"));
                     setBiography(c.getString("description"));
                     setSports(c.getString("sports"));
+                    setAvatar(c.getString("avatar"));
+
 //                    setCountry(c.getString("country"));
 //                    setCity(c.getString("city"));
 //
@@ -391,6 +407,10 @@ public class ContactProfile extends AppCompatActivity {
             sportsv= (TextView) findViewById(R.id.fsports);
             biographyv= (TextView) findViewById(R.id.fbio);
             moviesv= (TextView) findViewById(R.id.fmovies);
+            avatarv= (ImageView) findViewById(R.id.imgUserAvatar);
+
+            int imgId = getResources().getIdentifier(getAvatar(), "drawable", getPackageName());
+            avatarv.setImageResource(imgId);
 
 
 

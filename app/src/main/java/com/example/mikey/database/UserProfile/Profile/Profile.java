@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,23 +62,23 @@ public class Profile extends AppCompatActivity {
     }
 
 
-/*TODO once implemented
-    public String getCountry() {
-        return country;
-    }
+    /*TODO once implemented
+        public String getCountry() {
+            return country;
+        }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
+        public void setCountry(String country) {
+            this.country = country;
+        }
 
-    public String getCity() {
-        return city;
-    }
+        public String getCity() {
+            return city;
+        }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-*/
+        public void setCity(String city) {
+            this.city = city;
+        }
+    */
     private String country, city;
     private String education,gender;
     private String music;
@@ -93,6 +94,19 @@ public class Profile extends AppCompatActivity {
     private TextView sportsv;
     private TextView biographyv;
     private TextView moviesv;
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    private String avatar;
+    private ImageView avatarv;
+
+
 
 
     public String getMusic() {
@@ -244,6 +258,7 @@ public class Profile extends AppCompatActivity {
                     setMusic(c.getString("music"));
                     setBiography(c.getString("description"));
                     setSports(c.getString("sports"));
+                    setAvatar(c.getString("avatar"));
 //                    setCountry(c.getString("country"));
 //                    setCity(c.getString("city"));
 //
@@ -274,24 +289,27 @@ public class Profile extends AppCompatActivity {
             ageV = (TextView) findViewById(R.id.Age_txt);
             nationalityV = (TextView) findViewById(R.id.txtMyNation);
             educationv= (TextView) findViewById(R.id.ueducationid);
-           genderv= (TextView) findViewById(R.id.ugenderid);
+            genderv= (TextView) findViewById(R.id.ugenderid);
             musicv= (TextView) findViewById(R.id.umusicid);
-           foodv= (TextView) findViewById(R.id.ufoodid);
+            foodv= (TextView) findViewById(R.id.ufoodid);
             hobbiesv= (TextView) findViewById(R.id.uhobbiesid);
             sportsv= (TextView) findViewById(R.id.usportsid);
-           biographyv= (TextView) findViewById(R.id.ubiographyid);
-           moviesv= (TextView) findViewById(R.id.umoviesid);
+            biographyv= (TextView) findViewById(R.id.ubiographyid);
+            moviesv= (TextView) findViewById(R.id.umoviesid);
+            avatarv= (ImageView) findViewById(R.id.Avatar_img);
+
+            int imgId = getResources().getIdentifier(getAvatar(), "drawable", getPackageName());
+            avatarv.setImageResource(imgId);
 
 
-
-       educationv.setText(getEducation());
-               genderv.setText(getGender());
-    musicv.setText(getMusic());
-         foodv.setText(getFood());
-      hobbiesv.setText(getHobbies());
-  sportsv.setText(getSports());
-        biographyv.setText(getBiography());
-        moviesv.setText(getMovies());
+            educationv.setText(getEducation());
+            genderv.setText(getGender());
+            musicv.setText(getMusic());
+            foodv.setText(getFood());
+            hobbiesv.setText(getHobbies());
+            sportsv.setText(getSports());
+            biographyv.setText(getBiography());
+            moviesv.setText(getMovies());
 
             nameV.setText(get_name());
             ageV.setText(get_age());

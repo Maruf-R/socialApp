@@ -27,7 +27,7 @@
                 android:id="@+id/Avatar_img"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:background="@drawable/oldman" />
+               />
 
             <LinearLayout
                 android:layout_width="match_parent"

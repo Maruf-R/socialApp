@@ -196,7 +196,9 @@ public class ContactProfile extends AppCompatActivity {
     public void set_nationality(String _nationality) {
         this._nationality = _nationality;
     }
-
+ImageView avatarcall;
+    TextView usercallingto;
+    TextView actioncalling;
 
   AudioPlayer ap;
     @Override
@@ -218,6 +220,7 @@ public class ContactProfile extends AppCompatActivity {
 
         callUser = (ImageButton) findViewById(R.id.btnCallUser);
         endCall = (ImageButton) findViewById(R.id.end_call);
+        actioncalling = (TextView) findViewById(R.id.calltextid);
 
 
         dbHandler = new DatabaseHandlerContacts(this);
@@ -248,6 +251,8 @@ public class ContactProfile extends AppCompatActivity {
             public void onClick(View v) {
                contactProf.setVisibility(View.INVISIBLE);
                 callWin.setVisibility(View.VISIBLE);
+                actioncalling.setText("Calling...");
+
 
                 call = sinchClient.getCallClient().callUser(hashC.get("namef"));
                /////// call = sinchClient.getCallClient().callUser(hashC.get("namef"));
@@ -267,6 +272,8 @@ public class ContactProfile extends AppCompatActivity {
         endCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                actioncalling.setText("Call ended");
+
                 call.hangup();
 
                 call.addCallListener(callListener);
@@ -408,10 +415,15 @@ public class ContactProfile extends AppCompatActivity {
             biographyv= (TextView) findViewById(R.id.fbio);
             moviesv= (TextView) findViewById(R.id.fmovies);
             avatarv= (ImageView) findViewById(R.id.imgUserAvatar);
+            usercallingto= (TextView) findViewById(R.id.namepersoncallingto);
+            usercallingto.setText(get_name());
 
             int imgId = getResources().getIdentifier(getAvatar(), "drawable", getPackageName());
             avatarv.setImageResource(imgId);
 
+            avatarcall= (ImageView) findViewById(R.id.imgUserAvatarCallingProfile);
+
+            avatarcall.setImageResource(imgId);
 
 
             educationv.setText(getEducation());
@@ -432,7 +444,7 @@ public class ContactProfile extends AppCompatActivity {
             System.out.println("this is the natio l: " + get_nationality());
 
 
-            pDialog.dismiss();
+          pDialog.dismiss();
             contactProf.setVisibility(View.VISIBLE);
 
 

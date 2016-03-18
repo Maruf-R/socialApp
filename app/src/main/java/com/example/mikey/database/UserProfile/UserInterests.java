@@ -247,39 +247,14 @@ System.out.println("the values are being stored"+getInterests("movies")+getInter
         secondLayout = (RelativeLayout)findViewById(R.id.secondLayout);
         secondLayout.setVisibility(View.INVISIBLE);
 
-//        radioGroupAvatar = (RadioGroup)findViewById(R.id.radioGroupAvatar);
-//        btnFirstLayout = (Button)findViewById(R.id.btnFirstLayout);
-//        btnFirstLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                int selectedId = radioGroupAvatar.getCheckedRadioButtonId();
-//                radioAvatar = (RadioButton) findViewById(selectedId);
-//
-//                try {
-//
-//                    setInterests("avatar", radioAvatar.getText().toString());
-//                    Log.d("Avatar", userAvatar);
-//                    //userAvatar = radioAvatar.getText().toString();
-//                    // TODO remove toast
-//                    Toast.makeText(UserInterests.this, userAvatar, Toast.LENGTH_SHORT).show();
-//                    //Log.d("Godam avatar text", radioAvatar.getText().toString());
-//                    firstLayout.setVisibility(View.INVISIBLE);
-//                    secondLayout.setVisibility(View.VISIBLE);
-//
-//                } catch (NullPointerException e) {
-//                    Toast.makeText(UserInterests.this, "Please select an avatar.", Toast.LENGTH_SHORT).show();
-//                }
-//
-//            }
-//        });
 
     }
 
     public void onClickAvatar(View view) {
-        ImageView img = (ImageView)findViewById(view.getId());
-        String imgId = img.getId() + "";
-        setInterests("avatar", imgId);
-        Log.d("avatar", imgId);
+        Button btnAvatar = (Button)findViewById(view.getId());
+        setInterests("avatar", btnAvatar.getText().toString());
+
+        Log.d("avatar", btnAvatar.getText().toString());
         firstLayout.setVisibility(View.INVISIBLE);
         secondLayout.setVisibility(View.VISIBLE);
 

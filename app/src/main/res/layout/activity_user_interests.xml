@@ -753,68 +753,86 @@
             android:columnCount="3"
             android:rowCount="3">
 
-            <ImageView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageView"
                 android:background="@drawable/oldman"
-                android:onClick="onClickAvatar" />
+                android:onClick="onClickAvatar"
+                android:text="oldman"
+                android:textColor="@android:color/transparent"/>
 
-            <ImageView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageView3"
                 android:background="@drawable/oldwoman"
-                android:onClick="onClickAvatar" />
+                android:onClick="onClickAvatar"
+                android:text="oldwoman"
+                android:textColor="@android:color/transparent"/>
 
-            <ImageView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageView4"
                 android:background="@drawable/male"
-                android:onClick="onClickAvatar" />
+                android:onClick="onClickAvatar"
+                android:text="male"
+                android:textColor="@android:color/transparent"/>
 
-            <ImageView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageView5"
                 android:background="@drawable/female"
-                android:onClick="onClickAvatar" />
+                android:onClick="onClickAvatar"
+                android:text="female"
+                android:textColor="@android:color/transparent"/>
 
-            <ImageView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageView6"
                 android:background="@drawable/male2"
-                android:onClick="onClickAvatar" />
+                android:onClick="onClickAvatar"
+                android:text="male2"
+                android:textColor="@android:color/transparent"/>
 
-            <ImageView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageView7"
                 android:background="@drawable/female2"
-                android:onClick="onClickAvatar" />
+                android:onClick="onClickAvatar"
+                android:text="female2"
+                android:textColor="@android:color/transparent"/>
 
-            <ImageView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageView8"
                 android:background="@drawable/boy"
-                android:onClick="onClickAvatar" />
+                android:onClick="onClickAvatar"
+                android:text="boy"
+                android:textColor="@android:color/transparent"/>
 
-            <ImageView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageView9"
                 android:background="@drawable/girl"
-                android:onClick="onClickAvatar" />
+                android:onClick="onClickAvatar"
+                android:text="girl"
+                android:textColor="@android:color/transparent"/>
 
-            <ImageView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageView10"
                 android:background="@drawable/matureman"
-                android:onClick="onClickAvatar" />
+                android:onClick="onClickAvatar"
+                android:text="matureman"
+                android:textColor="@android:color/transparent"/>
         </GridLayout>
 
 

@@ -255,6 +255,13 @@ System.out.println("the values are being stored"+getInterests("movies")+getInter
         setInterests("avatar", btnAvatar.getText().toString());
 
         Log.d("avatar", btnAvatar.getText().toString());
+
+        // TODO this is the way you set image resource
+        // Keep everything else the same
+//        ImageView imgAvatar = (ImageView)findViewById(R.id.nameOfAvatarViewYouWantToChange);
+//        int imgId = getResources().getIdentifier(string for the avatar which is stored on the database goes here, "drawable", getPackageName());
+//        img.setImageResource(imgId);
+
         firstLayout.setVisibility(View.INVISIBLE);
         secondLayout.setVisibility(View.VISIBLE);
 

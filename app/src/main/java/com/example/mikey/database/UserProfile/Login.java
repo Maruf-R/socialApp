@@ -90,7 +90,7 @@ public class Login extends AppCompatActivity {
                     String username = getEmail();
                     String password = computeMD5Hash(passwordBox.getText().toString());
                     dbHandler.resetTables();
-                    dbHandler.addUser(null, null, null, getEmail(), null, null, null);
+                    dbHandler.addUser(null, null, null, getEmail(), null, null, null,null,null,null,null);
                     dbHandlerId.resetTables();
 
                     dbHandlerId.addUser(null, null,null,getEmail(),null,null,null);

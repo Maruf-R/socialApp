@@ -47,6 +47,7 @@ public class ContactProfile extends AppCompatActivity {
     private static final String TAG_USERNAME = "username";
     private static final String TAG_NAME = "name";
     private static final String TAG_NATIONALITY = "nationality";
+
     DatabaseUsernameId dbHandlerId;
     HashMap<String,String> idUserHash;
     TextView nameF;
@@ -67,25 +68,92 @@ public class ContactProfile extends AppCompatActivity {
     private Call call;
     private ProgressDialog pDialog;
 
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    private String education,gender;
+    private String music;
+    private String food;
+    private String hobbies;
+    private String sports;
+    private String biography;
+    private String movies;
+    private TextView educationv,genderv;
+    private TextView musicv;
+    private TextView foodv;
+    private TextView hobbiesv;
+    private TextView sportsv;
+    private TextView biographyv;
+    private TextView moviesv;
+
+
+    public String getMusic() {
+        return music;
+    }
+
+    public void setMusic(String music) {
+        this.music = music;
+    }
+
+    public String getFood() {
+        return food;
+    }
+
+    public void setFood(String food) {
+        this.food = food;
+    }
+
+    public String getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(String hobbies) {
+        this.hobbies = hobbies;
+    }
+
+    public String getSports() {
+        return sports;
+    }
+
+    public void setSports(String sports) {
+        this.sports = sports;
+    }
+
+    public String getBiography() {
+        return biography;
+    }
+
+    public void setBiography(String biography) {
+        this.biography = biography;
+    }
+
+    public String getMovies() {
+        return movies;
+    }
+
+    public void setMovies(String movies) {
+        this.movies = movies;
+    }
+
+
     public String get_age() {
         return _age;
     }
 
-/*
-    public class SinchCallClientListener implements CallClientListener {
-        @Override
-        public void onIncomingCall(CallClient callClient, Call incomingCall) {
-            //Pick up the call!
-            ContactProfile.this.setContentView(R.layout.receivecalls_layout);
-            Toast.makeText(ContactProfile.this, "receiving call", Toast.LENGTH_LONG).show();
 
-            call = incomingCall;
-            call.answer();
-            call.addCallListener(new SinchCallListener());
-
-        }
-    }
-*/
 
     public void set_age(String _age) {
         this._age = _age;
@@ -271,6 +339,23 @@ public class ContactProfile extends AppCompatActivity {
                     String name = c.getString(TAG_NAME);
                     String age = c.getString(TAG_AGE);
                     String nationality = c.getString(TAG_NATIONALITY);
+                    setFood(c.getString("food"));
+
+                    setEducation(c.getString("education"));
+                    setGender(c.getString("gender"));
+                    setHobbies(c.getString("hobbies"));
+                    setMovies(c.getString("movies"));
+                    setMusic(c.getString("music"));
+                    setBiography(c.getString("description"));
+                    setSports(c.getString("sports"));
+//                    setCountry(c.getString("country"));
+//                    setCity(c.getString("city"));
+//
+
+
+
+
+
 
                     set_name(name);
                     set_age(age);
@@ -298,7 +383,25 @@ public class ContactProfile extends AppCompatActivity {
             nameF = (TextView) findViewById(R.id.txtUserName);
             ageF = (TextView) findViewById(R.id.txtUserAge);
             nationalityF = (TextView) findViewById(R.id.txtNationFriend);
+            educationv= (TextView) findViewById(R.id.txtUserEducationFriend);
+            genderv= (TextView) findViewById(R.id.txtUserGender);
+            musicv= (TextView) findViewById(R.id.fmusic);
+            foodv= (TextView) findViewById(R.id.ffood);
+            hobbiesv= (TextView) findViewById(R.id.fhobbies);
+            sportsv= (TextView) findViewById(R.id.fsports);
+            biographyv= (TextView) findViewById(R.id.fbio);
+            moviesv= (TextView) findViewById(R.id.fmovies);
 
+
+
+            educationv.setText(getEducation());
+            genderv.setText(getGender());
+            musicv.setText(getMusic());
+            foodv.setText(getFood());
+            hobbiesv.setText(getHobbies());
+            sportsv.setText(getSports());
+            biographyv.setText(getBiography());
+            moviesv.setText(getMovies());
             nameF.setText(get_name());
             ageF.setText(get_age());
             nationalityF.setText(get_nationality());

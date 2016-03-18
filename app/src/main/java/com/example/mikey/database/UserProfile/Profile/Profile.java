@@ -34,6 +34,8 @@ public class Profile extends AppCompatActivity {
     TextView nameV;
     TextView ageV;
     TextView nationalityV;
+
+
     JSONParser jParser = new JSONParser();
     JSONArray ldata = null;
     DatabaseHandler dbHandler;
@@ -42,6 +44,107 @@ public class Profile extends AppCompatActivity {
     private String _name;
     private String _age;
     private String _nationality;
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+
+/*TODO once implemented
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+*/
+    private String country, city;
+    private String education,gender;
+    private String music;
+    private String food;
+    private String hobbies;
+    private String sports;
+    private String biography;
+    private String movies;
+    private TextView educationv,genderv;
+    private TextView musicv;
+    private TextView foodv;
+    private TextView hobbiesv;
+    private TextView sportsv;
+    private TextView biographyv;
+    private TextView moviesv;
+
+
+    public String getMusic() {
+        return music;
+    }
+
+    public void setMusic(String music) {
+        this.music = music;
+    }
+
+    public String getFood() {
+        return food;
+    }
+
+    public void setFood(String food) {
+        this.food = food;
+    }
+
+    public String getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(String hobbies) {
+        this.hobbies = hobbies;
+    }
+
+    public String getSports() {
+        return sports;
+    }
+
+    public void setSports(String sports) {
+        this.sports = sports;
+    }
+
+    public String getBiography() {
+        return biography;
+    }
+
+    public void setBiography(String biography) {
+        this.biography = biography;
+    }
+
+    public String getMovies() {
+        return movies;
+    }
+
+    public void setMovies(String movies) {
+        this.movies = movies;
+    }
+
+
+
     private ProgressDialog pDialog;
 
     public String get_age() {
@@ -128,10 +231,25 @@ public class Profile extends AppCompatActivity {
                     String age = c.getString(TAG_AGE);
                     String nationality = c.getString(TAG_NATIONALITY);
 
+
                     set_name(name);
                     set_age(age);
                     set_nationality(nationality);
                     set_username(username);
+                    setEducation(c.getString("education"));
+                    setGender(c.getString("gender"));
+                    setFood(c.getString("food"));
+                    setHobbies(c.getString("hobbies"));
+                    setMovies(c.getString("movies"));
+                    setMusic(c.getString("music"));
+                    setBiography(c.getString("description"));
+                    setSports(c.getString("sports"));
+//                    setCountry(c.getString("country"));
+//                    setCity(c.getString("city"));
+//
+
+
+
 
 
                     System.out.println("this is the username php: " + username);
@@ -155,6 +273,25 @@ public class Profile extends AppCompatActivity {
             nameV = (TextView) findViewById(R.id.Name_txt);
             ageV = (TextView) findViewById(R.id.Age_txt);
             nationalityV = (TextView) findViewById(R.id.txtMyNation);
+            educationv= (TextView) findViewById(R.id.ueducationid);
+           genderv= (TextView) findViewById(R.id.ugenderid);
+            musicv= (TextView) findViewById(R.id.umusicid);
+           foodv= (TextView) findViewById(R.id.ufoodid);
+            hobbiesv= (TextView) findViewById(R.id.uhobbiesid);
+            sportsv= (TextView) findViewById(R.id.usportsid);
+           biographyv= (TextView) findViewById(R.id.ubiographyid);
+           moviesv= (TextView) findViewById(R.id.umoviesid);
+
+
+
+       educationv.setText(getEducation());
+               genderv.setText(getGender());
+    musicv.setText(getMusic());
+         foodv.setText(getFood());
+      hobbiesv.setText(getHobbies());
+  sportsv.setText(getSports());
+        biographyv.setText(getBiography());
+        moviesv.setText(getMovies());
 
             nameV.setText(get_name());
             ageV.setText(get_age());

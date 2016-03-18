@@ -126,7 +126,7 @@ public class ForgotPassword extends AppCompatActivity {
                     Toast.makeText(ForgotPassword.this, "SUCCESS, NOW ENTER A VALID PASSWORD", Toast.LENGTH_LONG).show();
 
                     dbHandler.resetTables();
-                    dbHandler.addUser(null, null, null, getInputEmail(), null, getUsanswer(), getUsquestion());
+                    dbHandler.addUser(null, null, null, getInputEmail(), null, getUsanswer(), getUsquestion(),null,null,null,null);
 
 
             }

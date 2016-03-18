@@ -24,10 +24,11 @@ public class Spec extends AppCompatActivity implements AdapterView.OnItemSelecte
 
     Button search_btn,clear_btn;
     private EditText min_age,max_age, etEmail, etName;
-    Spinner eduSpinner;
+    Spinner eduSpinner, genSpinner;
     private Spinner nationalityS;
 
     final String[] EDUCATION = {"Not stated", "Further Education", "Higher Education"};
+    final String[] GENDER = {"Not stated", "Male", "Female"};
 
 
     public String getUserEt() {
@@ -49,6 +50,28 @@ public class Spec extends AppCompatActivity implements AdapterView.OnItemSelecte
     private String userEt;
     private String nameEt;
     private int age;
+
+    private String fcountry,fcity;
+    private Spinner sfcountry,sfcity;
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
+    private String gender, education;
+
 
     public String getMinimumAge() {
         return minimumAge;
@@ -93,13 +116,14 @@ public class Spec extends AppCompatActivity implements AdapterView.OnItemSelecte
         hash = dbHandler.getUserContacts();
 
         //Methods
-        spinner_method();
+
         min_age = (EditText) findViewById(R.id.minage);
         max_age = (EditText) findViewById(R.id.maxage);
-        etEmail = (EditText) findViewById(R.id.email_search);
+     //   etEmail = (EditText) findViewById(R.id.email_search);
         etName = (EditText) findViewById(R.id.name_search_info);
         spinnerCountries();//creates nationality spinner
-
+        spinner_methodGender();
+        spinner_methodEdu();
 
 
         search_btn = (Button) findViewById(R.id.btn_search);
@@ -122,14 +146,14 @@ public class Spec extends AppCompatActivity implements AdapterView.OnItemSelecte
             public void onClick(View v) {
 
                 setNameEt(etName.getText().toString());
-                setUserEt(etEmail.getText().toString());
+            //    setUserEt(etEmail.getText().toString());
                 setMaximumAge(max_age.getText().toString());
                 setMinimumAge(min_age.getText().toString());
 
 
 
                 dbHandler.resetTablesContacts();
-                dbHandler.addUserContacts(getNameEt(), null, getNationalityEt(), getUserEt(), getMaximumAge(),getMinimumAge(), null);
+                dbHandler.addUserContacts(getNameEt(), null, getNationalityEt(), null, getMaximumAge(),getMinimumAge(), null, getEducation(),getGender(),null,null);
 
 
 
@@ -162,15 +186,50 @@ public class Spec extends AppCompatActivity implements AdapterView.OnItemSelecte
     }
 
 
+    public void spinner_methodGender(){
+        genSpinner = (Spinner) findViewById(R.id.gender_spinner);
+        genSpinner.setOnItemSelectedListener(this);
+
+        List<String> genderSpinnerA = new ArrayList<String>();
+
+
+
+        for (String countryCode : GENDER) {
+
+
+            genderSpinnerA.add(countryCode);
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, genderSpinnerA);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        genSpinner.setAdapter(adapter);
+
+
+
+
+
+
+    }
 
 
     // this needs to be added to the database php
-    public void spinner_method(){
+    public void spinner_methodEdu(){
         eduSpinner = (Spinner) findViewById(R.id.edu_spinner);
+        eduSpinner.setOnItemSelectedListener(this);
+
+        List<String> eduSpinnerA = new ArrayList<String>();
 
 
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, EDUCATION);
+        for (String countryCode : EDUCATION) {
+
+
+            eduSpinnerA.add(countryCode);
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, eduSpinnerA);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 
@@ -214,11 +273,38 @@ public class Spec extends AppCompatActivity implements AdapterView.OnItemSelecte
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
-        String item = parent.getItemAtPosition(position).toString();
-        setNationalityEt(item);
+
+
+
+
+
+            Spinner spinner = (Spinner) parent;
+            if(spinner.getId() == R.id.nationalitySearch)
+            {
+                String natio = parent.getItemAtPosition(position).toString();
+                setNationalityEt(natio);
+                Toast.makeText(parent.getContext(), "Selected: " + natio, Toast.LENGTH_LONG).show();
+            }
+            else if(spinner.getId() == R.id.edu_spinner)
+            {
+
+                String edu = parent.getItemAtPosition(position).toString();
+                setEducation(edu);
+                Toast.makeText(parent.getContext(), "Selected: " + edu, Toast.LENGTH_LONG).show();
+            }
+            else if(spinner.getId() == R.id.gender_spinner)
+            {
+
+                String gender = parent.getItemAtPosition(position).toString();
+                setGender(gender);
+                Toast.makeText(parent.getContext(), "Selected: " + gender, Toast.LENGTH_LONG).show();
+            }
+
+
+
 
         // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+
     }
 
     public void onNothingSelected(AdapterView<?> arg0) {

@@ -1,7 +1,9 @@
 package com.example.mikey.database.UserProfile;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +19,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mikey.database.Database.DatabaseHandler;
+import com.example.mikey.database.Database.DatabaseUsernameId;
+import com.example.mikey.database.Database.JSONParser;
 import com.example.mikey.database.R;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class UserInterests extends AppCompatActivity {
 
@@ -32,6 +45,9 @@ public class UserInterests extends AppCompatActivity {
             btnSeventhLayoutBack, btnSeventhLayoutNext;
     private RelativeLayout firstLayout, secondLayout, thirdLayout, fourthLayout, fifthLayout, sixthLayout, seventhLayout;
     private EditText editBiography;
+
+    HashMap<String, String> haha;
+    DatabaseUsernameId dba;
 
     //Variables that need to be stored in the database
     private String userAvatar;
@@ -93,10 +109,15 @@ public class UserInterests extends AppCompatActivity {
     }
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_interests);
+        dba = new DatabaseUsernameId(this);
+        haha = dba.getUserDetails();
+
         firstLayout = (RelativeLayout)findViewById(R.id.firstLayout);
         firstLayout.setVisibility(View.VISIBLE);
         setFirstLayout();
@@ -107,13 +128,114 @@ public class UserInterests extends AppCompatActivity {
         setSixthLayout();
         setSeventhLayout();
 
+
+
         /**
          * TODO fix avatar
          * TODO get rid of toast messages
          * TODO Link with other activities
          */
 
+
+
     }
+
+
+    //////////////////////////////////////////////storeInterest
+
+    JSONParser jsonParser = new JSONParser();
+    private static final String LOGIN_URL ="http://www.companion4me.x10host.com/webservice/storeInterest.php";
+    private static final String TAG_SUCCESS = "success";
+    private static final String TAG_MESSAGE = "message";
+
+
+    ProgressDialog pDialog;
+    class storeInterests extends AsyncTask<String, String, String> {
+
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(UserInterests.this);
+            pDialog.setMessage("Sending email...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... args) {
+
+            // Check for success tag
+          //  int success;
+//            String username = args[0];
+//            String verificationcode = args[1];
+
+//            System.out.println("args0 in php" + username);
+//            System.out.println("args1 in php" + verificationcode);
+
+
+            try {
+                // Building Parameters
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("username", haha.get("email")));
+                params.add(new BasicNameValuePair("music", getInterests("music")));
+                params.add(new BasicNameValuePair("movies", getInterests("movies")));
+                params.add(new BasicNameValuePair("sports", getInterests("sports")));
+                params.add(new BasicNameValuePair("food", getInterests("food")));
+                params.add(new BasicNameValuePair("hobbies", getInterests("hobbies")));
+                params.add(new BasicNameValuePair("description", getInterests("biography")));
+                 params.add(new BasicNameValuePair("avatar", getInterests("avatar")));
+                System.out.println("the email is being stored" + haha.get("email"));
+
+System.out.println("the values are being stored"+getInterests("movies")+getInterests("sports"));
+
+//                System.out.println("username: in php" + username);
+//                System.out.println("code in php" + verificationcode);
+//                Log.d("request!", "starting");
+
+                //Posting user data to script
+                JSONObject json = jsonParser.makeHttpRequest(
+                        LOGIN_URL, "POST", params);
+
+                // full json response
+                Log.d("try to add data ", json.toString());
+
+                // json success element
+                //success = json.getInt(TAG_SUCCESS);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+
+        }
+
+        protected void onPostExecute(String file_url) {
+
+            pDialog.dismiss();
+
+
+            Intent i = new Intent(UserInterests.this, Home.class);
+            //  finish();
+            startActivity(i);
+
+             finish();
+
+            // finish();
+            if (file_url != null){
+                Toast.makeText(UserInterests.this, file_url, Toast.LENGTH_LONG).show();
+            }
+
+        }
+
+    }
+    /////////////////////////////////////////////////////
+
+
+
 
     /**
      * This method is used to create the avatar selection layout.
@@ -388,8 +510,9 @@ public class UserInterests extends AppCompatActivity {
                 // TODO get rid of toast for FINAL version
                 Toast.makeText(UserInterests.this, userHobbies, Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(UserInterests.this, Home.class);
-                startActivity(intent);
+                new storeInterests().execute();
+//                Intent intent = new Intent(UserInterests.this, Home.class);
+//                startActivity(intent);
 
 
             }

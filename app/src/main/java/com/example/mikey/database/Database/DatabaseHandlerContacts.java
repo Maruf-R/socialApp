@@ -28,7 +28,11 @@ public class DatabaseHandlerContacts extends SQLiteOpenHelper {
     private static final String KEY_EMAIL = "email";
     private static final String KEY_NAMEFRIEND = "namef";
     private static final String KEY_MAXAGE = "maxa";
-    private static final String KEY_MINAGE = "mina";
+     private static final String KEY_MINAGE = "mina";
+    private static final String KEY_EDUCATION = "education";
+    private static final String KEY_GENDER = "gender";
+    private static final String KEY_COUNTRY = "Country";
+    private static final String KEY_CITY = "City";
     private static final String KEY_CREATED_AT = "created_at";
 
     public DatabaseHandlerContacts(Context context) {
@@ -51,6 +55,10 @@ public class DatabaseHandlerContacts extends SQLiteOpenHelper {
                 + KEY_MAXAGE + " TEXT,"
                 + KEY_MINAGE + " TEXT,"
                 + KEY_NAMEFRIEND + " TEXT UNIQUE,"
+                + KEY_EDUCATION + " TEXT,"
+                + KEY_GENDER + " TEXT,"
+                + KEY_COUNTRY + " TEXT,"
+                + KEY_CITY + " TEXT,"
                 + KEY_CREATED_AT + " TEXT" + ")";
         db.execSQL(CREATE_REGISTER_TABLE);
 
@@ -72,7 +80,7 @@ public class DatabaseHandlerContacts extends SQLiteOpenHelper {
      */
 
 
-    public void addUserContacts(String name, String age, String nationality, String email, String maxa, String mina, String namef) {
+    public void addUserContacts(String name, String age, String nationality, String email, String maxa, String mina, String namef ,String education, String gender,String country,String city) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -83,6 +91,10 @@ public class DatabaseHandlerContacts extends SQLiteOpenHelper {
         values.put(KEY_MAXAGE, maxa);
         values.put(KEY_MINAGE, mina);
         values.put(KEY_NAMEFRIEND, namef);
+        values.put(KEY_EDUCATION, education);
+        values.put(KEY_GENDER, gender);
+        values.put(KEY_COUNTRY, country);
+        values.put(KEY_CITY, city);
         System.out.println("its stored IN CONTACTS" + email);
 
         // Inserting Row
@@ -109,10 +121,12 @@ public class DatabaseHandlerContacts extends SQLiteOpenHelper {
             user.put("maxa", cursor.getString(5));
             user.put("mina", cursor.getString(6));
             user.put("namef", cursor.getString(7));
-
-
+            user.put("education", cursor.getString(8));
+            user.put("gender", cursor.getString(9));
+            user.put("country", cursor.getString(10));
+            user.put("city", cursor.getString(11));
             //     user.put("uid", cursor.getString(6));
-            user.put("created_at", cursor.getString(8));
+            user.put("created_at", cursor.getString(12));
         }
         cursor.close();
         db.close();

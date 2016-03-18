@@ -76,8 +76,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="fill_horizontal"
-                    android:text="Female"
-                    android:textColor="#a1a0a0"/>
+                    android:textColor="#a1a0a0"
+                    android:id="@+id/ugenderid" />
 
             </LinearLayout>
 
@@ -137,7 +137,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="fill_horizontal"
-                    android:textColor="#a1a0a0"/>
+                    android:textColor="#a1a0a0"
+                    android:id="@+id/City_profile"
+
+                    />
 
             </LinearLayout>
 
@@ -165,7 +168,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textColor="#a1a0a0"
-                    android:id="@+id/Country_txt"
+                    android:id="@+id/Country_profile"
                 />
 
             </LinearLayout>
@@ -196,8 +199,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="fill_horizontal"
-                    android:text="History"
-                    android:textColor="#a1a0a0"/>
+                    android:textColor="#a1a0a0"
+                    android:id="@+id/ueducationid" />
 
             </LinearLayout>
 
@@ -241,8 +244,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="fill_horizontal"
-                        android:text="Interests"
-                        android:textColor="#a1a0a0"/>
+                        android:textColor="#a1a0a0"
+                        android:id="@+id/umoviesid" />
 
                 </LinearLayout>
 
@@ -267,8 +270,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="fill_horizontal"
-                        android:text="Interests"
-                        android:textColor="#a1a0a0"/>
+                        android:textColor="#a1a0a0"
+                        android:id="@+id/usportsid" />
 
                 </LinearLayout>
 
@@ -293,8 +296,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="fill_horizontal"
-                        android:text="Interests"
-                        android:textColor="#a1a0a0"/>
+                        android:textColor="#a1a0a0"
+                        android:id="@+id/umusicid" />
 
                 </LinearLayout>
                 <LinearLayout
@@ -308,7 +311,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Religion"
+                        android:text="Food"
                         android:layout_marginRight="15dp"
                         android:textColor="#000000"
                         android:layout_gravity="center"/>
@@ -317,8 +320,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="fill_horizontal"
-                        android:text="Interests"
-                        android:textColor="#a1a0a0"/>
+                        android:textColor="#a1a0a0"
+                        android:id="@+id/ufoodid" />
 
                 </LinearLayout>
                 <LinearLayout
@@ -341,8 +344,32 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="fill_horizontal"
-                        android:text="Interests"
-                        android:textColor="#a1a0a0"/>
+                        android:textColor="#a1a0a0"
+                        android:id="@+id/uhobbiesid" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/curved_corner"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Biography"
+                        android:layout_marginRight="15dp"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:textColor="#a1a0a0"
+                        android:id="@+id/ubiographyid" />
 
                 </LinearLayout>
 

@@ -141,7 +141,64 @@
 
                 android:layout_weight="2" />
         </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/middle_of_boxes"
+            android:padding="10dp">
 
+            <TextView
+
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Country"
+                android:id="@+id/textCountry"
+                android:drawableLeft="@drawable/flag"
+                android:gravity="center"
+                android:layout_weight="1.46" />
+
+            <Spinner
+
+
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:id="@+id/country_register"
+
+                android:prompt="@string/prompted"
+
+                android:layout_weight="2" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/middle_of_boxes"
+            android:padding="10dp">
+
+            <TextView
+
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="City"
+                android:id="@+id/textCity"
+                android:drawableLeft="@drawable/flag"
+                android:gravity="center"
+                android:layout_weight="1.46" />
+
+            <Spinner
+
+
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:id="@+id/city_register"
+
+                android:prompt="@string/prompted"
+
+                android:layout_weight="2" />
+        </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -174,6 +231,49 @@
                 android:onClick="setDate"
                 android:focusableInTouchMode="true"
                 android:gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/middle_of_boxes"
+            android:padding="10dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gender:"
+                android:textSize="17dp" />
+
+            <Spinner
+                android:id="@+id/gender_spinner_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/middle_of_boxes"
+            android:padding="10dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Education:"
+                android:textSize="17dp" />
+
+            <Spinner
+                android:id="@+id/edu_spinner_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
         </LinearLayout>
 
         <EditText

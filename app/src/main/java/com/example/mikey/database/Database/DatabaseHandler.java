@@ -26,7 +26,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         private static final String KEY_PASSWORDHASH = "password";
     private static final String KEY_ANSWER = "answer";
 private static final String KEY_QUESTION = "question";
-
+    private static final String KEY_EDUCATION = "education";
+    private static final String KEY_GENDER = "gender";
+    private static final String KEY_COUNTRY = "Country";
+    private static final String KEY_CITY = "City";
     private static final String KEY_CREATED_AT = "created_at";
 
     public DatabaseHandler(Context context) {
@@ -47,6 +50,10 @@ private static final String KEY_QUESTION = "question";
                 + KEY_PASSWORDHASH + " TEXT,"
                 + KEY_ANSWER + " TEXT,"
                 + KEY_QUESTION + " TEXT,"
+                + KEY_EDUCATION + " TEXT,"
+                + KEY_GENDER + " TEXT,"
+                + KEY_COUNTRY + " TEXT,"
+                + KEY_CITY + " TEXT,"
                 + KEY_CREATED_AT + " TEXT" + ")";
         db.execSQL(CREATE_LOGIN_TABLE);
 
@@ -68,7 +75,7 @@ private static final String KEY_QUESTION = "question";
     /**
      * Adding a user to the database
      */
-    public void addUser(String name, String age, String nationality, String email, String password, String answer, String question) {
+    public void addUser(String name, String age, String nationality, String email, String password, String answer, String question,String education, String gender,String country,String city) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -79,10 +86,13 @@ private static final String KEY_QUESTION = "question";
         values.put(KEY_PASSWORDHASH, password);
         values.put(KEY_ANSWER, answer);
         values.put(KEY_QUESTION, question);
+        values.put(KEY_EDUCATION, education);
+        values.put(KEY_GENDER, gender);
+        values.put(KEY_COUNTRY, country);
+        values.put(KEY_CITY, city);
 
-
-        System.out.println("its stored" + email);
-        System.out.println("its stored question" + question);
+        System.out.println("its stored gender db" + gender);
+        System.out.println("its stored edu db" + education);
 
 
         // Inserting Row
@@ -108,7 +118,12 @@ private static final String KEY_QUESTION = "question";
             user.put("password", cursor.getString(5));
             user.put("answer", cursor.getString(6));
             user.put("question", cursor.getString(7));
-            user.put("created_at", cursor.getString(8));
+            user.put("education", cursor.getString(8));
+            user.put("gender", cursor.getString(9));
+            user.put("country", cursor.getString(10));
+            user.put("city", cursor.getString(11));
+
+            user.put("created_at", cursor.getString(12));
         }
         cursor.close();
         db.close();

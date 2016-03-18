@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.mikey.database.Database.DatabaseHandler;
+import com.example.mikey.database.Database.DatabaseUsernameId;
 import com.example.mikey.database.Database.JSONParser;
 import com.example.mikey.database.R;
 import com.example.mikey.database.UserProfile.Password.ForgotPassword;
@@ -41,6 +42,8 @@ public class EmailVerification extends AppCompatActivity implements DialogInterf
     EditText inputCode;
     Button verifyRegister;
     DatabaseHandler dbHandler;
+    DatabaseUsernameId dbHandlerId;
+
     HashMap<String, String> hash;
     JSONParser jsonParser = new JSONParser();
     JSONParser jParser = new JSONParser();
@@ -137,6 +140,7 @@ public class EmailVerification extends AppCompatActivity implements DialogInterf
         dbHandler = new DatabaseHandler(this);
         hash = dbHandler.getUserDetails();
 
+        dbHandlerId = new DatabaseUsernameId(this);
 
         inputCode = (EditText) findViewById(R.id.verify_input);
         verifyRegister = (Button) findViewById(R.id.verify_button);
@@ -155,22 +159,7 @@ public class EmailVerification extends AppCompatActivity implements DialogInterf
                 }
 
 
-              /*else if (getSuccess() == 0) {
 
-                    lauchDialog();
-
-                } *//*else {
-
-
-                    Intent i = new Intent(EmailVerification.this, Home.class);
-                    //  finish();
-                    startActivity(i);
-                    dbHandler.resetTables();
-
-
-                    finish();
-                }
-*/
 
             }
 
@@ -224,7 +213,14 @@ public class EmailVerification extends AppCompatActivity implements DialogInterf
                 params.add(new BasicNameValuePair("nationality", nationality));
                 params.add(new BasicNameValuePair("answer", answer));
                 params.add(new BasicNameValuePair("question", question));
+                params.add(new BasicNameValuePair("education", hash.get("education")));
+                params.add(new BasicNameValuePair("gender", hash.get("gender")));
+//                params.add(new BasicNameValuePair("maximum", hashC.get("country")));
+//                params.add(new BasicNameValuePair("minimum", hashC.get("city")));
+// add if done
 
+                System.out.println("they pass to email ver gender" +  hash.get("education"));
+                System.out.println("pass edu emai ver" + hash.get("gender"));
 
                 Log.d("request!", "starting");
 
@@ -244,6 +240,11 @@ public class EmailVerification extends AppCompatActivity implements DialogInterf
 //                    Intent i = new Intent(EmailVerification.this, Home.class);
 //                    //  finish();
 //                    startActivity(i);
+                    dbHandlerId.resetTables();
+
+                    dbHandlerId.addUser(null, null, null, hash.get("email"), null, null, null);
+
+
 
                     Intent intent = new Intent(EmailVerification.this, UserInterests.class);
                     startActivity(intent);

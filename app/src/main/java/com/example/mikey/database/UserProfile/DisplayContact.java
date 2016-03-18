@@ -57,12 +57,7 @@ public class DisplayContact extends AppCompatActivity {
         hashC = dbHandler.getUserContacts();
         userHash = new HashMap<>();
 
-
-        System.out.println("this is the name search obj: for real " + hashC.get("name"));
-        System.out.println("this is the name search obj: for real" + hashC.get("email"));
-        System.out.println("this is the name search obj: for real" + hashC.get("maxa"));
-
-        System.out.println("this is the name search obj: for real" + hashC.get("mina"));
+    System.out.println("this is the name search obj: for real" + hashC.get("mina"));
 
 
         new DisplayContact.GetMatchedContacts().execute();
@@ -104,7 +99,7 @@ public class DisplayContact extends AppCompatActivity {
 
 
                 dbHandler.resetTablesContacts();
-                dbHandler.addUserContacts(null, null, null, null, null, null, userHash.get(itemValue));
+                dbHandler.addUserContacts(null, null, null, null, null, null, userHash.get(itemValue),null,null,null,null);
 
 
                 Intent friend = new Intent(getApplicationContext(), ContactProfile.class);
@@ -139,18 +134,20 @@ public class DisplayContact extends AppCompatActivity {
 
                 System.out.println("this is the email db for real" + hashC.get("email"));
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("username", hashC.get("email")));
+              //  params.add(new BasicNameValuePair("username", hashC.get("email")));
                 params.add(new BasicNameValuePair("name", hashC.get("name")));
                 params.add(new BasicNameValuePair("nationality", hashC.get("nationality")));
                 params.add(new BasicNameValuePair("maximum", hashC.get("maxa")));
                 params.add(new BasicNameValuePair("minimum", hashC.get("mina")));
-
+                params.add(new BasicNameValuePair("maximum", hashC.get("education")));
+                params.add(new BasicNameValuePair("minimum", hashC.get("gender")));
+//                params.add(new BasicNameValuePair("maximum", hashC.get("country")));
+//                params.add(new BasicNameValuePair("minimum", hashC.get("city")));
+// add if done
 
 
                 System.out.println("this is the email db for real" + hashC.get("name"));
                 System.out.println("this is the natio db for real" + hashC.get("nationality"));
-                System.out.println("this is the email db for real" + hashC.get("maxa"));
-                System.out.println("this is the natio db for real" + hashC.get("mina"));
 
 
                 Log.d("request!", "starting");

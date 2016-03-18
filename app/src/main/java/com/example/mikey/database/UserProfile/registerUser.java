@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mikey.database.Database.DatabaseHandler;
+import com.example.mikey.database.Database.DatabaseUsernameId;
 import com.example.mikey.database.Database.JSONParser;
 import com.example.mikey.database.R;
 
@@ -66,6 +67,11 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
     private Button signUpBtn;
     private TextView errorMessage;
     private Spinner spinnerSecretQuestions;
+    Spinner eduSpinner, genSpinner;
+
+
+    final String[] EDUCATION = {"Not stated", "Further Education", "Higher Education"};
+    final String[] GENDER = {"Not stated", "Male", "Female"};
     private String[] spinnerQuestion={"What was your first pet's name?",
    "What was your first car?",("What was your first love's name?"),("What was the city you were born?")};
 
@@ -80,6 +86,25 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private String email;
+    private String country,city;
+
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    private String education,gender;
 
     private EditText emailBox;
     private String password;
@@ -152,6 +177,7 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
     private String question;
 
 
+    DatabaseUsernameId dbHandlerId;
 
 
     private String verificationCode;
@@ -166,8 +192,10 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
 
 
         signUpBtn = (Button) findViewById(R.id.btnSaveChanges);
-spinnerQuestion();
+        spinnerQuestion();
         spinnerCountries();
+        spinner_methodGender();
+        spinner_methodEdu();
         answerEt = (EditText) findViewById(R.id.answer_atregister);
 
         birthday = (TextView) findViewById(R.id.birthday);
@@ -186,7 +214,7 @@ spinnerQuestion();
         dbHandler = new DatabaseHandler(this);
         hash = dbHandler.getUserDetails();
 
-
+       // dbHandlerId = new DatabaseUsernameId(this);
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -203,18 +231,16 @@ spinnerQuestion();
                     setVerificationCode(username);
                     String password3 = getPassword();
   System.out.println("username: " +username);
-                    System.out.println("code short onc: " +  getVerificationCode());
+                    System.out.println("code short onc: " + getVerificationCode());
                     System.out.println("code: long onc" + computeMD5Hash(username).substring(0, Math.min(username.length(), 8)));
 
 
 
                     new CreateUserCode().execute(username, getVerificationCode());
-System.out.println("for real spinner getquestion "+ getQuestion());
+System.out.println("for real spinner getquestion " + getQuestion());
                     dbHandler.resetTables();
-                    dbHandler.addUser(getName(), Integer.toString(getAge()), getNationality(), getEmail(), password3, answer, getQuestion());
+                    dbHandler.addUser(getName(), Integer.toString(getAge()), getNationality(), getEmail(), password3, answer, getQuestion(), getEducation(), getGender(), null, null);//TODO to add county and city
     sendingEmail(username);
-
-
 
 
                 }
@@ -427,12 +453,6 @@ System.out.println("for real spinner getquestion "+ getQuestion());
 
     public void spinnerQuestion() {
 
-
-
-
-
-
-
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerQuestion);
      //   dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -443,6 +463,57 @@ System.out.println("for real spinner getquestion "+ getQuestion());
 
     }
 
+
+    public void spinner_methodGender(){
+        genSpinner = (Spinner) findViewById(R.id.gender_spinner_register);
+        genSpinner.setOnItemSelectedListener(this);
+        List<String> genderSpinnerA = new ArrayList<String>();
+
+
+
+        for (String countryCode : GENDER) {
+
+
+            genderSpinnerA.add(countryCode);
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, genderSpinnerA);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        genSpinner.setAdapter(adapter);
+
+
+
+
+
+
+    }
+
+
+    // this needs to be added to the database php
+    public void spinner_methodEdu(){
+        eduSpinner = (Spinner) findViewById(R.id.edu_spinner_register);
+        eduSpinner.setOnItemSelectedListener(this);
+        List<String> eduSpinnerA = new ArrayList<String>();
+
+
+
+        for (String countryCode : EDUCATION) {
+
+
+            eduSpinnerA.add(countryCode);
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, eduSpinnerA);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        eduSpinner.setAdapter(adapter);
+
+
+
+    }
 
     public void spinnerCountries() {
 
@@ -492,6 +563,21 @@ System.out.println("for real spinner getquestion "+ getQuestion());
             setQuestion(itemQ);
 
         }
+        else if(spinner.getId() == R.id.edu_spinner_register)
+        {
+
+            String edu = parent.getItemAtPosition(position).toString();
+            setEducation(edu);
+            Toast.makeText(parent.getContext(), "Selected: " + edu, Toast.LENGTH_LONG).show();
+        }
+        else if(spinner.getId() == R.id.gender_spinner_register)
+        {
+
+            String gender = parent.getItemAtPosition(position).toString();
+            setGender(gender);
+            Toast.makeText(parent.getContext(), "Selected: " + gender, Toast.LENGTH_LONG).show();
+        }
+
 
 
         // Showing selected spinner item

@@ -19,6 +19,7 @@ import com.example.mikey.database.Database.DatabaseHandler;
 import com.example.mikey.database.Database.DatabaseUsernameId;
 import com.example.mikey.database.Database.JSONParser;
 import com.example.mikey.database.R;
+import com.example.mikey.database.UserProfile.Password.NewPassword;
 import com.example.mikey.database.UserProfile.Profile.EditUserProfile;
 
 import org.apache.http.NameValuePair;
@@ -43,7 +44,7 @@ public class UserSettings extends AppCompatActivity {
     HashMap<String, String> idUserHash;
     JSONParser jsonParserg = new JSONParser();
     private ProgressDialog pDialog;
-
+    private Button btnChangePassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,6 +106,15 @@ public class UserSettings extends AppCompatActivity {
                 startActivity(intent);
 
 
+            }
+        });
+        btnChangePassword = (Button)findViewById(R.id.btnChangePassword);
+        btnChangePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserSettings.this, NewPassword.class);
+                startActivity(intent);
+                //TODO look into finishing this activity
             }
         });
 

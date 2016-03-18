@@ -28,6 +28,14 @@
             android:background="@drawable/button_login"
             android:layout_margin="5dp"
             android:textColor="#FFFFFF" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Change Password"
+            android:id="@+id/btnChangePassword"
+            android:background="@drawable/button_login"
+            android:textColor="#ffffff"
+            android:layout_margin="5dp" />
 
         <Button
             android:layout_width="match_parent"

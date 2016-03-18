@@ -1,19 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:padding="10dp">
 
-    <TextView
-        android:id="@+id/msgr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginBottom="5dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/bubbles_me"
-        android:paddingBottom="8dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="5dp"
-        android:text="Sampleleft"
-        android:textColor="#000" />
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+        android:layout_marginRight="10dp">
+
+        <TextView
+            android:id="@+id/Message_Sender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="Sender Ipsum"
+            android:textSize="16sp"
+            android:singleLine="true"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="10dp"
+            android:paddingBottom="6dp"
+            android:textColor="@android:color/black" android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/Message_Date"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="2dp"
+            android:paddingBottom="6dp"
+            android:textSize="12sp"
+            android:text="14:54"
+            android:layout_alignBottom="@+id/Message_Sender"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Message_Sender"
+            android:layout_alignParentLeft="true"
+            android:padding="12dp"
+            android:background="@drawable/grey_bubble"
+            >
+
+            <TextView
+                android:id="@+id/Message"
+                android:paddingLeft="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:text="Hello"
+                />
+
+        </RelativeLayout>
+    </RelativeLayout>
 </RelativeLayout>

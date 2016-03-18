@@ -80,8 +80,8 @@ public class MessageAdapter extends BaseAdapter {
         Message message = mMessages.get(i).first;
         String name = message.getSenderId();
 
-        TextView txtSender = (TextView) convertView.findViewById(R.id.txtSender);
-        TextView txtMessage = (TextView) convertView.findViewById(R.id.txtMessage);
+        TextView txtSender = (TextView) convertView.findViewById(R.id.Message_Sender);
+        TextView txtMessage = (TextView) convertView.findViewById(R.id.Message);
         TextView txtDate = (TextView) convertView.findViewById(R.id.txtDate);
 
         txtSender.setText(name);

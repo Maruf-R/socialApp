@@ -1,23 +1,62 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    >
+
     <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/container"
+        android:id="@+id/relRecipient"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:layout_height="48dp"
+        android:background="@android:color/white"
+        android:paddingLeft="10dp">
 
         <EditText
-            android:id="@+id/text_message"
+            android:id="@+id/Message_Recipient"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/sendButton"
-            android:autoText="true"
-            android:hint="Type your message" />
+            android:layout_height="match_parent"
+            android:hint="Recipient"
+            android:background="@android:color/white"
+            android:textColor="@color/wallet_holo_blue_light"
+            android:inputType="textPersonName">
+
+            <requestFocus/>
+        </EditText>
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/Messages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:transcriptMode="alwaysScroll"
+        android:layout_above="@+id/relSendMessage"
+        android:layout_below="@+id/relRecipient"
+        android:background="@drawable/bg_shadow"
+        android:padding="0dip"
+        android:divider="@null"
+        android:dividerHeight="0dp" android:stackFromBottom="true" tools:listitem="@layout/chat_me"/>
+
+    <RelativeLayout
+        android:id="@+id/relSendMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:background="@android:color/white"
+        android:paddingLeft="10dp"
+        android:layout_alignParentBottom="true">
+
+
+        <EditText
+            android:layout_marginBottom="-4dp"
+            android:id="@+id/Message_TextBody"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Message..."
+            android:textSize="14sp"
+            android:textColor="@color/common_plus_signin_btn_text_dark_disabled"
+            android:layout_marginRight="10dp"
+            android:layout_alignTop="@+id/sendButton"
+            android:background="@android:color/white"
+            android:layout_alignBottom="@+id/sendButton"
+            android:layout_toLeftOf="@+id/sendButton"/>
 
         <Button
             android:id="@+id/sendButton"
@@ -29,49 +68,5 @@
             android:text="@string/sendBtn"
             android:textColor="@color/background_material_light"/>
 
-        <ListView
-            android:id="@+id/msg_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="false"
-            android:layout_alignParentTop="false"
-            android:layout_marginBottom="20dp"
-            android:layout_above="@+id/text_message"
-            android:layout_below="@+id/meLbl"
-            android:layout_marginTop="10dp"
-            android:listSelector="@android:color/transparent"
-            android:transcriptMode="alwaysScroll"
-            android:divider="@null" />
-
-        <TextView
-            android:id="@+id/meLbl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left|center_vertical"
-            android:text="Me"
-            android:singleLine="false"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/friendLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="Friend"
-            android:textSize="20dp" />
-
-        <TextView android:text="@string/registering_message" android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/informationTextView"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_below="@+id/registrationProgressBar"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="166dp" />
-
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/registrationProgressBar" />
-
     </RelativeLayout>
-</LinearLayout>
+</RelativeLayout>

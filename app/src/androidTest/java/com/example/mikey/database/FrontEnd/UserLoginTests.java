@@ -55,7 +55,7 @@ public class UserLoginTests extends ActivityInstrumentationTestCase2<Login> {
             }
         });
 
-        getInstrumentation().sendStringSync("randompass");
+        getInstrumentation().sendStringSync("random");
         getInstrumentation().waitForIdleSync();
 
         TouchUtils.clickView(this, loginButton);

@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -182,12 +183,68 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
 
     private String verificationCode;
 
+    // First Layout
+    private RelativeLayout firstReg;
+    private Button btnFirstRegNext;
+
+    // Second Layout
+    private RelativeLayout secondReg;
+    private Button btnSecondRegBack, btnSecondRegNext;
+
+    // Third Layout
+    private RelativeLayout thirdReg;
+    private Button btnThirdRegBack, btnThirdRegNext;
+
+    // Fourth Layout
+    private RelativeLayout fourthReg;
+    private Button btnFourthRegBack, btnFourthSignUp;
+
     HashMap<String, String> hash;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
 
+
+        firstReg = (RelativeLayout)findViewById(R.id.firstRegLayout);
+        secondReg = (RelativeLayout)findViewById(R.id.secondRegLayout);
+        thirdReg = (RelativeLayout)findViewById(R.id.thirdRegLayout);
+        fourthReg = (RelativeLayout)findViewById(R.id.fourthRegLayout);
+        firstReg.setVisibility(View.VISIBLE);
+        secondReg.setVisibility(View.INVISIBLE);
+        thirdReg.setVisibility(View.INVISIBLE);
+        fourthReg.setVisibility(View.INVISIBLE);
+
+        btnFirstRegNext = (Button)findViewById(R.id.btn1Next);
+        btnSecondRegBack = (Button)findViewById(R.id.btn2Back);
+        btnSecondRegNext = (Button)findViewById(R.id.btn2Next);
+        btnThirdRegBack = (Button)findViewById(R.id.btn3Back);
+        btnThirdRegNext = (Button)findViewById(R.id.btn3Next);
+        btnFourthRegBack = (Button)findViewById(R.id.btn4Back);
+
+        btnFirstRegNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firstReg.setVisibility(View.INVISIBLE);
+                secondReg.setVisibility(View.VISIBLE);
+            }
+        });
+
+        btnSecondRegNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                secondReg.setVisibility(View.INVISIBLE);
+                thirdReg.setVisibility(View.VISIBLE);
+            }
+        });
+
+        btnThirdRegNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                thirdReg.setVisibility(View.INVISIBLE);
+                fourthReg.setVisibility(View.VISIBLE);
+            }
+        });
 
 
 

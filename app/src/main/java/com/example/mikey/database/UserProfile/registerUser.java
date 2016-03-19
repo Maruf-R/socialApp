@@ -232,10 +232,14 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
         btnFirstRegNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                validateEmail();
+                checkNames();
+                validateAge();
 
-                firstReg.setVisibility(View.INVISIBLE);
-                secondReg.setVisibility(View.VISIBLE);
-
+                if(validateEmail() == true && checkNames() == true&&validateAge()==true) {
+                    firstReg.setVisibility(View.INVISIBLE);
+                    secondReg.setVisibility(View.VISIBLE);
+                }
             }
         });
         btnFirstRegBack.setOnClickListener(new View.OnClickListener() {
@@ -249,14 +253,10 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
         btnSecondRegNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validateEmail();
-                checkNames();
-                validateAge();
 
-                if(validateEmail() == true && checkNames() == true&&validateAge()==true){
                 secondReg.setVisibility(View.INVISIBLE);
                 fourthReg.setVisibility(View.VISIBLE);
-            }}
+            }
         });
 
         btnSecondRegBack.setOnClickListener(new View.OnClickListener() {
@@ -536,6 +536,9 @@ System.out.println("for real spinner getquestion " + getQuestion());
             System.out.println("your age is " + age);
             valid = false;
         }
+        else{
+            birthday.setError(null);
+        }
         return valid;
     }
 
@@ -693,14 +696,14 @@ System.out.println("for real spinner getquestion " + getQuestion());
         setName(firstNameText+" "+lastNameText);
 
         if (firstNameText.equals(lastNameText)) {
-            errorMessage.setText("Name and Last name cannot be the same.");
+          //  errorMessage.setText("Name and Last name cannot be the same.");
 
-            Toast.makeText(getApplicationContext(), "Sign Up Failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Name and Last name cannot be the same.", Toast.LENGTH_SHORT).show();
         }
 
         else if (validateNames(firstNameText) == false) {
             editFirstName.setError("Name must be between 1 and 15 characters, using letters only.");
-            Toast.makeText(getApplicationContext(), "Sign Up Failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Name must be between 1 and 15 characters, using letters only.", Toast.LENGTH_SHORT).show();
 
 
         }
@@ -804,6 +807,9 @@ System.out.println("for real spinner getquestion " + getQuestion());
 
             valid = false;
 
+        }
+        else{
+            emailBox.setError(null);
         }
 
 

@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".RegisterUser">
+    tools:context=".RegisterUser"
+    android:background="#03A9F4">
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,7 +38,9 @@
         android:id="@+id/textView2"
 
         android:layout_alignTop="@+id/error_message"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
 
 
     <ScrollView
@@ -47,7 +50,7 @@
         android:layout_below="@+id/textView2"
         android:layout_alignParentStart="true"
         android:layout_above="@+id/btnSaveChanges"
-        >
+        android:layout_alignParentEnd="true">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -57,17 +60,12 @@
         android:layout_marginTop="13dp"
         android:id="@+id/linearLayout2">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Enter Your Detail Below:"
-            android:textColor="#000000"
-            android:layout_margin="2dp"/>
-
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/curved_corner"
+            android:layout_margin="3dp">
 
             <EditText
                 android:layout_width="0dip"
@@ -76,14 +74,12 @@
                 android:ems="10"
                 android:id="@+id/txtFirstName"
                 android:hint="First Name"
-                android:background="@drawable/middle_of_boxes"
                 android:padding="10dp"
-                android:drawableLeft="@drawable/user"
 
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textStyle="italic" />
 
             <EditText
-                android:background="@drawable/middle_of_boxes"
                 android:padding="10dp"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
@@ -91,9 +87,9 @@
                 android:ems="10"
                 android:id="@+id/txtLastName"
                 android:hint="Last Name"
-                android:drawableLeft="@drawable/user"
 
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textStyle="italic" />
         </LinearLayout>
 
         <EditText
@@ -103,32 +99,32 @@
             android:ems="10"
             android:id="@+id/emailBoxSignup"
             android:hint="@string/email_hint"
-            android:background="@drawable/middle_of_boxes"
+            android:background="@drawable/curved_corner"
             android:padding="10dp"
 
             android:layout_below="@+id/textView2"
             android:layout_alignParentStart="true"
-            android:drawableLeft="@drawable/mail"
 
-            />
+            android:layout_margin="3dp"
+            android:textStyle="italic" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/middle_of_boxes"
-            android:padding="10dp">
+            android:background="@drawable/curved_corner"
+            android:padding="10dp"
+            android:layout_margin="3dp">
 
             <TextView
 
-                android:layout_width="0dip"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/nationality"
                 android:id="@+id/textView3"
-                android:drawableLeft="@drawable/flag"
                 android:gravity="center"
-                android:layout_weight="1.46" />
+                android:textStyle="italic" />
 
             <Spinner
 
@@ -145,19 +141,19 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/middle_of_boxes"
-            android:padding="10dp">
+            android:background="@drawable/curved_corner"
+            android:padding="10dp"
+            android:layout_margin="3dp">
 
             <TextView
 
-                android:layout_width="0dip"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Country"
+                android:text="Country:     "
                 android:id="@+id/textCountry"
-                android:drawableLeft="@drawable/flag"
                 android:gravity="center"
-                android:layout_weight="1.46" />
+                android:textStyle="italic" />
 
             <Spinner
 
@@ -174,19 +170,19 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/middle_of_boxes"
-            android:padding="10dp">
+            android:background="@drawable/curved_corner"
+            android:padding="10dp"
+            android:layout_margin="3dp">
 
             <TextView
 
-                android:layout_width="0dip"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="City"
+                android:text="City:            "
                 android:id="@+id/textCity"
-                android:drawableLeft="@drawable/flag"
                 android:gravity="center"
-                android:layout_weight="1.46" />
+                android:textStyle="italic" />
 
             <Spinner
 
@@ -202,7 +198,9 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/curved_corner"
+            android:layout_margin="3dp">
 
             <TextView
                 android:layout_width="0dip"
@@ -212,10 +210,9 @@
                 android:id="@+id/text_birthday"
                 android:layout_weight="1.46"
 
-                android:background="@drawable/middle_of_boxes"
                 android:padding="10dp"
-                android:drawableLeft="@drawable/birthday"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:textStyle="italic" />
 
             <TextView
                 android:layout_width="0dip"
@@ -224,7 +221,6 @@
                 android:id="@+id/birthday"
                 android:layout_weight="2"
                 android:text="@string/date_birthday"
-                android:background="@drawable/middle_of_boxes"
                 android:padding="10dp"
                 android:focusable="true"
                 android:clickable="true"
@@ -238,15 +234,17 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:background="@drawable/middle_of_boxes"
-            android:padding="10dp">
+            android:background="@drawable/curved_corner"
+            android:padding="10dp"
+            android:layout_margin="3dp">
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gender:"
-                android:textSize="17dp" />
+                android:text="Gender:     "
+                android:textSize="17dp"
+                android:textStyle="italic" />
 
             <Spinner
                 android:id="@+id/gender_spinner_register"
@@ -259,15 +257,17 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:background="@drawable/middle_of_boxes"
-            android:padding="10dp">
+            android:padding="10dp"
+            android:layout_margin="3dp"
+            android:background="@drawable/curved_corner">
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Education:"
-                android:textSize="17dp" />
+                android:textSize="17dp"
+                android:textStyle="italic" />
 
             <Spinner
                 android:id="@+id/edu_spinner_register"
@@ -284,11 +284,11 @@
             android:id="@+id/passwordBoxSignup1"
 
             android:hint="@string/password_hint"
-            android:background="@drawable/middle_of_boxes"
+            android:background="@drawable/curved_corner"
             android:padding="10dp"
-            android:drawableLeft="@drawable/password"
 
-            />
+            android:layout_margin="3dp"
+            android:textStyle="italic" />
 
         <EditText
             android:layout_width="match_parent"
@@ -297,39 +297,45 @@
             android:ems="10"
             android:id="@+id/passwordBoxSignup2"
             android:hint="@string/enter_password_again"
-            android:background="@drawable/middle_of_boxes"
+            android:background="@drawable/curved_corner"
             android:padding="10dp"
-            android:drawableLeft="@drawable/password"
 
-            />
+            android:layout_margin="3dp"
+            android:textStyle="italic" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Select a Security Question:"
-            android:textColor="#000000"
-            android:layout_margin="2dp"/>
+            android:textColor="#FFFFFF"
+            android:layout_margin="3dp"
+            android:textStyle="bold" />
 
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/spinnerSecretQuestion"
-            android:background="@drawable/middle_of_boxes"
-            android:padding="10dp"/>
+            android:background="@drawable/curved_corner"
+            android:padding="10dp"
+            android:layout_margin="3dp" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/answer_atregister"
-            android:background="@drawable/middle_of_boxes"
-            android:padding="10dp"/>
+            android:background="@drawable/curved_corner"
+            android:padding="10dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="3dp" />
     </LinearLayout>
     </ScrollView>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Verify Email"
+        android:text="Sign UP"
         android:id="@+id/btnSaveChanges"
         android:background="@drawable/button_login"
         android:textColor="#ffffff"

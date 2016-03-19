@@ -1,13 +1,17 @@
 package com.example.mikey.database.UserProfile;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -57,6 +61,12 @@ public class Login extends AppCompatActivity {
         this.email = email;
     }
 
+    private CheckBox saveLoginCheckBox;
+    private SharedPreferences loginPreferences;
+    private SharedPreferences.Editor loginPrefsEditor;
+    private Boolean saveLogin;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,9 +74,18 @@ public class Login extends AppCompatActivity {
         dbHandler = new DatabaseHandler(this);
         dbHandlerId = new DatabaseUsernameId(this);
 
-
         passwordBox = (EditText) findViewById(R.id.passwordBox);
         emailBox = (EditText) findViewById(R.id.emailBoxLogin);
+        saveLoginCheckBox = (CheckBox)findViewById(R.id.saveLoginCheckBox);
+
+        loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        loginPrefsEditor = loginPreferences.edit();
+        saveLogin = loginPreferences.getBoolean("saveLogin", false);
+        if (saveLogin == true) {
+            emailBox.setText(loginPreferences.getString("username", ""));
+            passwordBox.setText(loginPreferences.getString("password", ""));
+            saveLoginCheckBox.setChecked(true);
+        }
 
         signUp = (Button) findViewById(R.id.btn_signUp);
         signUp.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +103,25 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(emailBox.getWindowToken(), 0);
+
+               String usernamer = emailBox.getText().toString();
+               String passwordr = passwordBox.getText().toString();
+
+                if (saveLoginCheckBox.isChecked()) {
+                    loginPrefsEditor.putBoolean("saveLogin", true);
+                    loginPrefsEditor.putString("username", usernamer);
+                    loginPrefsEditor.putString("password", passwordr);
+                    loginPrefsEditor.commit();
+                } else {
+                    loginPrefsEditor.clear();
+                    loginPrefsEditor.commit();
+                }
+
+
+
+
                 if (validateEmail(emailBox.getText().toString())==true && validatePassword(passwordBox.getText().toString())) {
                     setEmail(emailBox.getText().toString());
 
@@ -153,7 +191,7 @@ public class Login extends AppCompatActivity {
         StringBuffer MD5Hash = new StringBuffer();
         try {
             // Create MD5 Hash
-            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            MessageDigest digest = MessageDigest.getInstance("MD5");
             digest.update(password.getBytes());
             byte messageDigest[] = digest.digest();
 
@@ -220,8 +258,11 @@ public class Login extends AppCompatActivity {
                 if (success == 1) {
                     Log.d("Login Successful!", json.toString());
                     Intent i = new Intent(Login.this, Home.class);
-                    finish();
+                  //                    finish();
+
                     startActivity(i);
+                    finish();
+
                     return json.getString(TAG_MESSAGE);
                 } else {
                     Log.d("Login Failure!", json.getString(TAG_MESSAGE));

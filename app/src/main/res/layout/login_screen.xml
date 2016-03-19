@@ -60,6 +60,14 @@
             android:textStyle="italic" />
 
         <!--Forget-->
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remember me"
+            android:id="@+id/saveLoginCheckBox"
+            android:layout_alignBottom="@+id/linearLayout3"
+            android:checked="false" />
+
         <TextView android:id="@+id/help_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

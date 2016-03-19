@@ -45,6 +45,17 @@ public class UserSettings extends AppCompatActivity {
     JSONParser jsonParserg = new JSONParser();
     private ProgressDialog pDialog;
     private Button btnChangePassword;
+
+    @Override
+    public void onBackPressed() {
+
+        Intent setIntent = new Intent(Intent.ACTION_MAIN);
+
+        setIntent.addCategory(Intent.CATEGORY_HOME);
+        setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(setIntent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

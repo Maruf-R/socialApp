@@ -1,6 +1,7 @@
 package com.example.mikey.database.UserProfile.Profile;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -192,6 +193,19 @@ public class Profile extends AppCompatActivity {
     public void set_nationality(String _nationality) {
         this._nationality = _nationality;
     }
+
+    @Override
+    public void onBackPressed() {
+
+        Intent setIntent = new Intent(Intent.ACTION_MAIN);
+
+        setIntent.addCategory(Intent.CATEGORY_HOME);
+        setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(setIntent);
+    }
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

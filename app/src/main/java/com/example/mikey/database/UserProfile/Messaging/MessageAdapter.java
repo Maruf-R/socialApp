@@ -82,7 +82,7 @@ public class MessageAdapter extends BaseAdapter {
 
         TextView txtSender = (TextView) convertView.findViewById(R.id.Message_Sender);
         TextView txtMessage = (TextView) convertView.findViewById(R.id.Message);
-        TextView txtDate = (TextView) convertView.findViewById(R.id.txtDate);
+        TextView txtDate = (TextView) convertView.findViewById(R.id.Message_Date);
 
         txtSender.setText(name);
         txtMessage.setText(message.getTextBody());

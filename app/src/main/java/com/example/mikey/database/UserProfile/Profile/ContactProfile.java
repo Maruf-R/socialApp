@@ -2,6 +2,7 @@ package com.example.mikey.database.UserProfile.Profile;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -19,12 +20,14 @@ import com.example.mikey.database.Database.DatabaseHandlerContacts;
 import com.example.mikey.database.Database.DatabaseUsernameId;
 import com.example.mikey.database.Database.JSONParser;
 import com.example.mikey.database.R;
+import com.example.mikey.database.UserProfile.Messaging.MessagingActivity;
 import com.example.mikey.database.UserProfile.VoiceCall.AudioPlayer;
 import com.sinch.android.rtc.PushPair;
 import com.sinch.android.rtc.Sinch;
 import com.sinch.android.rtc.SinchClient;
 import com.sinch.android.rtc.calling.Call;
 import com.sinch.android.rtc.calling.CallListener;
+import com.sinch.android.rtc.internal.natives.jni.Messaging;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -58,7 +61,7 @@ public class ContactProfile extends AppCompatActivity {
     JSONArray ldata = null;
     DatabaseHandlerContacts dbHandler;
     HashMap<String, String> hashC;
-    ImageButton callUser, endCall;
+    ImageButton callUser, endCall, messageUser;
     RelativeLayout contactProf;
     LinearLayout callWin;
     SinchCallListener callListener;
@@ -217,10 +220,11 @@ ImageView avatarcall;
 
         callWin = (LinearLayout) findViewById(R.id.call_window);
 
-
         callUser = (ImageButton) findViewById(R.id.btnCallUser);
         endCall = (ImageButton) findViewById(R.id.end_call);
         actioncalling = (TextView) findViewById(R.id.calltextid);
+
+        messageUser = (ImageButton) findViewById(R.id.btnMessageUser);
 
 
         dbHandler = new DatabaseHandlerContacts(this);
@@ -286,7 +290,18 @@ ImageView avatarcall;
             }
         });
 
+        messageUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMessagingActivity();
+            }
+        });
 
+    }
+
+    private void openMessagingActivity() {
+        Intent messagingActivity = new Intent(this, MessagingActivity.class);
+        startActivity(messagingActivity);
     }
 
     class SinchCallListener implements CallListener {

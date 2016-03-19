@@ -25,9 +25,9 @@
                 android:id="@+id/textView19"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
-                android:layout_alignStart="@+id/spinnerSecretQuestion"
+                android:layout_above="@+id/spinnerSecretQuestion"
                 android:layout_marginBottom="3dp"
-                android:layout_alignTop="@+id/spinnerSecretQuestion" />
+               />
 
             <Spinner
                 android:layout_width="match_parent"

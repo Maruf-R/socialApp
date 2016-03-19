@@ -112,16 +112,17 @@ ap = new AudioPlayer(this);
         TabHost tabHost = (TabHost) findViewById(android.R.id.tabhost);
 
 
-        TabHost.TabSpec tab1 = tabHost.newTabSpec("First Tab");
-        TabHost.TabSpec tab2 = tabHost.newTabSpec("Second Tab");
-        TabHost.TabSpec tab3 = tabHost.newTabSpec("Third tab");
+        TabHost.TabSpec tab1 = tabHost.newTabSpec("FirstTab");
+        TabHost.TabSpec tab2 = tabHost.newTabSpec("SecondTab");
+        TabHost.TabSpec tab3 = tabHost.newTabSpec("Thirdtab");
+        TabHost.TabSpec tab4 = tabHost.newTabSpec("Fourthtab");
 
         // Set the Tab name and Activity
         // that will be opened when particular Tab will be selected
 
 
 
-        tab1.setIndicator("Contacts");
+        tab1.setIndicator("Profile");
         tab1.setContent(new Intent(this, Profile.class));
 
 
@@ -132,9 +133,13 @@ ap = new AudioPlayer(this);
         tab3.setIndicator("Settings");
         tab3.setContent(new Intent(this, UserSettings.class));
 
+        tab4.setIndicator("Friends");
+        tab4.setContent(new Intent(this, Favourites.class));
+
         /** Add the tabs  to the TabHost to display. */
         tabHost.addTab(tab1);
         tabHost.addTab(tab2);
+        tabHost.addTab(tab4);
         tabHost.addTab(tab3);
 
 

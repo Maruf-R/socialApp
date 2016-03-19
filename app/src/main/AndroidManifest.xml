@@ -71,6 +71,10 @@
         <activity
             android:name=".UserProfile.ChangeSecurityQuestionAnswer"
             android:screenOrientation="portrait" />
+        .UserProfile.Favourites
+        <activity
+            android:name=".UserProfile.Favourites"
+            android:screenOrientation="portrait" />
 
     </application>
 

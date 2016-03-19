@@ -26,38 +26,35 @@
             android:layout_marginTop="13dp"
             android:id="@+id/linearLayout2">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+
+            <EditText
                 android:background="@drawable/curved_corner"
-                android:layout_margin="3dp">
 
-                <EditText
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/txtFirstName"
-                    android:hint="First Name"
-                    android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/txtFirstName"
+                android:hint="First Name"
+                android:padding="10dp"
 
-                    android:layout_weight="1"
-                    android:textStyle="italic" />
+                android:layout_weight="1"
+                android:textStyle="italic"
+                android:layout_margin="3dp"/>
 
-                <EditText
-                    android:padding="10dp"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/txtLastName"
-                    android:hint="Last Name"
+            <EditText
+                android:background="@drawable/curved_corner"
+                android:layout_margin="3dp"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/txtLastName"
+                android:hint="Last Name"
 
-                    android:layout_weight="1"
-                    android:textStyle="italic" />
-            </LinearLayout>
-
+                android:layout_weight="1"
+                android:textStyle="italic" />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"

@@ -12,33 +12,29 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class LoginActivity extends BaseActivity implements SinchService.StartFailedListener {
-
-    private Button mLoginButton;
-
-    private EditText mLoginName;
+public class MessagingSetup extends BaseActivity implements SinchService.StartFailedListener {
     private ProgressDialog mSpinner;
+    private String userName;    //TODO: need to get the users username here somehow
+
+    public MessagingSetup(String uName){
+        userName = uName;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*setContentView(R.layout.login);
 
-        mLoginButton = (Button) findViewById(R.id.loginButton);
-        mLoginButton.setEnabled(false);
-        mLoginName = (EditText) findViewById(R.id.loginName);
-
-        mLoginButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginClicked();
-            }
-        });*/
+        if (!getSinchServiceInterface().isStarted()) {
+            getSinchServiceInterface().startClient(userName);
+            showSpinner();
+        } else {
+            mSpinner.dismiss();
+            openMessagingActivity();
+        }
     }
 
     @Override
     protected void onServiceConnected() {
-        mLoginButton.setEnabled(true);
         getSinchServiceInterface().setStartListener(this);
     }
 
@@ -61,22 +57,6 @@ public class LoginActivity extends BaseActivity implements SinchService.StartFai
     @Override
     public void onStarted() {
         openMessagingActivity();
-    }
-
-    private void loginClicked() {
-        String userName = mLoginName.getText().toString();
-
-        if (userName.isEmpty()) {
-            Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        if (!getSinchServiceInterface().isStarted()) {
-            getSinchServiceInterface().startClient(userName);
-            showSpinner();
-        } else {
-            openMessagingActivity();
-        }
     }
 
     private void openMessagingActivity() {

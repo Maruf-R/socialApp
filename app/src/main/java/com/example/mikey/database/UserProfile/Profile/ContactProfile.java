@@ -20,7 +20,7 @@ import com.example.mikey.database.Database.DatabaseHandlerContacts;
 import com.example.mikey.database.Database.DatabaseUsernameId;
 import com.example.mikey.database.Database.JSONParser;
 import com.example.mikey.database.R;
-import com.example.mikey.database.UserProfile.Messaging.MessagingActivity;
+import com.example.mikey.database.UserProfile.Messaging.MessagingSetup;
 import com.example.mikey.database.UserProfile.VoiceCall.AudioPlayer;
 import com.sinch.android.rtc.PushPair;
 import com.sinch.android.rtc.Sinch;
@@ -300,7 +300,7 @@ ImageView avatarcall;
     }
 
     private void openMessagingActivity() {
-        Intent messagingActivity = new Intent(this, MessagingActivity.class);
+        Intent messagingActivity = new Intent(this, MessagingSetup.class);
         startActivity(messagingActivity);
     }
 

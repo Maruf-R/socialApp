@@ -8,6 +8,7 @@ import com.sinch.android.rtc.messaging.MessageClientListener;
 import com.sinch.android.rtc.messaging.MessageDeliveryInfo;
 import com.sinch.android.rtc.messaging.MessageFailureInfo;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;

@@ -27,7 +27,7 @@ android {
 apply plugin: 'com.android.application'
 
 dependencies {
-    compile 'com.google.android.gms:play-services:8.4.0'
+    //compile 'com.google.android.gms:play-services:8.4.0'
     compile 'com.android.support:multidex:1.0.0'
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -41,4 +41,4 @@ dependencies {
     compile files('libs/sinch-android-rtc-3.9.3.jar')
 }
 
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'

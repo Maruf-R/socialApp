@@ -16,7 +16,7 @@
             android:layout_height="match_parent"
             android:hint="Recipient"
             android:background="@android:color/white"
-            android:textColor="@color/wallet_holo_blue_light"
+            android:textColor="@android:color/black"
             android:inputType="textPersonName">
 
             <requestFocus/>
@@ -51,7 +51,7 @@
             android:layout_height="match_parent"
             android:hint="Message..."
             android:textSize="14sp"
-            android:textColor="@color/common_plus_signin_btn_text_dark_disabled"
+            android:textColor="@android:color/black"
             android:layout_marginRight="10dp"
             android:layout_alignTop="@+id/sendButton"
             android:background="@android:color/white"

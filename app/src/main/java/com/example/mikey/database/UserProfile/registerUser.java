@@ -232,8 +232,10 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
         btnFirstRegNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 firstReg.setVisibility(View.INVISIBLE);
                 secondReg.setVisibility(View.VISIBLE);
+
             }
         });
         btnFirstRegBack.setOnClickListener(new View.OnClickListener() {
@@ -247,9 +249,14 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
         btnSecondRegNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                validateEmail();
+                checkNames();
+                validateAge();
+
+                if(validateEmail() == true && checkNames() == true&&validateAge()==true){
                 secondReg.setVisibility(View.INVISIBLE);
                 fourthReg.setVisibility(View.VISIBLE);
-            }
+            }}
         });
 
         btnSecondRegBack.setOnClickListener(new View.OnClickListener() {
@@ -307,10 +314,7 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View v) {
                 checkPasswords();
-                validateEmail();
-                checkNames();
-                validateAge();
-                if (checkPasswords() == true && validateEmail() == true && checkNames() == true&&validateAge()==true) {
+               if (checkPasswords() == true) {
 
                     String answer = answerEt.getText().toString();
 

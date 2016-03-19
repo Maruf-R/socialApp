@@ -46,7 +46,6 @@ import javax.mail.Session;
 public class EditUserProfile extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
   //  private EditText editFirstName, editLastName, editSecretAnswer;
-    private Spinner spinnerSecretQuestion;
     private TextView textBirthday;
     private Button  btnSaveChanges;
     private registerUser user;
@@ -61,17 +60,15 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
     private int year, month, day;
     private Spinner nationalityS;
 
-    private TextView errorMessage;
-    private Spinner spinnerSecretQuestions;
+//    private TextView errorMessage;
+
     Spinner eduSpinner, genSpinner;
 
 
     final String[] EDUCATION = {"Not stated", "Further Education", "Higher Education"};
     final String[] GENDER = {"Not stated", "Male", "Female"};
-    private String[] spinnerQuestion={"What was your first pet's name?",
-            "What was your first car?",("What was your first love's name?"),("What was the city you were born?")};
 
-    public String[] getSpinnerQuestion() { return spinnerQuestion; }
+
 
     public String getEmail() {
         return email;
@@ -143,18 +140,7 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
     private static final String TAG_MESSAGE = "message";
 
 
-    EditText answerEt;
 
-
-    public String getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    private String question;
 
 
     DatabaseUsernameId dbHandlerId;
@@ -176,11 +162,10 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
 
         btnSaveChanges = (Button) findViewById(R.id.btnSaveChanges);
 
-        spinnerQuestion();
+
         spinnerCountries();
         spinner_methodGender();
         spinner_methodEdu();
-        answerEt = (EditText) findViewById(R.id.answer_atregister);
 
         birthday = (TextView) findViewById(R.id.birthday);
         calendar = Calendar.getInstance();
@@ -202,9 +187,9 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
                 validateAge();
                 if (checkNames() == true&&validateAge()==true) {
 
-                    String answer = answerEt.getText().toString();
 
-   new EditUserProfile.EditUser().execute(answer);
+
+   new EditUserProfile.EditUser().execute();
 
                 }
             }
@@ -239,7 +224,6 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
         protected String doInBackground(String... args) {
 
             int success;
-            String answer = args[0];
 
             try {
                 // Building Parameters
@@ -248,8 +232,6 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
                 params.add(new BasicNameValuePair("name", getName()));
                 params.add(new BasicNameValuePair("age", Integer.toString(getAge())));
                 params.add(new BasicNameValuePair("nationality", getNationality()));
-                params.add(new BasicNameValuePair("answer", answer));
-                params.add(new BasicNameValuePair("question", getQuestion()));
                 params.add(new BasicNameValuePair("education", getEducation()));
                 params.add(new BasicNameValuePair("gender", getGender()));
 //                params.add(new BasicNameValuePair("maximum", hashC.get("country")));
@@ -258,8 +240,6 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
 
                 System.out.println("they pass to email ver gender" +  hash.get("email"));
 
-                System.out.println("they pass to email ver gender" +  answer);
-                System.out.println("pass edu emai ver" + getQuestion());
 
                 Log.d("request!", "starting");
 
@@ -396,6 +376,9 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
             System.out.println("your age is " + age);
             valid = false;
         }
+        else{
+            birthday.setError(null);
+        }
         return valid;
     }
 
@@ -403,17 +386,6 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
 
 
 
-    public void spinnerQuestion() {
-
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerQuestion);
-        //   dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinnerSecretQuestions = (Spinner)findViewById(R.id.spinnerSecretQuestion);
-        spinnerSecretQuestions.setAdapter(dataAdapter);
-        spinnerSecretQuestions.setOnItemSelectedListener(this);
-
-
-    }
 
 
     public void spinner_methodGender(){
@@ -509,13 +481,7 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
             setNationality(item);
 
         }
-        else if(spinner.getId() == R.id.spinnerSecretQuestion)
-        {
-            String itemQ = parent.getItemAtPosition(position).toString();
-            setQuestion(itemQ);
-
-        }
-        else if(spinner.getId() == R.id.edu_spinner_register)
+         else if(spinner.getId() == R.id.edu_spinner_register)
         {
 
             String edu = parent.getItemAtPosition(position).toString();
@@ -553,7 +519,7 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
         setName(firstNameText+" "+lastNameText);
 
         if (firstNameText.equals(lastNameText)) {
-            errorMessage.setText("Name and Last name cannot be the same.");
+         //   errorMessage.setText("Name and Last name cannot be the same.");
 
             Toast.makeText(getApplicationContext(), "Sign Up Failed", Toast.LENGTH_SHORT).show();
         }

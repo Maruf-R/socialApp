@@ -68,6 +68,9 @@
         <activity android:name=".UserProfile.UserInterests" />
         <activity android:name=".UserProfile.Profile.EditUserProfile" />
         <activity android:name=".UserProfile.testActivity"></activity>
+        <activity
+            android:name=".UserProfile.ChangeSecurityQuestionAnswer"
+            android:screenOrientation="portrait" />
 
     </application>
 

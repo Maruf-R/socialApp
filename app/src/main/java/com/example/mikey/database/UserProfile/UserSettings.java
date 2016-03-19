@@ -40,6 +40,8 @@ public class UserSettings extends AppCompatActivity {
     private Button btnBlockContact;
     private Button btnLogOut;
     private Button btnDeleteAccount;
+    private Button btnChangeSecurityDetails;
+
     DatabaseUsernameId dbHandlerId;
     HashMap<String, String> idUserHash;
     JSONParser jsonParserg = new JSONParser();
@@ -74,6 +76,16 @@ public class UserSettings extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnChangeSecurityDetails = (Button) findViewById(R.id.btnSecDet);
+        btnChangeSecurityDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserSettings.this, ChangeSecurityQuestionAnswer.class);
+                startActivity(intent);
+            }
+        });
+
 
         //Start UserInterests activity
         btnEditUserInterests = (Button) findViewById(R.id.btnEditUserInterests);

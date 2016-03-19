@@ -731,8 +731,11 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/firstLayout"
-        android:padding="20dip"
-        android:visibility="visible">
+        android:visibility="visible"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
 
         <TextView
             android:layout_width="match_parent"

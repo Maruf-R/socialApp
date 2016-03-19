@@ -23,10 +23,12 @@
         android:layout_weight="0.04"
         android:textColor="#fa4a53"
 
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="25dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="0dp"/>
+        android:layout_marginBottom="0dp"
+        android:layout_below="@id/textView2"
+        />
 
 
 
@@ -37,125 +39,19 @@
         android:text="@string/signup_text"
         android:id="@+id/textView2"
 
-        android:layout_alignTop="@+id/error_message"
-        android:layout_alignParentStart="true"
         android:textColor="#FFFFFF"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="20dip"
-        android:id="@+id/fourthRegLayout"
-        android:visibility="invisible">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:ems="10"
-                android:id="@+id/passwordBoxSignup1"
-
-                android:hint="@string/password_hint"
-                android:background="@drawable/curved_corner"
-                android:padding="10dp"
-
-                android:layout_margin="3dp"
-                android:textStyle="italic"
-                android:visibility="visible" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:ems="10"
-                android:id="@+id/passwordBoxSignup2"
-                android:hint="@string/enter_password_again"
-                android:background="@drawable/curved_corner"
-                android:padding="10dp"
-
-                android:layout_margin="3dp"
-                android:textStyle="italic" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Select a Security Question:"
-                android:textColor="#FFFFFF"
-                android:layout_margin="3dp"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/spinnerSecretQuestion"
-                android:background="@drawable/curved_corner"
-                android:padding="10dp"
-                android:layout_margin="3dp" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/answer_atregister"
-                android:background="@drawable/curved_corner"
-                android:padding="10dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginRight="3dp"
-                android:layout_marginBottom="3dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true">
-
-            <Button
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:text="Back"
-                android:id="@+id/btn4Back"
-                android:background="@drawable/button_login"
-                android:textColor="#ffffff"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_weight="1" />
-
-            <Button
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:text="Sign UP"
-                android:id="@+id/btnSaveChanges"
-                android:background="@drawable/button_login"
-                android:textColor="#ffffff"
-
-
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_weight="2" />
-        </LinearLayout>
-
-    </RelativeLayout>
-
-    <RelativeLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:layout_margin="20dip"
-            android:id="@+id/thirdRegLayout"
+            android:id="@+id/fourthRegLayout"
             android:visibility="invisible">
 
             <LinearLayout
@@ -165,24 +61,60 @@
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true">
 
-                <TextView
+                <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/birthday"
-                    android:layout_weight="2"
-                    android:text="@string/date_birthday"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:ems="10"
+                    android:id="@+id/passwordBoxSignup1"
+
+                    android:hint="@string/password_hint"
+                    android:background="@drawable/curved_corner"
                     android:padding="10dp"
-                    android:focusable="true"
-                    android:clickable="true"
-                    android:onClick="setDate"
-                    android:focusableInTouchMode="true"
-                    android:gravity="center" />
+
+                    android:layout_margin="3dp"
+                    android:textStyle="italic"
+                    android:visibility="visible" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:ems="10"
+                    android:id="@+id/passwordBoxSignup2"
+                    android:hint="@string/enter_password_again"
+                    android:background="@drawable/curved_corner"
+                    android:padding="10dp"
+
+                    android:layout_margin="3dp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select a Security Question:"
+                    android:textColor="#FFFFFF"
+                    android:layout_margin="3dp"
+                    android:textStyle="bold" />
 
                 <Spinner
-                    android:id="@+id/gender_spinner_register"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spinnerSecretQuestion"
+                    android:background="@drawable/curved_corner"
+                    android:padding="10dp"
+                    android:layout_margin="3dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/answer_atregister"
+                    android:background="@drawable/curved_corner"
+                    android:padding="10dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginBottom="3dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -190,13 +122,185 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true" >
+                android:layout_centerHorizontal="true">
 
                 <Button
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:text="Back"
-                    android:id="@+id/btn3Back"
+                    android:id="@+id/btn4Back"
+                    android:background="@drawable/button_login"
+                    android:textColor="#ffffff"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:text="Sign UP"
+                    android:id="@+id/btnSaveChanges"
+                    android:background="@drawable/button_login"
+                    android:textColor="#ffffff"
+
+
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="2" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dip"
+            android:id="@+id/secondRegLayout"
+            android:visibility="visible">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/curved_corner"
+                    android:padding="10dp"
+
+                    android:layout_above="@+id/linearLayout6"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="3dp">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/nationality"
+                        android:id="@+id/textView3"
+                        android:gravity="center"
+                        android:textStyle="italic" />
+
+                    <Spinner
+
+
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:id="@+id/Nationality"
+
+                        android:prompt="@string/prompted"
+
+                        android:layout_weight="2" />
+                </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/curved_corner"
+                android:padding="10dp"
+                android:id="@+id/linearLayout6"
+                android:layout_above="@+id/linearLayout5"
+                android:layout_alignParentStart="true"
+                android:layout_margin="3dp">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Country:     "
+                    android:id="@+id/textCountry"
+                    android:gravity="center"
+                    android:textStyle="italic" />
+
+                <Spinner
+
+
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:id="@+id/country_register"
+
+                    android:prompt="@string/prompted"
+
+                    android:layout_weight="2" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/curved_corner"
+                android:padding="10dp"
+
+                android:id="@+id/linearLayout5"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="3dp">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="City:            "
+                    android:id="@+id/textCity"
+                    android:gravity="center"
+                    android:textStyle="italic" />
+
+                <Spinner
+
+
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:id="@+id/city_register"
+
+                    android:prompt="@string/prompted"
+
+                    android:layout_weight="2" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="10dp"
+                android:background="@drawable/curved_corner"
+
+                android:id="@+id/linearLayout4"
+                android:layout_below="@+id/linearLayout5"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="3dp">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Education:"
+                    android:textSize="17dp"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:id="@+id/edu_spinner_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/linearLayout7">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:text="Back"
+                    android:id="@+id/btn2Back"
                     android:background="@drawable/button_login"
                     android:textColor="#ffffff"
                     android:layout_alignParentBottom="true"
@@ -207,178 +311,168 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:text="Next"
-                    android:id="@+id/btn3Next"
+                    android:id="@+id/btn2Next"
                     android:background="@drawable/button_login"
                     android:textColor="#ffffff"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_weight="2" />
             </LinearLayout>
+
         </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="20dip"
-        android:id="@+id/secondRegLayout"
-        android:visibility="invisible">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true">
-
-            <Spinner
 
 
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/Nationality"
-
-                android:prompt="@string/prompted"
-
-                android:layout_weight="2" />
-
-            <Spinner
-
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/country_register"
-
-                android:prompt="@string/prompted"
-
-                android:layout_weight="2" />
-
-            <Spinner
-
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/city_register"
-
-                android:prompt="@string/prompted"
-
-                android:layout_weight="2" />
-
-            <Spinner
-                android:id="@+id/edu_spinner_register"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" >
-
-            <Button
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:text="Back"
-                android:id="@+id/btn2Back"
-                android:background="@drawable/button_login"
-                android:textColor="#ffffff"
-                android:layout_alignParentBottom="true"
+                android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
-                android:layout_weight="1" />
+                android:layout_margin="20dip"
+                android:id="@+id/firstRegLayout"
+                android:visibility="visible">
 
-            <Button
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:text="Next"
-                android:id="@+id/btn2Next"
-                android:background="@drawable/button_login"
-                android:textColor="#ffffff"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_weight="2" />
-        </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:ems="10"
+                        android:id="@+id/emailBoxSignup"
+                        android:hint="@string/email_hint"
+                        android:background="@drawable/curved_corner"
+                        android:padding="10dp"
 
-    </RelativeLayout>
+                        android:layout_below="@+id/textView2"
+                        android:layout_alignParentStart="true"
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="20dip"
-        android:id="@+id/firstRegLayout"
-        android:visibility="visible">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/txtFirstName"
-                android:hint="First Name"
-                android:padding="10dp"
-
-                android:layout_weight="1"
-                android:textStyle="italic" />
-
-            <EditText
-                android:padding="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/txtLastName"
-                android:hint="Last Name"
-
-                android:layout_weight="1"
-                android:textStyle="italic" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:ems="10"
-                android:id="@+id/emailBoxSignup"
-                android:hint="@string/email_hint"
-                android:background="@drawable/curved_corner"
-                android:padding="10dp"
-
-                android:layout_below="@+id/textView2"
-                android:layout_alignParentStart="true"
-
-                android:layout_margin="3dp"
-                android:textStyle="italic" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" >
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Next"
-                android:id="@+id/btn1Next"
-                android:background="@drawable/button_login"
-                android:textColor="#ffffff"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_weight="1" />
-        </LinearLayout>
-    </RelativeLayout>
+                        android:layout_margin="3dp"
+                        android:textStyle="italic" />
 
 
-</RelativeLayout>
+                    <EditText
+                        android:background="@drawable/curved_corner"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:ems="10"
+                        android:id="@+id/txtFirstName"
+                        android:hint="First Name"
+                        android:padding="10dp"
+
+                        android:layout_weight="1"
+                        android:textStyle="italic"
+                        android:layout_margin="3dp"/>
+
+                    <EditText
+                        android:background="@drawable/curved_corner"
+                        android:layout_margin="3dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:ems="10"
+                        android:id="@+id/txtLastName"
+                        android:hint="Last Name"
+
+                        android:layout_weight="1"
+                        android:textStyle="italic" />
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/curved_corner"
+                        android:layout_margin="3dp">
+
+                        <TextView
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="@string/birthday"
+                            android:id="@+id/text_birthday"
+                            android:layout_weight="1.46"
+
+                            android:padding="10dp"
+                            android:gravity="center_vertical"
+                            android:textStyle="italic" />
+
+                        <TextView
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:id="@+id/birthday"
+                            android:layout_weight="2"
+                            android:text="@string/date_birthday"
+                            android:padding="10dp"
+                            android:focusable="true"
+                            android:clickable="true"
+                            android:onClick="setDate"
+                            android:focusableInTouchMode="true"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:background="@drawable/curved_corner"
+                        android:padding="10dp"
+                        android:layout_margin="3dp">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Gender:     "
+                            android:textSize="17dp"
+                            android:textStyle="italic" />
+
+                        <Spinner
+                            android:id="@+id/gender_spinner_register"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true" >
+
+                    <Button
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:text="Back"
+                        android:id="@+id/btn1Back"
+                        android:background="@drawable/button_login"
+                        android:textColor="#ffffff"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:text="Next"
+                        android:id="@+id/btn1Next"
+                        android:background="@drawable/button_login"
+                        android:textColor="#ffffff"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_weight="2" />
+                </LinearLayout>
+            </RelativeLayout>
+
+        </RelativeLayout>

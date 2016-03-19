@@ -185,7 +185,7 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
 
     // First Layout
     private RelativeLayout firstReg;
-    private Button btnFirstRegNext;
+    private Button btnFirstRegNext, btnFirstRegBack;
 
     // Second Layout
     private RelativeLayout secondReg;
@@ -200,6 +200,12 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
     private Button btnFourthRegBack, btnFourthSignUp;
 
     HashMap<String, String> hash;
+
+    @Override
+    public void onBackPressed() {
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -208,18 +214,19 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
 
         firstReg = (RelativeLayout)findViewById(R.id.firstRegLayout);
         secondReg = (RelativeLayout)findViewById(R.id.secondRegLayout);
-        thirdReg = (RelativeLayout)findViewById(R.id.thirdRegLayout);
+       // thirdReg = (RelativeLayout)findViewById(R.id.thirdRegLayout);
         fourthReg = (RelativeLayout)findViewById(R.id.fourthRegLayout);
         firstReg.setVisibility(View.VISIBLE);
         secondReg.setVisibility(View.INVISIBLE);
-        thirdReg.setVisibility(View.INVISIBLE);
+      //  thirdReg.setVisibility(View.INVISIBLE);
         fourthReg.setVisibility(View.INVISIBLE);
 
+        btnFirstRegBack = (Button) findViewById(R.id.btn1Back);
         btnFirstRegNext = (Button)findViewById(R.id.btn1Next);
         btnSecondRegBack = (Button)findViewById(R.id.btn2Back);
         btnSecondRegNext = (Button)findViewById(R.id.btn2Next);
-        btnThirdRegBack = (Button)findViewById(R.id.btn3Back);
-        btnThirdRegNext = (Button)findViewById(R.id.btn3Next);
+      //  btnThirdRegBack = (Button)findViewById(R.id.btn3Back);
+      //  btnThirdRegNext = (Button)findViewById(R.id.btn3Next);
         btnFourthRegBack = (Button)findViewById(R.id.btn4Back);
 
         btnFirstRegNext.setOnClickListener(new View.OnClickListener() {
@@ -229,15 +236,39 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
                 secondReg.setVisibility(View.VISIBLE);
             }
         });
-
+        btnFirstRegBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent login = new Intent(getApplicationContext(), Login.class);
+                startActivity(login);
+                finish();
+            }
+        });
         btnSecondRegNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 secondReg.setVisibility(View.INVISIBLE);
-                thirdReg.setVisibility(View.VISIBLE);
+                fourthReg.setVisibility(View.VISIBLE);
             }
         });
 
+        btnSecondRegBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                secondReg.setVisibility(View.INVISIBLE);
+                firstReg.setVisibility(View.VISIBLE);
+            }
+        });
+
+        btnFourthRegBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fourthReg.setVisibility(View.INVISIBLE);
+                secondReg.setVisibility(View.VISIBLE);
+            }
+        });
+
+/*
         btnThirdRegNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -246,7 +277,7 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-
+*/
 
         signUpBtn = (Button) findViewById(R.id.btnSaveChanges);
         spinnerQuestion();

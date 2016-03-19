@@ -10,25 +10,6 @@
     tools:context=".RegisterUser"
     android:background="#03A9F4">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:id="@+id/error_message"
-        android:layout_gravity="center"
-        android:text="@string/error_password"
-
-        android:textSize="20dp"
-
-        android:layout_weight="0.04"
-        android:textColor="#fa4a53"
-
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="0dp"
-        android:layout_below="@id/textView2"
-        />
 
 
 
@@ -52,7 +33,26 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="20dip"
             android:id="@+id/fourthRegLayout"
-            android:visibility="invisible">
+            android:visibility="visible">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/error_message"
+                android:layout_gravity="center"
+                android:text="@string/error_password"
+
+                android:textSize="20dp"
+
+                android:layout_weight="0.04"
+                android:textColor="#fa4a53"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+
+                />
+
 
             <LinearLayout
                 android:orientation="vertical"
@@ -159,7 +159,7 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="20dip"
             android:id="@+id/secondRegLayout"
-            android:visibility="visible">
+            android:visibility="invisible">
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -384,7 +384,29 @@
                         android:layout_weight="1"
                         android:textStyle="italic" />
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:background="@drawable/curved_corner"
+                        android:padding="10dp"
+                        android:layout_margin="3dp">
 
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Gender:     "
+                            android:textSize="17dp"
+                            android:textStyle="italic" />
+
+                        <Spinner
+                            android:id="@+id/gender_spinner_register"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
@@ -419,29 +441,7 @@
                             android:gravity="center" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:background="@drawable/curved_corner"
-                        android:padding="10dp"
-                        android:layout_margin="3dp">
 
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Gender:     "
-                            android:textSize="17dp"
-                            android:textStyle="italic" />
-
-                        <Spinner
-                            android:id="@+id/gender_spinner_register"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout

@@ -130,7 +130,7 @@ ap = new AudioPlayer(this);
         tab2.setContent(new Intent(this, Search.class));
 
 
-        tab3.setIndicator("Settings");
+        tab3.setIndicator("Edit");
         tab3.setContent(new Intent(this, UserSettings.class));
 
         tab4.setIndicator("Friends");

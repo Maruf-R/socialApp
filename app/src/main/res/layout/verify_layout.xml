@@ -2,16 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="#03A9F4">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="We have sent you an email with your unique verification code. Please Enter it andclick verify to to dinish registering wit us."
+        android:text="A unique verification code has been sent to your email, please enter this code to verify and continue. "
         android:id="@+id/textview_verify"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.24"
-        android:layout_margin="20dp" />
+        android:layout_margin="20dp"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF" />
 
 
 
@@ -20,7 +23,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter your verification code"
-        android:layout_margin="20dp" />
+        android:layout_margin="20dp"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:layout_width="wrap_content"
@@ -28,5 +32,6 @@
         android:text="Verify"
         android:id="@+id/verify_button"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="20dp" />
+        android:layout_margin="40dp"
+        android:background="@drawable/button_login" />
 </LinearLayout>

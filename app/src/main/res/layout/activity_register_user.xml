@@ -33,7 +33,7 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="20dip"
             android:id="@+id/fourthRegLayout"
-            android:visibility="visible">
+            android:visibility="invisible">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -156,14 +156,168 @@
         </RelativeLayout>
 
 
-        <RelativeLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dip"
+        android:id="@+id/firstRegLayout"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/emailBoxSignup"
+                android:hint="@string/email_hint"
+                android:background="@drawable/curved_corner"
+                android:padding="10dp"
+
+                android:layout_below="@+id/textView2"
+                android:layout_alignParentStart="true"
+
+                android:layout_margin="3dp"
+                android:textStyle="italic" />
+
+
+            <EditText
+                android:background="@drawable/curved_corner"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/txtFirstName"
+                android:hint="First Name"
+                android:padding="10dp"
+
+                android:layout_weight="1"
+                android:textStyle="italic"
+                android:layout_margin="3dp"/>
+
+            <EditText
+                android:background="@drawable/curved_corner"
+                android:layout_margin="3dp"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/txtLastName"
+                android:hint="Last Name"
+
+                android:layout_weight="1"
+                android:textStyle="italic" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@drawable/curved_corner"
+                android:padding="10dp"
+                android:layout_margin="3dp">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gender:     "
+                    android:textSize="17dp"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:id="@+id/gender_spinner_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/curved_corner"
+                android:layout_margin="3dp">
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/birthday"
+                    android:id="@+id/text_birthday"
+                    android:layout_weight="1.46"
+
+                    android:padding="10dp"
+                    android:gravity="center_vertical"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/birthday"
+                    android:layout_weight="2"
+                    android:text="@string/date_birthday"
+                    android:padding="10dp"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:onClick="setDate"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" >
+
+            <Button
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:text="Back"
+                android:id="@+id/btn1Back"
+                android:background="@drawable/button_login"
+                android:textColor="#ffffff"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp" />
+
+            <Button
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:text="Next"
+                android:id="@+id/btn1Next"
+                android:background="@drawable/button_login"
+                android:textColor="#ffffff"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:layout_margin="20dip"
             android:id="@+id/secondRegLayout"
-            android:visibility="invisible">
+            android:visibility="visible">
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -174,7 +328,8 @@
 
                     android:layout_above="@+id/linearLayout6"
                     android:layout_centerHorizontal="true"
-                    android:layout_margin="3dp">
+                    android:layout_margin="3dp"
+                    android:id="@+id/linearLayout8">
 
                     <TextView
 
@@ -327,162 +482,27 @@
 
             </LinearLayout>
 
-        </RelativeLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="location"
+            android:id="@+id/btnLocation"
+            android:layout_below="@+id/linearLayout4"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="23dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/txtLocation"
+            android:layout_above="@+id/linearLayout8"
+            android:layout_alignEnd="@+id/btnLocation"
+            android:layout_marginEnd="34dp"
+            android:layout_marginBottom="37dp" />
+
+    </RelativeLayout>
 
 
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="20dip"
-                android:id="@+id/firstRegLayout"
-                android:visibility="visible">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true">
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
-                        android:ems="10"
-                        android:id="@+id/emailBoxSignup"
-                        android:hint="@string/email_hint"
-                        android:background="@drawable/curved_corner"
-                        android:padding="10dp"
-
-                        android:layout_below="@+id/textView2"
-                        android:layout_alignParentStart="true"
-
-                        android:layout_margin="3dp"
-                        android:textStyle="italic" />
-
-
-                    <EditText
-                        android:background="@drawable/curved_corner"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
-                        android:ems="10"
-                        android:id="@+id/txtFirstName"
-                        android:hint="First Name"
-                        android:padding="10dp"
-
-                        android:layout_weight="1"
-                        android:textStyle="italic"
-                        android:layout_margin="3dp"/>
-
-                    <EditText
-                        android:background="@drawable/curved_corner"
-                        android:layout_margin="3dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
-                        android:ems="10"
-                        android:id="@+id/txtLastName"
-                        android:hint="Last Name"
-
-                        android:layout_weight="1"
-                        android:textStyle="italic" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:background="@drawable/curved_corner"
-                        android:padding="10dp"
-                        android:layout_margin="3dp">
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Gender:     "
-                            android:textSize="17dp"
-                            android:textStyle="italic" />
-
-                        <Spinner
-                            android:id="@+id/gender_spinner_register"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/curved_corner"
-                        android:layout_margin="3dp">
-
-                        <TextView
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="@string/birthday"
-                            android:id="@+id/text_birthday"
-                            android:layout_weight="1.46"
-
-                            android:padding="10dp"
-                            android:gravity="center_vertical"
-                            android:textStyle="italic" />
-
-                        <TextView
-                            android:layout_width="0dip"
-                            android:layout_height="match_parent"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:id="@+id/birthday"
-                            android:layout_weight="2"
-                            android:text="@string/date_birthday"
-                            android:padding="10dp"
-                            android:focusable="true"
-                            android:clickable="true"
-                            android:onClick="setDate"
-                            android:focusableInTouchMode="true"
-                            android:gravity="center" />
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true" >
-
-                    <Button
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:text="Back"
-                        android:id="@+id/btn1Back"
-                        android:background="@drawable/button_login"
-                        android:textColor="#ffffff"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_weight="1"
-                        android:layout_marginRight="5dp" />
-
-                    <Button
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:text="Next"
-                        android:id="@+id/btn1Next"
-                        android:background="@drawable/button_login"
-                        android:textColor="#ffffff"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="5dp" />
-                </LinearLayout>
-            </RelativeLayout>
-
-        </RelativeLayout>
+</RelativeLayout>

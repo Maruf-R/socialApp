@@ -1,11 +1,20 @@
 package com.example.mikey.database.UserProfile;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +40,7 @@ import org.joda.time.Period;
 import org.joda.time.PeriodType;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -53,7 +63,7 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
 
     DatabaseHandler dbHandler;
     Session session = null;
-   // Context context = null;
+    // Context context = null;
     EditText reciep, sub, msg;
     String rec, subject, textMessage;
 
@@ -73,10 +83,12 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
 
     final String[] EDUCATION = {"Not stated", "Further Education", "Higher Education"};
     final String[] GENDER = {"Not stated", "Male", "Female"};
-    private String[] spinnerQuestion={"What was your first pet's name?",
-   "What was your first car?",("What was your first love's name?"),("What was the city you were born?")};
+    private String[] spinnerQuestion = {"What was your first pet's name?",
+            "What was your first car?", ("What was your first love's name?"), ("What was the city you were born?")};
 
-    public String[] getSpinnerQuestion() { return spinnerQuestion; }
+    public String[] getSpinnerQuestion() {
+        return spinnerQuestion;
+    }
 
     public String getEmail() {
         return email;
@@ -87,7 +99,8 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private String email;
-    private String country,city;
+    private String country  = "country";
+    private String city;
 
     public String getEducation() {
         return education;
@@ -105,7 +118,7 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
         this.gender = gender;
     }
 
-    private String education,gender;
+    private String education, gender;
 
     private EditText emailBox;
     private String password;
@@ -143,7 +156,7 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
 
     private ProgressDialog pDialog;
     JSONParser jsonParser = new JSONParser();
-    private static final String LOGIN_URL ="http://www.companion4me.x10host.com/webservice/registerCode.php";
+    private static final String LOGIN_URL = "http://www.companion4me.x10host.com/webservice/registerCode.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
 
@@ -161,7 +174,7 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void setVerificationCode(String useremail) {
-        this.verificationCode = computeMD5Hash(useremail).substring(0, Math.min(useremail.length(),8));
+        this.verificationCode = computeMD5Hash(useremail).substring(0, Math.min(useremail.length(), 8));
     }
 
     EditText answerEt;
@@ -206,27 +219,86 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
+    Double latitude, longitude;
+    Button btnLocation;
+    TextView txtLocation;
+
+    private final LocationListener mLocationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(Location location) {
+            longitude = location.getLongitude();
+            latitude = location.getLatitude();
+        }
+        @Override public void onStatusChanged(String provider, int status, Bundle extras) {}
+        @Override public void onProviderEnabled(String provider) {}
+        @Override public void onProviderDisabled(String provider) {}
+    };
+
+    private LocationManager locationManager;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
 
+        btnLocation = (Button)findViewById(R.id.btnLocation);
+        txtLocation = (TextView)findViewById(R.id.txtLocation);
+
+
+        btnLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Geocoder gcd = new Geocoder(registerUser.this, Locale.getDefault());
+                try {
+                    List<Address> adresses = gcd.getFromLocation(latitude, longitude, 1);
+                    if (adresses.size() > 0) {
+                        String countryName = adresses.get(0).getCountryName();
+                        String cityName = adresses.get(0).getLocality();
+
+                        txtLocation.setText("Lat: " + latitude + "\n Long: " + longitude + "\n" + countryName + " " + cityName);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+
+
+            }
+        });
+
+
+
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5000, mLocationListener);
 
         firstReg = (RelativeLayout)findViewById(R.id.firstRegLayout);
         secondReg = (RelativeLayout)findViewById(R.id.secondRegLayout);
-       // thirdReg = (RelativeLayout)findViewById(R.id.thirdRegLayout);
+        // thirdReg = (RelativeLayout)findViewById(R.id.thirdRegLayout);
         fourthReg = (RelativeLayout)findViewById(R.id.fourthRegLayout);
         firstReg.setVisibility(View.VISIBLE);
         secondReg.setVisibility(View.INVISIBLE);
-      //  thirdReg.setVisibility(View.INVISIBLE);
+        //  thirdReg.setVisibility(View.INVISIBLE);
         fourthReg.setVisibility(View.INVISIBLE);
 
         btnFirstRegBack = (Button) findViewById(R.id.btn1Back);
         btnFirstRegNext = (Button)findViewById(R.id.btn1Next);
         btnSecondRegBack = (Button)findViewById(R.id.btn2Back);
         btnSecondRegNext = (Button)findViewById(R.id.btn2Next);
-      //  btnThirdRegBack = (Button)findViewById(R.id.btn3Back);
-      //  btnThirdRegNext = (Button)findViewById(R.id.btn3Next);
+        //  btnThirdRegBack = (Button)findViewById(R.id.btn3Back);
+        //  btnThirdRegNext = (Button)findViewById(R.id.btn3Next);
         btnFourthRegBack = (Button)findViewById(R.id.btn4Back);
 
         btnFirstRegNext.setOnClickListener(new View.OnClickListener() {
@@ -309,12 +381,12 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
         dbHandler = new DatabaseHandler(this);
         hash = dbHandler.getUserDetails();
 
-       // dbHandlerId = new DatabaseUsernameId(this);
+        // dbHandlerId = new DatabaseUsernameId(this);
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkPasswords();
-               if (checkPasswords() == true) {
+                if (checkPasswords() == true) {
 
                     String answer = answerEt.getText().toString();
 
@@ -322,17 +394,17 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
                     String username = emailBox.getText().toString();
                     setVerificationCode(username);
                     String password3 = getPassword();
-  System.out.println("username: " +username);
+                    System.out.println("username: " +username);
                     System.out.println("code short onc: " + getVerificationCode());
                     System.out.println("code: long onc" + computeMD5Hash(username).substring(0, Math.min(username.length(), 8)));
 
 
 
                     new CreateUserCode().execute(username, getVerificationCode());
-System.out.println("for real spinner getquestion " + getQuestion());
+                    System.out.println("for real spinner getquestion " + getQuestion());
                     dbHandler.resetTables();
                     dbHandler.addUser(getName(), Integer.toString(getAge()), getNationality(), getEmail(), password3, answer, getQuestion(), getEducation(), getGender(), null, null);//TODO to add county and city
-    sendingEmail(username);
+                    sendingEmail(username);
 
 
                 }
@@ -364,7 +436,7 @@ System.out.println("for real spinner getquestion " + getQuestion());
             }
         });
 
-      //  pdialog = ProgressDialog.show(registerUser.this, "", "Sending Mail...", true);
+        //  pdialog = ProgressDialog.show(registerUser.this, "", "Sending Mail...", true);
 
 
         RetreiveFeedTask task = new RetreiveFeedTask();
@@ -400,7 +472,7 @@ System.out.println("for real spinner getquestion " + getQuestion());
 
         @Override
         protected void onPostExecute(String result) {
-               Toast.makeText(getApplicationContext(), "Message sent", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Message sent", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -470,7 +542,7 @@ System.out.println("for real spinner getquestion " + getQuestion());
 
             //  finish();
 
-           // finish();
+            // finish();
             if (file_url != null){
                 Toast.makeText(registerUser.this, file_url, Toast.LENGTH_LONG).show();
             }
@@ -551,7 +623,7 @@ System.out.println("for real spinner getquestion " + getQuestion());
     public void spinnerQuestion() {
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerQuestion);
-     //   dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //   dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinnerSecretQuestions = (Spinner)findViewById(R.id.spinnerSecretQuestion);
         spinnerSecretQuestions.setAdapter(dataAdapter);
@@ -678,7 +750,7 @@ System.out.println("for real spinner getquestion " + getQuestion());
 
 
         // Showing selected spinner item
-    //    Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+        //    Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
     }
 
     public void onNothingSelected(AdapterView<?> arg0) {
@@ -698,7 +770,7 @@ System.out.println("for real spinner getquestion " + getQuestion());
         setName(firstNameText+" "+lastNameText);
 
         if (firstNameText.equals(lastNameText)) {
-          //  errorMessage.setText("Name and Last name cannot be the same.");
+            //  errorMessage.setText("Name and Last name cannot be the same.");
 
             Toast.makeText(getApplicationContext(), "Name and Last name cannot be the same.", Toast.LENGTH_SHORT).show();
         }

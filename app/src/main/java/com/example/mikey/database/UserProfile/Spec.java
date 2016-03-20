@@ -31,15 +31,15 @@ public class Spec extends AppCompatActivity implements AdapterView.OnItemSelecte
 
     final String[] EDUCATION = {"","Not stated", "Further Education", "Higher Education"};
     final String[] GENDER = {"","Not stated", "Male", "Female"};
-    final String[] MUSIC = {"","Indie", "Blues", "R&B", "Reggae", "Soul", "Hip Hop", "Jazz", "Metal", "Classical"};
+    final String[] MUSIC = {"None","Indie", "Blues", "R&B", "Reggae", "Soul", "Hip Hop", "Jazz", "Metal", "Classical"};
 
-    final String[] MOVIES = {"","Action", "Animation", "Comedy", "Drama", "Fantasy", "Musical", "Mystery", "Sci-Fi", "Horror"};
+    final String[] MOVIES = {"None","Action", "Animation", "Comedy", "Drama", "Fantasy", "Musical", "Mystery", "Sci-Fi", "Horror"};
 
-    final String[] SPORTS = {"","Golf", "Boxing", "Tennis", "Football", "Cricket", "Squash", "Hockey", "Rugby", "Weightlifting"};
+    final String[] SPORTS = {"None","Golf", "Boxing", "Tennis", "Football", "Cricket", "Squash", "Hockey", "Rugby", "Weightlifting"};
 
-    final String[] FOOD = {"","African", "American", "Carribean", "British", "French", "Greek", "Mexican", "Nordic", "Turkish"};
+    final String[] FOOD = {"None","African", "American", "Carribean", "British", "French", "Greek", "Mexican", "Nordic", "Turkish"};
 
-    final String[] HOBBIES = {"","Reading", "Running", "Yoga", "Cooking", "Puzzles", "Chess", "Fishing", "Hiking", "Photography"};
+    final String[] HOBBIES = {"None","Reading", "Running", "Yoga", "Cooking", "Puzzles", "Chess", "Fishing", "Hiking", "Photography"};
 
 
 

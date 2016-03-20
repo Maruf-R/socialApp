@@ -10,6 +10,8 @@ import com.sinch.android.rtc.*;
 import com.sinch.android.rtc.messaging.MessageClientListener;
 import com.sinch.android.rtc.messaging.WritableMessage;
 
+import java.util.HashMap;
+
 public class SinchService extends Service {
 
     private static final String APP_KEY = "0b73e092-90ed-4432-ac38-192e1e3d19fd";
@@ -97,7 +99,9 @@ public class SinchService extends Service {
 
     private void start(String userName) {
         if (mSinchClient == null) {
-            mSinchClient = Sinch.getSinchClientBuilder().context(getApplicationContext()).userId(userName)
+            mSinchClient = Sinch.getSinchClientBuilder()
+                    .context(getApplicationContext())
+                    .userId(userName)
                     .applicationKey(APP_KEY)
                     .applicationSecret(APP_SECRET)
                     .environmentHost(ENVIRONMENT).build();
@@ -171,7 +175,7 @@ public class SinchService extends Service {
 
         @Override
         public void onRegistrationCredentialsRequired(SinchClient client,
-                ClientRegistration clientRegistration) {
+                                                      ClientRegistration clientRegistration) {
         }
     }
 }

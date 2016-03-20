@@ -1,31 +1,39 @@
 package com.example.mikey.database.UserProfile.Messaging;
 
-import com.example.mikey.database.R;
+import com.example.mikey.database.Database.DatabaseHandlerMessaging;
 import com.sinch.android.rtc.SinchError;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.HashMap;
 
 public class MessagingSetup extends BaseActivity implements SinchService.StartFailedListener {
     private ProgressDialog mSpinner;
-    private String userName;    //TODO: need to get the users username here somehow
 
-    public MessagingSetup(String uName){
-        userName = uName;
-    }
+    protected Context context;
+    DatabaseHandlerMessaging dbHandlerMsg;
+    HashMap<String,String> idUserHash;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    public MessagingSetup(Context context){
+        this.context = context.getApplicationContext();
+        setup();
+    }
+
+    public void setup(){
+        dbHandlerMsg = new DatabaseHandlerMessaging(context);
+        idUserHash = dbHandlerMsg.getUserDetails();
 
         if (!getSinchServiceInterface().isStarted()) {
-            getSinchServiceInterface().startClient(userName);
+            getSinchServiceInterface().startClient(idUserHash.get("email"));    //TODO: NEED TO CHECK IS I AM SUPPOSED TO USE THE KEY_EMAIL HERE OR THE KEY_NAME
             showSpinner();
         } else {
             mSpinner.dismiss();

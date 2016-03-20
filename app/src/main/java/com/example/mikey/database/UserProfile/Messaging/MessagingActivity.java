@@ -105,7 +105,7 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
 
     @Override
     public void onMessageFailed(MessageClient client, Message message,
-            MessageFailureInfo failureInfo) {
+                                MessageFailureInfo failureInfo) {
         StringBuilder sb = new StringBuilder();
         sb.append("Sending failed: ")
                 .append(failureInfo.getSinchError().getMessage());

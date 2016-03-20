@@ -22,8 +22,9 @@ import java.util.HashMap;
 
 public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "users";
-    private static final String TABLE_LOGIN = "users";
+    private static final String DATABASE_NAME = "userMessages";
+    private static final String TABLE_LOGIN = "userMessages";
+    //TODO: Need to create a sql table for this
 
 
 
@@ -59,9 +60,7 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
                 + KEY_ANSWER + " TEXT,"
                 + KEY_QUESTION + " TEXT,"
                 + KEY_CREATED_AT + " TEXT" + ")";
-        db.execSQL(CREATE_LOGIN_TABLE);
-
-
+        db.execSQL(CREATE_LOGIN_TABLE);     //TODO: change this for the messaging sql table once created
 
     }
 

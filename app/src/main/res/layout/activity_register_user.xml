@@ -33,7 +33,7 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="20dip"
             android:id="@+id/fourthRegLayout"
-            android:visibility="visible">
+            android:visibility="invisible">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -163,7 +163,7 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="20dip"
             android:id="@+id/secondRegLayout"
-            android:visibility="invisible">
+            android:visibility="visible">
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -338,7 +338,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_margin="20dip"
                 android:id="@+id/firstRegLayout"
-                android:visibility="visible">
+                android:visibility="invisible">
 
                 <LinearLayout
                     android:orientation="vertical"

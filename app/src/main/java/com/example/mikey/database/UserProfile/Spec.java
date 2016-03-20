@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -25,11 +26,25 @@ public class Spec extends AppCompatActivity implements AdapterView.OnItemSelecte
 
     Button search_btn,clear_btn;
     private EditText min_age,max_age, etEmail, etName;
-    Spinner eduSpinner, genSpinner;
+    Spinner eduSpinner, genSpinner, musSpinner, movSpinner, spoSpinner, fooSpinner, hobSpinner;
     private Spinner nationalityS;
 
     final String[] EDUCATION = {"","Not stated", "Further Education", "Higher Education"};
     final String[] GENDER = {"","Not stated", "Male", "Female"};
+    final String[] MUSIC = {"","Indie", "Blues", "R&B", "Reggae", "Soul", "Hip Hop", "Jazz", "Metal", "Classical"};
+
+    final String[] MOVIES = {"","Action", "Animation", "Comedy", "Drama", "Fantasy", "Musical", "Mystery", "Sci-Fi", "Horror"};
+
+    final String[] SPORTS = {"","Golf", "Boxing", "Tennis", "Football", "Cricket", "Squash", "Hockey", "Rugby", "Weightlifting"};
+
+    final String[] FOOD = {"","African", "American", "Carribean", "British", "French", "Greek", "Mexican", "Nordic", "Turkish"};
+
+    final String[] HOBBIES = {"","Reading", "Running", "Yoga", "Cooking", "Puzzles", "Chess", "Fishing", "Hiking", "Photography"};
+
+
+
+
+
 
 
     public String getUserEt() {
@@ -72,6 +87,52 @@ public class Spec extends AppCompatActivity implements AdapterView.OnItemSelecte
     }
 
     private String gender, education;
+    private String music;
+
+    public String getMusic() {
+        return music;
+    }
+
+    public void setMusic(String music) {
+        this.music = music;
+    }
+
+    public String getMovies() {
+        return movies;
+    }
+
+    public void setMovies(String movies) {
+        this.movies = movies;
+    }
+
+    public String getFood() {
+        return food;
+    }
+
+    public void setFood(String food) {
+        this.food = food;
+    }
+
+    public String getSports() {
+        return sports;
+    }
+
+    public void setSports(String sports) {
+        this.sports = sports;
+    }
+
+    public String getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(String hobbies) {
+        this.hobbies = hobbies;
+    }
+
+    private String movies;
+    private String food;
+    private String sports;
+    private String hobbies;
 
 
     public String getMinimumAge() {
@@ -104,6 +165,9 @@ public class Spec extends AppCompatActivity implements AdapterView.OnItemSelecte
     private String nationalityEt;
 
 
+
+
+
     DatabaseHandlerContacts dbHandler;
     HashMap<String, String> hash;
     DatabaseInterests dbInte;
@@ -130,6 +194,12 @@ public class Spec extends AppCompatActivity implements AdapterView.OnItemSelecte
         spinnerCountries();//creates nationality spinner
         spinner_methodGender();
         spinner_methodEdu();
+        spinner_methodMusic();
+        spinner_methodMovies();
+        spinner_methodSports();
+        spinner_methodFood();
+        spinner_methodHobbies();
+
 
 
         search_btn = (Button) findViewById(R.id.btn_search);
@@ -139,9 +209,7 @@ public class Spec extends AppCompatActivity implements AdapterView.OnItemSelecte
             public void onClick(View v) {
 
 
-
                 clearForm((ViewGroup) findViewById(R.id.testClear));
-
 
 
             }
@@ -160,8 +228,8 @@ public class Spec extends AppCompatActivity implements AdapterView.OnItemSelecte
 
                                dbHandler.resetTablesContacts();
                 dbHandler.addUserContacts(getNameEt(), null, getNationalityEt(), null, getMaximumAge(),getMinimumAge(), null, getEducation(),getGender(),null,null);
-               // dbInte.resetTables();
-              //  dbInte.addUser(getNameEt(), null, getNationalityEt(), null);
+                dbInte.resetTables();
+               dbInte.addUser(getMusic(), getMovies(), getSports(), null, getFood(),getHobbies());
 
 
 
@@ -192,6 +260,140 @@ public class Spec extends AppCompatActivity implements AdapterView.OnItemSelecte
                 clearForm((ViewGroup)view);
         }
     }
+
+
+
+
+
+
+    public void spinner_methodMusic(){
+        musSpinner = (Spinner) findViewById(R.id.music_search);
+        musSpinner.setOnItemSelectedListener(this);
+
+        List<String> mSpinnerA = new ArrayList<String>();
+
+
+
+        for (String countryCode : MUSIC) {
+
+
+            mSpinnerA.add(countryCode);
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, mSpinnerA);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        musSpinner.setAdapter(adapter);
+
+
+
+    }
+
+    public void spinner_methodMovies(){
+        movSpinner = (Spinner) findViewById(R.id.movies_search);
+        movSpinner.setOnItemSelectedListener(this);
+
+        List<String> moSpinnerA = new ArrayList<String>();
+
+
+
+        for (String countryCode : MOVIES) {
+
+
+            moSpinnerA.add(countryCode);
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, moSpinnerA);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        movSpinner.setAdapter(adapter);
+
+
+
+    }
+    public void spinner_methodSports(){
+        spoSpinner = (Spinner) findViewById(R.id.sports_search);
+        spoSpinner.setOnItemSelectedListener(this);
+
+        List<String> spSpinnerA = new ArrayList<String>();
+
+
+
+        for (String countryCode : SPORTS) {
+
+
+            spSpinnerA.add(countryCode);
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spSpinnerA);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        spoSpinner.setAdapter(adapter);
+
+
+
+    }
+    public void spinner_methodFood(){
+        fooSpinner = (Spinner) findViewById(R.id.food_search);
+        fooSpinner.setOnItemSelectedListener(this);
+
+        List<String> fooSpinnerA = new ArrayList<String>();
+
+
+
+        for (String countryCode : FOOD) {
+
+
+            fooSpinnerA.add(countryCode);
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, fooSpinnerA);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        fooSpinner.setAdapter(adapter);
+
+
+
+    }
+    public void spinner_methodHobbies(){
+        hobSpinner = (Spinner) findViewById(R.id.hobbies_search);
+        hobSpinner.setOnItemSelectedListener(this);
+
+        List<String> hobSpinnerA = new ArrayList<String>();
+
+
+
+        for (String countryCode : HOBBIES) {
+
+
+            hobSpinnerA.add(countryCode);
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, hobSpinnerA);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        hobSpinner.setAdapter(adapter);
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public void spinner_methodGender(){
@@ -307,7 +509,41 @@ public class Spec extends AppCompatActivity implements AdapterView.OnItemSelecte
                 setGender(gender);
                 Toast.makeText(parent.getContext(), "Selected: " + gender, Toast.LENGTH_LONG).show();
             }
+            else if(spinner.getId() == R.id.music_search)
+            {
 
+                String music = parent.getItemAtPosition(position).toString();
+                setMusic(music);
+                Toast.makeText(parent.getContext(), "Selected: " + gender, Toast.LENGTH_LONG).show();
+            }
+            else if(spinner.getId() == R.id.movies_search)
+            {
+
+                String gender = parent.getItemAtPosition(position).toString();
+                setMovies(gender);
+                Toast.makeText(parent.getContext(), "Selected: " + gender, Toast.LENGTH_LONG).show();
+            }
+            else if(spinner.getId() == R.id.sports_search)
+            {
+
+                String gender = parent.getItemAtPosition(position).toString();
+                setSports(gender);
+                Toast.makeText(parent.getContext(), "Selected: " + gender, Toast.LENGTH_LONG).show();
+            }
+            else if(spinner.getId() == R.id.food_search)
+            {
+
+                String gender = parent.getItemAtPosition(position).toString();
+                setFood(gender);
+                Toast.makeText(parent.getContext(), "Selected: " + gender, Toast.LENGTH_LONG).show();
+            }
+            else if(spinner.getId() == R.id.hobbies_search)
+            {
+
+                String gender = parent.getItemAtPosition(position).toString();
+                setHobbies(gender);
+                Toast.makeText(parent.getContext(), "Selected: " + gender, Toast.LENGTH_LONG).show();
+            }
 
 
 

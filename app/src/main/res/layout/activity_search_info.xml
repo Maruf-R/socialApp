@@ -167,75 +167,110 @@
     </LinearLayout>
 
     <!--================================================================================Interests-->
-            <TextView
-                android:layout_width="wrap_content"
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
                 android:layout_margin="5dp"
-                android:text="Interests"
-                android:textAllCaps="true"
-                android:textSize="17dp" />
+                android:background="@drawable/curved_corner"
+                android:padding="5dp">
 
-            <!--Film-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Music: "
+                    android:id="@+id/search_musictext"
+                    android:textSize="17dp"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/music_search"
+                    android:layout_gravity="center_horizontal" />
+
+            </LinearLayout>
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:gravity="center"
+                android:layout_margin="5dp"
+                android:background="@drawable/curved_corner"
+                android:padding="5dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Film Genre:" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
+                    android:text=" Movies: "
+                    android:id="@+id/mov_searchtxt"
+                    android:textSize="17dp"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movies_search"
+                    android:layout_gravity="center_horizontal" />
+
             </LinearLayout>
 
-            <!--Sport-->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:gravity="center"
+                android:layout_margin="5dp"
+                android:background="@drawable/curved_corner"
+                android:padding="5dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sports:" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:clickable="true" />
+                    android:text=" Sports: "
+                    android:id="@+id/sports_searchtxt"
+                    android:textSize="17dp"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sports_search"
+                    android:layout_gravity="center_horizontal" />
+
             </LinearLayout>
 
-            <!--Music-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Music:" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:clickable="true"/>
-            </LinearLayout>
 
             <!--Religion-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:gravity="center"
+                android:layout_margin="5dp"
+                android:background="@drawable/curved_corner"
+                android:padding="5dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Religion:" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:clickable="true"/>
+                    android:text=" Food: "
+                    android:id="@+id/food_searchtxt"
+                    android:textSize="17dp"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/food_search"
+                    android:layout_gravity="center_horizontal" />
+
             </LinearLayout>
 
             <!--Hobbies-->
@@ -243,16 +278,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:gravity="center"
+                android:layout_margin="5dp"
+                android:background="@drawable/curved_corner"
+                android:padding="5dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hobbies:" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:clickable="true"/>
+                    android:text=" Hobbies: "
+                    android:id="@+id/hobbies_searchtxt"
+                    android:textSize="17dp"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/hobbies_search"
+                    android:layout_gravity="center_horizontal" />
+
             </LinearLayout>
+
 
         </LinearLayout>
 

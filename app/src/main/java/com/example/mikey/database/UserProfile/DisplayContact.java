@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.mikey.database.Database.DatabaseHandlerContacts;
+import com.example.mikey.database.Database.DatabaseInterests;
 import com.example.mikey.database.Database.JSONParser;
 import com.example.mikey.database.R;
 import com.example.mikey.database.UserProfile.Profile.ContactProfile;
@@ -47,6 +48,8 @@ public class DisplayContact extends AppCompatActivity {
     HashMap<String, String> hashC;
     HashMap<String, String> userHash;
     private ProgressDialog pDialog;
+    DatabaseInterests dbInte;
+    HashMap<String, String> hashInte;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,8 @@ public class DisplayContact extends AppCompatActivity {
         dbHandler = new DatabaseHandlerContacts(this);
         hashC = dbHandler.getUserContacts();
         userHash = new HashMap<>();
+        dbInte = new DatabaseInterests(this);
+        hashInte = dbInte.getUserInterests();
 
     System.out.println("this is the name search obj: for real" + hashC.get("mina"));
 
@@ -141,13 +146,23 @@ public class DisplayContact extends AppCompatActivity {
                 params.add(new BasicNameValuePair("minimum", hashC.get("mina")));
                 params.add(new BasicNameValuePair("education", hashC.get("education")));
                 params.add(new BasicNameValuePair("gender", hashC.get("gender")));
+                params.add(new BasicNameValuePair("music", hashInte.get("music")));
+                params.add(new BasicNameValuePair("movies", hashInte.get("movies")));
+                params.add(new BasicNameValuePair("sports", hashInte.get("sports")));
+                params.add(new BasicNameValuePair("food", hashInte.get("food")));
+                params.add(new BasicNameValuePair("hobbies", hashInte.get("hobbies")));
+
+
+
+
 //                params.add(new BasicNameValuePair("maximum", hashC.get("country")));
 //                params.add(new BasicNameValuePair("minimum", hashC.get("city")));
 // add if done
 
 
-                System.out.println("this is the email db for real" + hashC.get("name"));
-                System.out.println("this is the natio db for real" + hashC.get("nationality"));
+                System.out.println("this is the email db for real" +
+                        hashInte.get("movies"));
+                System.out.println("this is the natio db for real" +hashInte.get("food"));
 
 
                 Log.d("request!", "starting");

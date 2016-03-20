@@ -39,6 +39,15 @@ public class ChangeSecurityQuestionAnswer extends AppCompatActivity implements A
 
     EditText answerEt;
 
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    private String answer;
 
     public String getQuestion() {
         return question;
@@ -76,20 +85,20 @@ public class ChangeSecurityQuestionAnswer extends AppCompatActivity implements A
         hash = dbHandlerId.getUserDetails();
         btnSaveChanges = (Button) findViewById(R.id.btnSaveChanges);
         spinnerQuestion();
-        answerEt = (EditText) findViewById(R.id.answer_atregister);
+
 
         // dbHandlerId = new DatabaseUsernameId(this);
         btnSaveChanges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                validateAnswer();
+                if(validateAnswer()==true) {
 
-                String answer = answerEt.getText().toString();
 
-
-                    new ChangeSecurityQuestionAnswer.EditSecurityDetails().execute(answer);
-
+                    new ChangeSecurityQuestionAnswer.EditSecurityDetails().execute(getAnswer());
                 }
+            }
 
 
 
@@ -180,6 +189,29 @@ public class ChangeSecurityQuestionAnswer extends AppCompatActivity implements A
 
     }
 
+    public boolean validateAnswer() {
+        boolean valid = true;
+
+        answerEt = (EditText) findViewById(R.id.answer_atregister);
+        String answer = answerEt.getText().toString();
+        setAnswer(answer);
+
+
+        if (answer.isEmpty()) {
+            answerEt.setError("Answer cannot be empty.");
+
+            valid = false;
+
+        }
+        else{
+            answerEt.setError(null);
+        }
+
+
+        return valid;
+
+
+    }
 
     public void spinnerQuestion() {
 
@@ -200,7 +232,7 @@ public class ChangeSecurityQuestionAnswer extends AppCompatActivity implements A
 
 
         Spinner spinner = (Spinner) parent;
-       if(spinner.getId() == R.id.spinnerSecretQuestion)
+        if(spinner.getId() == R.id.spinnerSecretQuestion)
         {
             String itemQ = parent.getItemAtPosition(position).toString();
             setQuestion(itemQ);

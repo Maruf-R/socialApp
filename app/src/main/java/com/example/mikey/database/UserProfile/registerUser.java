@@ -53,7 +53,7 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
 
     DatabaseHandler dbHandler;
     Session session = null;
-   // Context context = null;
+    // Context context = null;
     EditText reciep, sub, msg;
     String rec, subject, textMessage;
 
@@ -74,7 +74,7 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
     final String[] EDUCATION = {"Not stated", "Further Education", "Higher Education"};
     final String[] GENDER = {"Not stated", "Male", "Female"};
     private String[] spinnerQuestion={"What was your first pet's name?",
-   "What was your first car?",("What was your first love's name?"),("What was the city you were born?")};
+            "What was your first car?",("What was your first love's name?"),("What was the city you were born?")};
 
     public String[] getSpinnerQuestion() { return spinnerQuestion; }
 
@@ -166,6 +166,15 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
 
     EditText answerEt;
 
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    private String answer;
 
     public String getQuestion() {
         return question;
@@ -214,19 +223,19 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
 
         firstReg = (RelativeLayout)findViewById(R.id.firstRegLayout);
         secondReg = (RelativeLayout)findViewById(R.id.secondRegLayout);
-       // thirdReg = (RelativeLayout)findViewById(R.id.thirdRegLayout);
+        // thirdReg = (RelativeLayout)findViewById(R.id.thirdRegLayout);
         fourthReg = (RelativeLayout)findViewById(R.id.fourthRegLayout);
         firstReg.setVisibility(View.VISIBLE);
         secondReg.setVisibility(View.INVISIBLE);
-      //  thirdReg.setVisibility(View.INVISIBLE);
+        //  thirdReg.setVisibility(View.INVISIBLE);
         fourthReg.setVisibility(View.INVISIBLE);
 
         btnFirstRegBack = (Button) findViewById(R.id.btn1Back);
         btnFirstRegNext = (Button)findViewById(R.id.btn1Next);
         btnSecondRegBack = (Button)findViewById(R.id.btn2Back);
         btnSecondRegNext = (Button)findViewById(R.id.btn2Next);
-      //  btnThirdRegBack = (Button)findViewById(R.id.btn3Back);
-      //  btnThirdRegNext = (Button)findViewById(R.id.btn3Next);
+        //  btnThirdRegBack = (Button)findViewById(R.id.btn3Back);
+        //  btnThirdRegNext = (Button)findViewById(R.id.btn3Next);
         btnFourthRegBack = (Button)findViewById(R.id.btn4Back);
 
         btnFirstRegNext.setOnClickListener(new View.OnClickListener() {
@@ -291,7 +300,7 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
         spinnerCountries();
         spinner_methodGender();
         spinner_methodEdu();
-        answerEt = (EditText) findViewById(R.id.answer_atregister);
+       // answerEt = (EditText) findViewById(R.id.answer_atregister);
 
         birthday = (TextView) findViewById(R.id.birthday);
         calendar = Calendar.getInstance();
@@ -309,30 +318,30 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
         dbHandler = new DatabaseHandler(this);
         hash = dbHandler.getUserDetails();
 
-       // dbHandlerId = new DatabaseUsernameId(this);
+        // dbHandlerId = new DatabaseUsernameId(this);
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkPasswords();
-               if (checkPasswords() == true) {
+                validateAnswer();
+                if (checkPasswords() == true&&validateAnswer()==true) {
 
-                    String answer = answerEt.getText().toString();
 
 
                     String username = emailBox.getText().toString();
                     setVerificationCode(username);
                     String password3 = getPassword();
-  System.out.println("username: " +username);
+                    System.out.println("username: " +username);
                     System.out.println("code short onc: " + getVerificationCode());
                     System.out.println("code: long onc" + computeMD5Hash(username).substring(0, Math.min(username.length(), 8)));
 
 
 
                     new CreateUserCode().execute(username, getVerificationCode());
-System.out.println("for real spinner getquestion " + getQuestion());
+                    System.out.println("for real spinner getquestion " + getQuestion());
                     dbHandler.resetTables();
-                    dbHandler.addUser(getName(), Integer.toString(getAge()), getNationality(), getEmail(), password3, answer, getQuestion(), getEducation(), getGender(), null, null);//TODO to add county and city
-    sendingEmail(username);
+                    dbHandler.addUser(getName(), Integer.toString(getAge()), getNationality(), getEmail(), password3, getAnswer(), getQuestion(), getEducation(), getGender(), null, null);//TODO to add county and city
+                    sendingEmail(username);
 
 
                 }
@@ -364,7 +373,7 @@ System.out.println("for real spinner getquestion " + getQuestion());
             }
         });
 
-      //  pdialog = ProgressDialog.show(registerUser.this, "", "Sending Mail...", true);
+        //  pdialog = ProgressDialog.show(registerUser.this, "", "Sending Mail...", true);
 
 
         RetreiveFeedTask task = new RetreiveFeedTask();
@@ -400,7 +409,7 @@ System.out.println("for real spinner getquestion " + getQuestion());
 
         @Override
         protected void onPostExecute(String result) {
-               Toast.makeText(getApplicationContext(), "Message sent", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Message sent", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -470,7 +479,7 @@ System.out.println("for real spinner getquestion " + getQuestion());
 
             //  finish();
 
-           // finish();
+            // finish();
             if (file_url != null){
                 Toast.makeText(registerUser.this, file_url, Toast.LENGTH_LONG).show();
             }
@@ -482,6 +491,38 @@ System.out.println("for real spinner getquestion " + getQuestion());
     //-------------------------------------------------------------------------------------------------------------
 
     /** UTILITY METHODS */
+
+    public boolean validateAnswer() {
+        boolean valid = true;
+
+        answerEt = (EditText) findViewById(R.id.answer_atregister);
+        String answer = answerEt.getText().toString();
+        setAnswer(answer);
+
+
+        if (answer.isEmpty()) {
+            answerEt.setError("Answer cannot be empty.");
+
+            valid = false;
+
+        }
+        else{
+            answerEt.setError(null);
+        }
+
+
+        return valid;
+
+
+    }
+
+
+
+
+
+
+
+
 
     @SuppressWarnings("deprecation")
     public void setDate(View view) {
@@ -551,7 +592,7 @@ System.out.println("for real spinner getquestion " + getQuestion());
     public void spinnerQuestion() {
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerQuestion);
-     //   dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //   dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinnerSecretQuestions = (Spinner)findViewById(R.id.spinnerSecretQuestion);
         spinnerSecretQuestions.setAdapter(dataAdapter);
@@ -678,7 +719,7 @@ System.out.println("for real spinner getquestion " + getQuestion());
 
 
         // Showing selected spinner item
-    //    Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+        //    Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
     }
 
     public void onNothingSelected(AdapterView<?> arg0) {
@@ -698,7 +739,7 @@ System.out.println("for real spinner getquestion " + getQuestion());
         setName(firstNameText+" "+lastNameText);
 
         if (firstNameText.equals(lastNameText)) {
-          //  errorMessage.setText("Name and Last name cannot be the same.");
+            //  errorMessage.setText("Name and Last name cannot be the same.");
 
             Toast.makeText(getApplicationContext(), "Name and Last name cannot be the same.", Toast.LENGTH_SHORT).show();
         }

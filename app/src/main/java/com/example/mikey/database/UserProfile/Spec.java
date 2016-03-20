@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.mikey.database.Database.DatabaseHandlerContacts;
+import com.example.mikey.database.Database.DatabaseInterests;
 import com.example.mikey.database.R;
 
 import java.util.ArrayList;
@@ -105,6 +106,8 @@ public class Spec extends AppCompatActivity implements AdapterView.OnItemSelecte
 
     DatabaseHandlerContacts dbHandler;
     HashMap<String, String> hash;
+    DatabaseInterests dbInte;
+    HashMap<String, String> hashInte;
 
 
 
@@ -114,6 +117,9 @@ public class Spec extends AppCompatActivity implements AdapterView.OnItemSelecte
         setContentView(R.layout.activity_search_info);
         dbHandler = new DatabaseHandlerContacts(this);
         hash = dbHandler.getUserContacts();
+        dbInte = new DatabaseInterests(this);
+        hashInte = dbInte.getUserInterests();
+
 
         //Methods
 
@@ -152,8 +158,10 @@ public class Spec extends AppCompatActivity implements AdapterView.OnItemSelecte
 
 
 
-                dbHandler.resetTablesContacts();
+                               dbHandler.resetTablesContacts();
                 dbHandler.addUserContacts(getNameEt(), null, getNationalityEt(), null, getMaximumAge(),getMinimumAge(), null, getEducation(),getGender(),null,null);
+               // dbInte.resetTables();
+              //  dbInte.addUser(getNameEt(), null, getNationalityEt(), null);
 
 
 

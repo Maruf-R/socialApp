@@ -133,7 +133,8 @@
                     android:textColor="#ffffff"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp" />
 
                 <Button
                     android:layout_width="0dip"
@@ -146,7 +147,8 @@
 
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_weight="2" />
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp" />
             </LinearLayout>
 
         </RelativeLayout>
@@ -305,7 +307,8 @@
                     android:textColor="#ffffff"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp" />
 
                 <Button
                     android:layout_width="0dip"
@@ -316,7 +319,10 @@
                     android:textColor="#ffffff"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_weight="2" />
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp" />
+
+
             </LinearLayout>
 
         </RelativeLayout>
@@ -460,7 +466,8 @@
                         android:textColor="#ffffff"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:layout_marginRight="5dp" />
 
                     <Button
                         android:layout_width="0dip"
@@ -471,7 +478,8 @@
                         android:textColor="#ffffff"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
-                        android:layout_weight="2" />
+                        android:layout_weight="1"
+                        android:layout_marginLeft="5dp" />
                 </LinearLayout>
             </RelativeLayout>
 

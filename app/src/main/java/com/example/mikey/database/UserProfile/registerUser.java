@@ -346,7 +346,9 @@ System.out.println("for real spinner getquestion " + getQuestion());
         rec = username;
 
         subject = "Companion4me verification code.";
-        textMessage = "Thank you for using our App."+"\n"+ "Your verification code is: "+getVerificationCode()+"\n "+"Please insert this in the app verification window to register with us.";
+        textMessage = "<html><body><head><b>Thank you very much for joining Companion4me.</b></head><br><br>Your verification code is: <b>"
+                +getVerificationCode()+
+                "</b><br><br>Please enter the verification code in the app.<br><br>We are looking forward of you meeting new people with Companion4me.<br><br><br><br><p><b>Terms and Conditions:</b></p><ol><li>We(Companion4me Ltd.) securely stored your details in our database and will not give out to the outsider.</li><li>It is your own responsibility to not pass on your details to stranger as it may put you in danger of scamming.</li></ol></body></html>";
 
 
         Properties props = new Properties();

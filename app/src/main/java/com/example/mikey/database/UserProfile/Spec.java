@@ -27,8 +27,8 @@ public class Spec extends AppCompatActivity implements AdapterView.OnItemSelecte
     Spinner eduSpinner, genSpinner;
     private Spinner nationalityS;
 
-    final String[] EDUCATION = {"Not stated", "Further Education", "Higher Education"};
-    final String[] GENDER = {"Not stated", "Male", "Female"};
+    final String[] EDUCATION = {"","Not stated", "Further Education", "Higher Education"};
+    final String[] GENDER = {"","Not stated", "Male", "Female"};
 
 
     public String getUserEt() {

@@ -23,16 +23,8 @@
             android:orientation="vertical">
 
     <!--=================================================================================Location-->
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:hint=" Location:"
-                android:background="@drawable/curved_corner"
-                android:padding="5dp"
-                android:textStyle="italic" />
 
-    <!--=====================================================================================Test-->
+            <!--=====================================================================================Test-->
 
 
             <EditText
@@ -44,7 +36,9 @@
                 android:hint=" Name:"
                 android:padding="5dp"
                 android:background="@drawable/curved_corner"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                android:inputType="textPersonName"
+                />
 
     <!--======================================================================================Age-->
 

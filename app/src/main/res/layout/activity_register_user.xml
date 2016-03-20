@@ -111,6 +111,8 @@
                     android:id="@+id/answer_atregister"
                     android:background="@drawable/curved_corner"
                     android:padding="10dp"
+                    android:inputType="textPersonName"
+
                     android:layout_marginLeft="3dp"
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="3dp"

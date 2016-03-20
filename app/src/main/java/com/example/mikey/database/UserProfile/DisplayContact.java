@@ -139,8 +139,8 @@ public class DisplayContact extends AppCompatActivity {
                 params.add(new BasicNameValuePair("nationality", hashC.get("nationality")));
                 params.add(new BasicNameValuePair("maximum", hashC.get("maxa")));
                 params.add(new BasicNameValuePair("minimum", hashC.get("mina")));
-                params.add(new BasicNameValuePair("maximum", hashC.get("education")));
-                params.add(new BasicNameValuePair("minimum", hashC.get("gender")));
+                params.add(new BasicNameValuePair("education", hashC.get("education")));
+                params.add(new BasicNameValuePair("gender", hashC.get("gender")));
 //                params.add(new BasicNameValuePair("maximum", hashC.get("country")));
 //                params.add(new BasicNameValuePair("minimum", hashC.get("city")));
 // add if done

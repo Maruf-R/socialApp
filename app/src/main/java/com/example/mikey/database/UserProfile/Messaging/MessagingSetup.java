@@ -33,7 +33,7 @@ public class MessagingSetup extends BaseActivity implements SinchService.StartFa
         idUserHash = dbHandlerMsg.getUserDetails();
 
         if (!getSinchServiceInterface().isStarted()) {
-            getSinchServiceInterface().startClient(idUserHash.get("email"));    //TODO: NEED TO CHECK IS I AM SUPPOSED TO USE THE KEY_EMAIL HERE OR THE KEY_NAME
+            getSinchServiceInterface().startClient(idUserHash.get("email"));
             showSpinner();
         } else {
             mSpinner.dismiss();

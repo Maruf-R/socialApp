@@ -215,12 +215,15 @@ public class EmailVerification extends AppCompatActivity implements DialogInterf
                 params.add(new BasicNameValuePair("question", question));
                 params.add(new BasicNameValuePair("education", hash.get("education")));
                 params.add(new BasicNameValuePair("gender", hash.get("gender")));
-//                params.add(new BasicNameValuePair("maximum", hashC.get("country")));
-//                params.add(new BasicNameValuePair("minimum", hashC.get("city")));
+                params.add(new BasicNameValuePair("country", hash.get("country")));
+               params.add(new BasicNameValuePair("city", hash.get("city")));
 // add if done
 
                 System.out.println("they pass to email ver gender" +  hash.get("education"));
                 System.out.println("pass edu emai ver" + hash.get("gender"));
+                System.out.println("pass country" + hash.get("country"));
+                System.out.println("pass city" + hash.get("city"));
+
 
                 Log.d("request!", "starting");
 

@@ -108,6 +108,24 @@ public class ContactProfile extends AppCompatActivity {
 
     private   int success;
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    private String country, city;
+
     private String education,gender;
     private String music;
     private String food;
@@ -115,6 +133,8 @@ public class ContactProfile extends AppCompatActivity {
     private String sports;
     private String biography;
     private String movies;
+    private TextView countryv,cityv;
+
     private TextView educationv,genderv;
     private TextView musicv;
     private TextView foodv;
@@ -401,8 +421,8 @@ ImageView avatarcall;
                 setSports(c.getString("sports"));
                 setAvatar(c.getString("avatar"));
 
-//                    setCountry(c.getString("country"));
-//                    setCity(c.getString("city"));
+                   setCountry(c.getString("country"));
+                    setCity(c.getString("city"));
 //
 
                 set_name(name);
@@ -468,6 +488,9 @@ ImageView avatarcall;
             biographyv= (TextView) findViewById(R.id.fbio);
             moviesv= (TextView) findViewById(R.id.fmovies);
             avatarv= (ImageView) findViewById(R.id.imgUserAvatar);
+            countryv= (TextView) findViewById(R.id.txtUserCountryFriend);
+            cityv= (TextView) findViewById(R.id.txtCityFriend);
+
             usercallingto= (TextView) findViewById(R.id.namepersoncallingto);
             usercallingto.setText(get_name());
 
@@ -478,7 +501,8 @@ ImageView avatarcall;
 
             avatarcall.setImageResource(imgId);
 
-
+            countryv.setText(getCountry());
+            cityv.setText(getCity());
             educationv.setText(getEducation());
             genderv.setText(getGender());
             musicv.setText(getMusic());

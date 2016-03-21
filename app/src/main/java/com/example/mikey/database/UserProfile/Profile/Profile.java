@@ -87,6 +87,8 @@ public class Profile extends AppCompatActivity {
     private String sports;
     private String biography;
     private String movies;
+    private TextView countryv,cityv;
+
     private TextView educationv,genderv;
     private TextView musicv;
     private TextView foodv;
@@ -310,6 +312,10 @@ public class Profile extends AppCompatActivity {
             biographyv= (TextView) findViewById(R.id.ubiographyid);
             moviesv= (TextView) findViewById(R.id.umoviesid);
             avatarv= (ImageView) findViewById(R.id.Avatar_img);
+           countryv= (TextView) findViewById(R.id.Country_profile);
+            cityv= (TextView) findViewById(R.id.City_profile);
+
+
 
             int imgId = getResources().getIdentifier(getAvatar(), "drawable", getPackageName());
             avatarv.setImageResource(imgId);
@@ -323,7 +329,8 @@ public class Profile extends AppCompatActivity {
             sportsv.setText(getSports());
             biographyv.setText(getBiography());
             moviesv.setText(getMovies());
-
+            countryv.setText(getCountry());
+            cityv.setText(getCity());
             nameV.setText(get_name());
             ageV.setText(get_age());
             nationalityV.setText(get_nationality());

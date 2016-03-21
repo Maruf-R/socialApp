@@ -240,8 +240,8 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
                 params.add(new BasicNameValuePair("nationality", getNationality()));
                 params.add(new BasicNameValuePair("education", getEducation()));
                 params.add(new BasicNameValuePair("gender", getGender()));
-//                params.add(new BasicNameValuePair("maximum", hashC.get("country")));
-//                params.add(new BasicNameValuePair("minimum", hashC.get("city")));
+              params.add(new BasicNameValuePair("country", getCountry()));
+              params.add(new BasicNameValuePair("city", getCity()));
 // add if done
 
                 System.out.println("they pass to email ver gender" +  hash.get("email"));
@@ -296,35 +296,6 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
     }
 
 //////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     @SuppressWarnings("deprecation")

@@ -52,7 +52,7 @@
                     android:id="@+id/txtUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Jane Doe"
+
                     android:textColor="#FFFFFF"
                     android:textSize="30dp"/>
 
@@ -61,7 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="24"
+
                     android:textColor="#FFFFFF"
                     android:textSize="20dp"/>
 

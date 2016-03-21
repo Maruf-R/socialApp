@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/txtFirstName"
+                android:id="@+id/txtFirstNamee"
                 android:hint="First Name"
                 android:padding="10dp"
 
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/txtLastName"
+                android:id="@+id/txtLastNamee"
                 android:hint="Last Name"
 
                 android:layout_weight="1"
@@ -232,7 +232,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="SAVE"
-        android:id="@+id/btnSaveChanges"
+        android:id="@+id/btnSaveChangese"
         android:background="@drawable/button_login"
         android:textColor="#ffffff"
 

@@ -738,24 +738,25 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
 
         setName(firstNameText+" "+lastNameText);
 
-        if (firstNameText.equals(lastNameText)) {
-            //  errorMessage.setText("Name and Last name cannot be the same.");
 
-            Toast.makeText(getApplicationContext(), "Name and Last name cannot be the same.", Toast.LENGTH_SHORT).show();
-        }
-
-        else if (validateNames(firstNameText) == false) {
+        if (validateNames(firstNameText) == false) {
             editFirstName.setError("Name must be between 1 and 15 characters, using letters only.");
-            Toast.makeText(getApplicationContext(), "Name must be between 1 and 15 characters, using letters only.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Sign Up Failed", Toast.LENGTH_SHORT).show();
 
 
         }
+        else{
+            editFirstName.setError(null);
+        }
 
-        else if (validateNames(lastNameText) == false) {
+        if (validateNames(lastNameText) == false) {
 
             editLastName.setError("Last name must be between 1 and 15 characters, using letters only.");
 
             Toast.makeText(getApplicationContext(), "Sign Up Failed", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            editLastName.setError(null);
         }
 
         return valid;

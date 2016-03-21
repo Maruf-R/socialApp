@@ -50,7 +50,21 @@ public class DisplayContact extends AppCompatActivity {
     private ProgressDialog pDialog;
     DatabaseInterests dbInte;
     HashMap<String, String> hashInte;
+    HashMap<String, String> hashAvatar;
+    HashMap<String, String> hashAge;
 
+
+    /*
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    private String avatar;
+*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +73,10 @@ public class DisplayContact extends AppCompatActivity {
         dbHandler = new DatabaseHandlerContacts(this);
         hashC = dbHandler.getUserContacts();
         userHash = new HashMap<>();
+        hashAvatar = new HashMap<>();
+        hashAge = new HashMap<>();
+
+
         dbInte = new DatabaseInterests(this);
         hashInte = dbInte.getUserInterests();
 
@@ -69,6 +87,8 @@ public class DisplayContact extends AppCompatActivity {
 
     }
 
+
+/*
     public void listItems() {
 
         listview = (ListView) findViewById(R.id.contacts_result);
@@ -116,6 +136,77 @@ public class DisplayContact extends AppCompatActivity {
 
 
     }
+*/
+ListView list;
+        public void listItems(){
+
+            final ArrayList<String> textViewObjects = new ArrayList<String>();
+            final ArrayList<Integer> imgIdArray = new ArrayList<>();
+            final ArrayList<String> ageIdArray = new ArrayList<>();
+
+
+            Iterator it = userHash.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry pair = (Map.Entry) it.next();
+              //  System.out.println(pair.getKey().toString() + " = " + pair.getValue().toString());
+
+                textViewObjects.add(pair.getKey().toString());
+                int imgId = getResources().getIdentifier(hashAvatar.get(pair.getValue().toString()), "drawable", getPackageName());
+
+                String hAge= hashAge.get(pair.getValue().toString());
+                ageIdArray.add(hAge);
+                imgIdArray.add(imgId);
+
+            }
+
+            /*
+            Iterator itu = hashAvatar.entrySet().iterator();
+            while (itu.hasNext()) {
+                Map.Entry ava = (Map.Entry) itu.next();
+                System.out.println(ava.getKey().toString() + " = " + ava.getValue().toString());
+
+
+                int imgId = getResources().getIdentifier(ava.getKey().toString(), "drawable", getPackageName());
+
+                imgIdArray.add(imgId);
+
+            }
+*/
+
+
+
+                CustomListAdapter adapter=new CustomListAdapter(this, textViewObjects, imgIdArray, ageIdArray);
+                list=(ListView)findViewById(R.id.contacts_result);
+                list.setAdapter(adapter);
+
+            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view,
+                                        int position, long id) {
+                    int itemPosition = position;
+                    String itemValue = (String) list.getItemAtPosition(position);
+
+
+                    System.out.println("it worked name" + userHash.get(itemValue));
+                    System.out.println("it worked username" + userHash.get(itemValue));
+
+
+                    dbHandler.resetTablesContacts();
+                    dbHandler.addUserContacts(null, null, null, null, null, null, userHash.get(itemValue),null,null,null,null);
+
+
+                    Intent friend = new Intent(getApplicationContext(), ContactProfile.class);
+                    startActivity(friend);
+
+
+                }
+            });
+
+
+
+
+
+        }
 
     public class GetMatchedContacts extends AsyncTask<String, String, String> {
 
@@ -182,18 +273,22 @@ public class DisplayContact extends AppCompatActivity {
                     //gets the content of each tag
                     String username = c.getString(TAG_USERNAME);
                     String name = c.getString(TAG_NAME);
-                    //   String age = c.getString(TAG_AGE);
+                      String age = c.getString("age");
                     String nationality = c.getString(TAG_NATIONALITY);
+                    String avatar = c.getString("avatar");
 
-                    System.out.println("this is the username php: CONTAT " + username);
+                  //  setAvatar(avatar);
+
+                    System.out.println("this is the age tesetinh" + age );
                     System.out.println("this is the name php:  C " + name);
 
                     //    System.out.println("this is the age php: C " + age);
                     System.out.println("this is the natio php: C " + nationality);
                     //  userNameArray.add(name);
+
                     userHash.put(name, username);
-
-
+                    hashAvatar.put(username,avatar);
+                    hashAge.put(username,age);
 
                 }
             } catch (JSONException e) {

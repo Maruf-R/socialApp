@@ -155,12 +155,9 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
         dbHandlerId = new DatabaseUsernameId(this);
         hash = dbHandlerId.getUserDetails();
 
-        basicSetup();
-    }
 
-    private void basicSetup() {
 
-        btnSaveChanges = (Button) findViewById(R.id.btnSaveChanges);
+        btnSaveChanges = (Button) findViewById(R.id.btnSaveChangese);
 
 
         spinnerCountries();
@@ -175,11 +172,7 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
         showDate(year, month + 1, day);
 
         getTheAge(year, month, day);
-
-
-        emailBox = (EditText) findViewById(R.id.emailBoxLogin);
-
-        // dbHandlerId = new DatabaseUsernameId(this);
+  // dbHandlerId = new DatabaseUsernameId(this);
         btnSaveChanges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -509,8 +502,8 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
 
     public boolean checkNames() {
 
-        editFirstName = (EditText) findViewById(R.id.txtFirstName);
-        editLastName = (EditText) findViewById(R.id.txtLastName);
+        editFirstName = (EditText) findViewById(R.id.txtFirstNamee);
+        editLastName = (EditText) findViewById(R.id.txtLastNamee);
         boolean valid = true;
 
         String firstNameText = editFirstName.getText().toString();
@@ -518,24 +511,24 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
 
         setName(firstNameText+" "+lastNameText);
 
-        if (firstNameText.equals(lastNameText)) {
-         //   errorMessage.setText("Name and Last name cannot be the same.");
-
-            Toast.makeText(getApplicationContext(), "Sign Up Failed", Toast.LENGTH_SHORT).show();
-        }
-
-        else if (validateNames(firstNameText) == false) {
+        if (validateNames(firstNameText) == false) {
             editFirstName.setError("Name must be between 1 and 15 characters, using letters only.");
             Toast.makeText(getApplicationContext(), "Sign Up Failed", Toast.LENGTH_SHORT).show();
 
 
         }
+        else{
+            editFirstName.setError(null);
+        }
 
-        else if (validateNames(lastNameText) == false) {
+        if (validateNames(lastNameText) == false) {
 
             editLastName.setError("Last name must be between 1 and 15 characters, using letters only.");
 
             Toast.makeText(getApplicationContext(), "Sign Up Failed", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            editLastName.setError(null);
         }
 
         return valid;

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,6 +22,7 @@ import com.example.mikey.database.Database.DatabaseUsernameId;
 import com.example.mikey.database.Database.JSONParser;
 import com.example.mikey.database.R;
 import com.example.mikey.database.UserProfile.Messaging.MessagingSetup;
+import com.example.mikey.database.UserProfile.UserInterests;
 import com.example.mikey.database.UserProfile.VoiceCall.AudioPlayer;
 import com.sinch.android.rtc.PushPair;
 import com.sinch.android.rtc.Sinch;
@@ -44,6 +46,12 @@ public class ContactProfile extends AppCompatActivity {
     private static final String APP_SECRET = "fsNJI+ziSkG1d+rDsW84wA==";
     private static final String ENVIRONMENT = "sandbox.sinch.com";
     private static final String REGISTER_DATA = "http://www.companion4me.x10host.com/webservice/registerdata.php";
+    private static final String INSERT_FRIEND = "http://www.companion4me.x10host.com/webservice/insertfavourites.php";
+
+    private static final String DELETE_FRIEND = "http://www.companion4me.x10host.com/webservice/deletefavourites.php";
+
+    private static final String CHECK_FRIEND = "http://www.companion4me.x10host.com/webservice/checkfavourites.php";
+
     private static final String TAG_MESSAGE = "message";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_USERS = "userdata";
@@ -58,6 +66,7 @@ public class ContactProfile extends AppCompatActivity {
     TextView ageF;
     TextView nationalityF;
     JSONParser jParser = new JSONParser();
+    JSONParser jParser2 = new JSONParser();
     JSONArray ldata = null;
     DatabaseHandlerContacts dbHandler;
     HashMap<String, String> hashC;
@@ -87,6 +96,17 @@ public class ContactProfile extends AppCompatActivity {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+
+    public int getSuccess() {
+        return success;
+    }
+
+    public void setSuccess(int success) {
+        this.success = success;
+    }
+
+    private   int success;
 
     private String education,gender;
     private String music;
@@ -203,12 +223,16 @@ ImageView avatarcall;
     TextView usercallingto;
     TextView actioncalling;
 
+    Button add,delete;
+
+
   AudioPlayer ap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_profile);
-
+        add = (Button) findViewById(R.id.btnAddUser);
+        delete = (Button) findViewById(R.id.btnDeleteUser);
 
         ap = new AudioPlayer(this);
         dbHandlerId = new DatabaseUsernameId(this);
@@ -230,7 +254,9 @@ ImageView avatarcall;
         dbHandler = new DatabaseHandlerContacts(this);
         hashC = dbHandler.getUserContacts();
 
-        // put final may cause error
+        new ContactProfile.GetTheProfileData().execute();
+
+
        final SinchClient sinchClient = Sinch.getSinchClientBuilder()
                 .context(this)
                .userId(idUserHash.get("email"))
@@ -238,8 +264,7 @@ ImageView avatarcall;
                 .applicationSecret(APP_SECRET)
                 .environmentHost(ENVIRONMENT)
                 .build();
-
-        new ContactProfile.GetTheProfileData().execute();
+        new ContactProfile.CheckFriendship().execute();
 
 
         sinchClient.setSupportCalling(true);
@@ -248,8 +273,12 @@ ImageView avatarcall;
         sinchClient.getCallClient().addCallClientListener(new SinchCallClientListener());
 */
         sinchClient.start();
+          callListener = new SinchCallListener();
 
-        callListener = new SinchCallListener();
+
+
+
+
         callUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -334,6 +363,74 @@ ImageView avatarcall;
         }
     }
 
+
+    public void getProfData() {
+
+
+        try {
+// namef is the email(username) of the friend
+            System.out.println("this is the email db " + hashC.get("email"));
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("username", hashC.get("namef")));
+            System.out.println("username of friend" + hashC.get("namef") );
+
+            Log.d("request!", "starting");
+
+            JSONObject json = jParser.makeHttpRequest(
+                    REGISTER_DATA, "POST", params);
+            // check your log for json response
+            Log.d("Login attempt getdata", json.toString());
+            ldata = json.getJSONArray(TAG_USERS);
+            // looping through all users according to the json object returned
+            for (int i = 0; i < ldata.length(); i++) {
+                JSONObject c = ldata.getJSONObject(i);
+
+                //gets the content of each tag
+                String username = c.getString(TAG_USERNAME);
+                String name = c.getString(TAG_NAME);
+                String age = c.getString(TAG_AGE);
+                String nationality = c.getString(TAG_NATIONALITY);
+                setFood(c.getString("food"));
+
+                setEducation(c.getString("education"));
+                setGender(c.getString("gender"));
+                setHobbies(c.getString("hobbies"));
+                setMovies(c.getString("movies"));
+                setMusic(c.getString("music"));
+                setBiography(c.getString("description"));
+                setSports(c.getString("sports"));
+                setAvatar(c.getString("avatar"));
+
+//                    setCountry(c.getString("country"));
+//                    setCity(c.getString("city"));
+//
+
+                set_name(name);
+                set_age(age);
+                set_nationality(nationality);
+                set_username(username);
+
+
+                System.out.println("this is the username php: " + username);
+                System.out.println("this is the name php: " + name);
+
+                System.out.println("this is the age php: " + age);
+                System.out.println("this is the natio php: " + nationality);
+
+        }
+
+
+    } catch (JSONException e) {
+        e.printStackTrace();
+    }
+
+
+
+
+
+    }
+
+
     public class GetTheProfileData extends AsyncTask<String, String, String> {
 
 
@@ -352,66 +449,7 @@ ImageView avatarcall;
         @Override
         protected String doInBackground(String... args) {
 
-            try {
-// namef is the email(username) of the friend
-                System.out.println("this is the email db " + hashC.get("email"));
-                List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("username", hashC.get("namef")));
-                System.out.println("username of friend" + hashC.get("namef") );
-
-                Log.d("request!", "starting");
-
-                JSONObject json = jParser.makeHttpRequest(
-                        REGISTER_DATA, "POST", params);
-                // check your log for json response
-                Log.d("Login attempt", json.toString());
-                ldata = json.getJSONArray(TAG_USERS);
-                // looping through all users according to the json object returned
-                for (int i = 0; i < ldata.length(); i++) {
-                    JSONObject c = ldata.getJSONObject(i);
-
-                    //gets the content of each tag
-                    String username = c.getString(TAG_USERNAME);
-                    String name = c.getString(TAG_NAME);
-                    String age = c.getString(TAG_AGE);
-                    String nationality = c.getString(TAG_NATIONALITY);
-                    setFood(c.getString("food"));
-
-                    setEducation(c.getString("education"));
-                    setGender(c.getString("gender"));
-                    setHobbies(c.getString("hobbies"));
-                    setMovies(c.getString("movies"));
-                    setMusic(c.getString("music"));
-                    setBiography(c.getString("description"));
-                    setSports(c.getString("sports"));
-                    setAvatar(c.getString("avatar"));
-
-//                    setCountry(c.getString("country"));
-//                    setCity(c.getString("city"));
-//
-
-
-
-
-
-
-                    set_name(name);
-                    set_age(age);
-                    set_nationality(nationality);
-                    set_username(username);
-
-
-                    System.out.println("this is the username php: " + username);
-                    System.out.println("this is the name php: " + name);
-
-                    System.out.println("this is the age php: " + age);
-                    System.out.println("this is the natio php: " + nationality);
-                }
-
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            getProfData();
 
             return null;
 
@@ -469,4 +507,251 @@ ImageView avatarcall;
 
         }
     }
+
+    public class InsertFriend extends AsyncTask<String, String, String> {
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(ContactProfile.this);
+            pDialog.setMessage("adding Contact...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
+
+
+        }
+
+        @Override
+        protected String doInBackground(String... args) {
+
+            try {
+// namef is the email(username) of the friend
+                System.out.println("this is the email db " + hashC.get("email"));
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("username", idUserHash.get("email")));
+                 params.add(new BasicNameValuePair("favourites", hashC.get("namef")));
+                params.add(new BasicNameValuePair("selected", "ADD TO CONTACTS"));
+                params.add(new BasicNameValuePair("name", get_name()));
+                params.add(new BasicNameValuePair("avatar",getAvatar()));
+                params.add(new BasicNameValuePair("age", get_age()));
+
+
+                System.out.println("username of friend" + hashC.get("namef"));
+                System.out.println("INSERT DATA USERNAME" + idUserHash.get("email") );
+
+                Log.d("request!", "starting");
+
+                JSONObject json = jParser.makeHttpRequest(
+                        INSERT_FRIEND, "POST", params);
+                // check your log for json response
+                Log.d("Login attempt insert", json.toString());
+
+                }
+
+
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+
+        }
+
+        protected void onPostExecute(String file_url) {
+
+            pDialog.dismiss();
+
+
+
+            if (file_url != null){
+                Toast.makeText(ContactProfile.this, file_url, Toast.LENGTH_LONG).show();
+            }
+
+        }
+    }
+
+
+    public class CheckFriendship extends AsyncTask<String, String, String> {
+
+
+        @Override
+        protected void onPreExecute() {
+
+              }
+    @Override
+        protected String doInBackground(String... args) {
+
+
+
+
+            try {
+//                System.out.println("this is the email db " + hashC.get("email"));
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("username", idUserHash.get("email")));
+                params.add(new BasicNameValuePair("favourites", hashC.get("namef")));
+             //   params.add(new BasicNameValuePair("selected", "ADD TO CONTACTS"));
+
+
+
+              //  System.out.println("username of friend" + hashC.get("namef"));
+             //   System.out.println("INSERT DATA USERNAME" + idUserHash.get("email"));
+
+                Log.d("request!", "starting");
+
+
+
+                JSONObject json = jParser.makeHttpRequest(
+                        CHECK_FRIEND, "POST", params);
+                // check your log for json response
+                Log.d("Login CHECK FRIEND", json.toString());
+                // full json response
+                // json success element
+
+             int success = json.getInt(TAG_SUCCESS);
+                setSuccess(success);
+
+                if (success == 1) {
+                    Log.d("User not your friend!", json.toString());
+
+          return json.getString(TAG_MESSAGE);
+
+
+
+                } else {
+
+                    Log.d("heis yout firend", json.getString(TAG_MESSAGE));
+
+
+
+                    return json.getString(TAG_MESSAGE);
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+   protected void onPostExecute(String file_url) {
+
+if(getSuccess()==1){
+    setAddUser();
+
+}
+else{
+    setDeleteUser();
+
+}
+            if (file_url != null){
+                Toast.makeText(ContactProfile.this, file_url, Toast.LENGTH_LONG).show();
+            }
+
+        }
+    }
+
+    public void setAddUser(){
+
+
+         add.setVisibility(View.VISIBLE);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                add.setVisibility(View.INVISIBLE);
+                delete.setVisibility(View.VISIBLE);
+
+
+
+                new ContactProfile.InsertFriend().execute();
+                new ContactProfile.CheckFriendship().execute();
+
+            }
+        });
+    }
+    public void setDeleteUser(){
+
+
+
+        delete.setVisibility(View.VISIBLE);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                delete.setVisibility(View.INVISIBLE);
+                add.setVisibility(View.VISIBLE);
+
+                  new ContactProfile.DeleteFriend().execute();
+                new ContactProfile.CheckFriendship().execute();
+
+            }
+        });
+    }
+
+    public class DeleteFriend extends AsyncTask<String, String, String> {
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(ContactProfile.this);
+            pDialog.setMessage("deleting Contact...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
+
+
+        }
+
+        @Override
+        protected String doInBackground(String... args) {
+
+            try {
+// namef is the email(username) of the friend
+              //  System.out.println("this is the email db " + hashC.get("email"));
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("username", idUserHash.get("email")));
+                params.add(new BasicNameValuePair("favourites", hashC.get("namef")));
+            /*    params.add(new BasicNameValuePair("selected", "ADD TO CONTACTS"));
+                params.add(new BasicNameValuePair("name", get_name()));
+                params.add(new BasicNameValuePair("avatar",getAvatar()));
+                params.add(new BasicNameValuePair("age", get_age()));*/
+
+
+                System.out.println("delete of friend" + hashC.get("namef"));
+                System.out.println("delete DATA USERNAME" + idUserHash.get("email") );
+
+                Log.d("request!", "starting");
+
+                JSONObject json = jParser2.makeHttpRequest(
+                       DELETE_FRIEND, "POST", params);
+                // check your log for json response
+                Log.d("Login attempt delete", json.toString());
+
+            }
+
+
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+
+        }
+
+        protected void onPostExecute(String file_url) {
+
+            pDialog.dismiss();
+
+
+
+            if (file_url != null){
+                Toast.makeText(ContactProfile.this, file_url, Toast.LENGTH_LONG).show();
+            }
+
+        }
+    }
+
+
+
+
 }

@@ -9,10 +9,21 @@ import com.example.mikey.database.R;
  * Created by zapatacajas on 19/03/2016.
  */
 public class Favourites extends AppCompatActivity{
+    private static final String GET_FRIEND = "http://www.companion4me.x10host.com/webservice/getfavourites.php";
+
+
+
+
+
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_list);
+
+
 
 
     }

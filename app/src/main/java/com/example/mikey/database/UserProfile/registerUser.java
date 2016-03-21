@@ -29,12 +29,17 @@ import org.apache.http.message.BasicNameValuePair;
 import org.joda.time.LocalDate;
 import org.joda.time.Period;
 import org.joda.time.PeriodType;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -69,6 +74,9 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
     private TextView errorMessage;
     private Spinner spinnerSecretQuestions;
     Spinner eduSpinner, genSpinner;
+    Spinner spinCity, spinCountry;
+    List<String> cityItems;
+    ArrayAdapter<String> cityAdp;
 
 
     final String[] EDUCATION = {"Not stated", "Further Education", "Higher Education"};
@@ -88,6 +96,12 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
 
     private String email;
     private String country,city;
+
+    public String getCountry() { return country; }
+    public void setCountry(String country) { this.country = country; }
+
+    public String getCity() { return city; }
+    public void setCity(String city) { this.city = city; }
 
     public String getEducation() {
         return education;
@@ -340,7 +354,7 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
                     new CreateUserCode().execute(username, getVerificationCode());
                     System.out.println("for real spinner getquestion " + getQuestion());
                     dbHandler.resetTables();
-                    dbHandler.addUser(getName(), Integer.toString(getAge()), getNationality(), getEmail(), password3, getAnswer(), getQuestion(), getEducation(), getGender(), null, null);//TODO to add county and city
+                    dbHandler.addUser(getName(), Integer.toString(getAge()), getNationality(), getEmail(), password3, getAnswer(), getQuestion(), getEducation(), getGender(), getCountry(), getCity());
                     sendingEmail(username);
 
 
@@ -658,6 +672,12 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
         nationalityS = (Spinner) findViewById(R.id.Nationality);
         nationalityS.setOnItemSelectedListener(this);
 
+        spinCountry = (Spinner) findViewById(R.id.country_register);
+        spinCity = (Spinner) findViewById(R.id.city_register);
+        spinCountry.setOnItemSelectedListener(this);
+        spinCity.setOnItemSelectedListener(this);
+
+
         List<String> countriesSpinner = new ArrayList<String>();
 
         String[] locales = Locale.getISOCountries();
@@ -677,6 +697,7 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
 
         // attaching data adapter to spinner
         nationalityS.setAdapter(dataAdapter);
+        spinCountry.setAdapter(dataAdapter);
 
 
     }
@@ -715,6 +736,22 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
             setGender(gender);
             Toast.makeText(parent.getContext(), "Selected: " + gender, Toast.LENGTH_LONG).show();
         }
+        else if (spinner.getId() == R.id.city_register)
+        {
+            String city = parent.getItemAtPosition(position).toString();
+            setCity(city);
+            Toast.makeText(parent.getContext(), "Selected: " + city, Toast.LENGTH_LONG).show();
+
+        }
+        else if (spinner.getId() == R.id.country_register)
+        {
+            String country = parent.getItemAtPosition(position).toString();
+            setCountry(country);
+            Toast.makeText(parent.getContext(), "Selected: " + country, Toast.LENGTH_LONG).show();
+
+            findCity(spinCountry.getSelectedItem().toString());
+
+        }
 
 
 
@@ -725,6 +762,49 @@ public class registerUser extends AppCompatActivity implements AdapterView.OnIte
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
     }
+
+
+    public String loadJSONFromAsset() {
+        String json = null;
+        try {
+            InputStream is = getAssets().open("cities.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+    }
+
+
+    public void findCity(String country) {
+        cityItems = new ArrayList<>();
+        if (country.equals(spinCountry.getSelectedItem().toString()) ) {
+            try {
+
+                JSONObject cities = new JSONObject(loadJSONFromAsset());
+                JSONArray cityArray = cities.getJSONArray(country);
+
+                for (int i = 0; i < cityArray.length(); i++) {
+                    cityItems.add(cityArray.getString(i));
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+        Collections.sort(cityItems);
+        cityAdp = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, cityItems);
+        cityAdp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinCity.setAdapter(cityAdp);
+
+    }
+
 
 
     public boolean checkNames() {

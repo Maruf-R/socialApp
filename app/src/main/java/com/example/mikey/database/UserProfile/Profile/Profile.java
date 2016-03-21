@@ -63,23 +63,22 @@ public class Profile extends AppCompatActivity {
     }
 
 
-    /*TODO once implemented
-        public String getCountry() {
+    public String getCountry() {
             return country;
         }
 
-        public void setCountry(String country) {
+    public void setCountry(String country) {
             this.country = country;
         }
 
-        public String getCity() {
+    public String getCity() {
             return city;
         }
 
-        public void setCity(String city) {
+    public void setCity(String city) {
             this.city = city;
         }
-    */
+
     private String country, city;
     private String education,gender;
     private String music;
@@ -273,9 +272,9 @@ public class Profile extends AppCompatActivity {
                     setBiography(c.getString("description"));
                     setSports(c.getString("sports"));
                     setAvatar(c.getString("avatar"));
-//                    setCountry(c.getString("country"));
-//                    setCity(c.getString("city"));
-//
+                    setCountry(c.getString("country"));
+                    setCity(c.getString("city"));
+
 
 
 

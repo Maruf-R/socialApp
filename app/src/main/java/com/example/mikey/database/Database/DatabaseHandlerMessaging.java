@@ -10,11 +10,8 @@ import java.util.HashMap;
 
 public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "userMessages";
-    private static final String TABLE_LOGIN = "userMessages";
-    //TODO: Need to create a sql table for this
-
-
+    private static final String DATABASE_NAME = "Messages";
+    private static final String TABLE_LOGIN = "Messages";
 
 
     // Login Table Column names
@@ -57,7 +54,7 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
     /**
      * Adding a user to the database
      */
-    public void addUser(String sname, String rname, String content) {
+    public void addMessage(String sname, String rname, String content) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();

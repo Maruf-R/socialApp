@@ -41,7 +41,6 @@ public class DisplayContact extends AppCompatActivity {
     private static final String TAG_USERNAME = "username";
     private static final String TAG_NAME = "name";
     private static final String TAG_NATIONALITY = "nationality";
-    ListView listview;
     JSONParser jParserC = new JSONParser();
     JSONArray ldataC = null;
     DatabaseHandlerContacts dbHandler;
@@ -54,17 +53,6 @@ public class DisplayContact extends AppCompatActivity {
     HashMap<String, String> hashAge;
 
 
-    /*
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    private String avatar;
-*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,55 +76,7 @@ public class DisplayContact extends AppCompatActivity {
     }
 
 
-/*
-    public void listItems() {
 
-        listview = (ListView) findViewById(R.id.contacts_result);
-
-
-        final ArrayList<String> textViewObjects = new ArrayList<String>();
-
-        Iterator it = userHash.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry) it.next();
-            System.out.println(pair.getKey().toString() + " = " + pair.getValue().toString());
-
-            textViewObjects.add(pair.getKey().toString());
-
-
-        }
-
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, textViewObjects);
-        listview.setAdapter(adapter);
-
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                int itemPosition = position;
-                String itemValue = (String) listview.getItemAtPosition(position);
-
-
-                System.out.println("it worked name" + userHash.get(itemValue));
-                System.out.println("it worked username" + userHash.get(itemValue));
-
-
-                dbHandler.resetTablesContacts();
-                dbHandler.addUserContacts(null, null, null, null, null, null, userHash.get(itemValue),null,null,null,null);
-
-
-                Intent friend = new Intent(getApplicationContext(), ContactProfile.class);
-                startActivity(friend);
-
-
-            }
-        });
-
-
-    }
-*/
 ListView list;
         public void listItems(){
 
@@ -159,19 +99,7 @@ ListView list;
 
             }
 
-            /*
-            Iterator itu = hashAvatar.entrySet().iterator();
-            while (itu.hasNext()) {
-                Map.Entry ava = (Map.Entry) itu.next();
-                System.out.println(ava.getKey().toString() + " = " + ava.getValue().toString());
 
-
-                int imgId = getResources().getIdentifier(ava.getKey().toString(), "drawable", getPackageName());
-
-                imgIdArray.add(imgId);
-
-            }
-*/
 
 
 

@@ -136,6 +136,8 @@ ap = new AudioPlayer(this);
         tab4.setIndicator("Friends");
         tab4.setContent(new Intent(this, Favourites.class));
 
+
+
         /** Add the tabs  to the TabHost to display. */
         tabHost.addTab(tab1);
         tabHost.addTab(tab2);

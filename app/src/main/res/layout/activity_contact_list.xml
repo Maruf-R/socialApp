@@ -1,19 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:background="#03A9F4">
 
-    <!--Favourite list-->
-    <ListView
-        android:id="@+id/favourite_list"
+
+
+    <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:text="Search Results"
+        android:id="@+id/contacts_found_TextView"
+        android:layout_margin="15dp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF" />
 
-    </ListView>
 
+    <ListView
+        android:id="@+id/contacts_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="false"
+        android:layout_marginBottom="20dp"
+        android:listSelector="@android:color/transparent"
+        android:transcriptMode="alwaysScroll"
+        android:divider="@null"
+        android:layout_below="@+id/contacts_found_TextView" />
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
 
-</LinearLayout>
+        android:layout_height="wrap_content"
+
+        android:id="@+id/update_results"
+        android:layout_above="@+id/contacts_result"
+        android:layout_alignParentEnd="true"
+
+        android:layout_width="wrap_content"
+        android:text="Update Results"
+        android:background="@drawable/button_login"
+        android:textColor="#ffffff"
+
+        android:layout_marginRight="10dip"
+        android:layout_marginBottom="10dip"/>
+
+</RelativeLayout>

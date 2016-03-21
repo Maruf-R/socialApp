@@ -1,9 +1,5 @@
 package com.example.mikey.database.Database;
 
-/**
- * Created by maruf on 17/03/2016.
- */
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -11,14 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.HashMap;
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-
-import java.util.HashMap;
-
 
 public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
@@ -31,14 +19,9 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
 
     // Login Table Column names
     private static final String KEY_ID = "id";
-    private static final String KEY_NAME = "name";
-    private static final String KEY_AGE = "age";
-    private static final String KEY_FROM = "nationality";
-    private static final String KEY_EMAIL = "email";
-    private static final String KEY_PASSWORDHASH = "password";
-    private static final String KEY_ANSWER = "answer";
-    private static final String KEY_QUESTION = "question";
-
+    private static final String SENDER_NAME = "senderusername";
+    private static final String RECEIVER  = "receiverusername";
+    private static final String CONTENT = "msgcontent";
     private static final String KEY_CREATED_AT = "created_at";
 
     public DatabaseHandlerMessaging(Context context) {
@@ -52,13 +35,9 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_LOGIN + "("
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + KEY_NAME + " TEXT,"
-                + KEY_AGE + " TEXT,"
-                + KEY_FROM + " TEXT,"
-                + KEY_EMAIL + " TEXT UNIQUE,"
-                + KEY_PASSWORDHASH + " TEXT,"
-                + KEY_ANSWER + " TEXT,"
-                + KEY_QUESTION + " TEXT,"
+                + SENDER_NAME + " TEXT,"
+                + RECEIVER + " TEXT,"
+                + CONTENT + " TEXT,"
                 + KEY_CREATED_AT + " TEXT" + ")";
         db.execSQL(CREATE_LOGIN_TABLE);     //TODO: change this for the messaging sql table once created
 
@@ -78,31 +57,21 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
     /**
      * Adding a user to the database
      */
-    public void addUser(String name, String age, String nationality, String email, String password, String answer, String question) {
+    public void addUser(String sname, String rname, String content) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_NAME, name );
-        values.put(KEY_AGE, age);
-        values.put(KEY_FROM, nationality);
-        values.put(KEY_EMAIL, email);
-        values.put(KEY_PASSWORDHASH, password);
-        values.put(KEY_ANSWER, answer);
-        values.put(KEY_QUESTION, question);
+        values.put(SENDER_NAME, sname );
+        values.put(RECEIVER, rname);
+        values.put(CONTENT, content);
 
-
-        System.out.println("its stored" + email);
-        System.out.println("its stored question" + question);
-
-
-        // Inserting Row
         db.insert(TABLE_LOGIN, null, values);
         db.close(); // Closing database connection
     }
 
 
 
-    public HashMap getUserDetails() {
+    public HashMap getUserMessages() {
         HashMap user = new HashMap();
         String selectQuery = "SELECT  * FROM " + TABLE_LOGIN;
 
@@ -111,26 +80,13 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
         // Move to first row
         cursor.moveToFirst();
         if (cursor.getCount() > 0) {
-            user.put("name", cursor.getString(1));
-            user.put("age", cursor.getString(2));
-            user.put("nationality", cursor.getString(3));
-            user.put("email", cursor.getString(4));
-            user.put("password", cursor.getString(5));
-            user.put("answer", cursor.getString(6));
-            user.put("question", cursor.getString(7));
-            user.put("created_at", cursor.getString(8));
+            user.put("sname", cursor.getString(1));
+            user.put("rname", cursor.getString(2));
+            user.put("content", cursor.getString(3));
+
         }
         cursor.close();
         db.close();
-
-        System.out.println("its possible to get " + user.get("name"));
-        System.out.println("its possible to get " + user.get("age"));
-        System.out.println("its possible to get " + user.get("nationality"));
-        System.out.println("its possible to get " + user.get("email"));
-        System.out.println("its possible to get " + user.get("password"));
-        System.out.println("its possible to get " + user.get("answer"));
-        System.out.println("its possible to get " + user.get("question"));
-
 
 
         // return user

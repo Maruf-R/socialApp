@@ -52,43 +52,6 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    /**
-     * Retrieve user details from the database
-     */
-    public HashMap getUserDetails() {
-        HashMap user = new HashMap();
-        String selectQuery = "SELECT  * FROM " + TABLE_MESSAGE;
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        // Move to first row
-        cursor.moveToFirst();
-        if (cursor.getCount() > 0) {
-            user.put("name", cursor.getString(1));
-            user.put("age", cursor.getString(2));
-            user.put("nationality", cursor.getString(3));
-            user.put("email", cursor.getString(4));
-            user.put("password", cursor.getString(5));
-            user.put("answer", cursor.getString(6));
-            user.put("question", cursor.getString(7));
-            user.put("created_at", cursor.getString(8));
-        }
-        cursor.close();
-        db.close();
-
-        System.out.println("its possible to get " + user.get("name"));
-        System.out.println("its possible to get " + user.get("age"));
-        System.out.println("its possible to get " + user.get("nationality"));
-        System.out.println("its possible to get " + user.get("email"));
-        System.out.println("its possible to get " + user.get("password"));
-        System.out.println("its possible to get " + user.get("answer"));
-        System.out.println("its possible to get " + user.get("question"));
-
-
-
-        // return user
-        return user;
-    }
 
 
     /**

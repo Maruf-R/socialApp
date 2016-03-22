@@ -350,6 +350,7 @@ ImageView avatarcall;
 
     private void openMessagingActivity() {
         Intent messagingActivity = new Intent(this, MessagingActivity.class);
+        messagingActivity.putExtra("idf", hashC.get("namef"));
         startActivity(messagingActivity);
     }
 

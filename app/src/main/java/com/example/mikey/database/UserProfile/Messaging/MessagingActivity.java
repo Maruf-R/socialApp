@@ -1,6 +1,7 @@
 package com.example.mikey.database.UserProfile.Messaging;
 
 import com.example.mikey.database.Database.DatabaseHandlerMessaging;
+import com.example.mikey.database.Database.DatabaseUsernameId;
 import com.example.mikey.database.Database.JSONParser;
 import com.example.mikey.database.R;
 import com.example.mikey.database.UserProfile.EmailVerification;
@@ -51,6 +52,8 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
     //For database purposes
     DatabaseHandlerMessaging dbHandlerMsg;
     HashMap<String,String> idUserHash;
+    DatabaseUsernameId dbemail;
+    HashMap<String,String> hemail;
 
     public MessagingActivity(){
 
@@ -59,7 +62,10 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
     public MessagingActivity(Context context){
         this.context = context.getApplicationContext();
         dbHandlerMsg = new DatabaseHandlerMessaging(context);
-        idUserHash = dbHandlerMsg.getUserDetails();
+        idUserHash = dbHandlerMsg.getUserMessages();
+        dbemail = new DatabaseUsernameId(this);
+       hemail = dbemail.getUserDetails();
+
     }
 
     @Override
@@ -73,6 +79,10 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
         mMessageAdapter = new MessageAdapter(this);
         ListView messagesList = (ListView) findViewById(R.id.Messages);
         messagesList.setAdapter(mMessageAdapter);
+
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("idf");
+        System.out.println(id);
 
         mBtnSend = (Button) findViewById(R.id.sendButton);
         mBtnSend.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +124,7 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
             return;
         }
 
-        dbHandlerMsg.addMessage(idUserHash.get("email"), recipient, textBody);
+        dbHandlerMsg.addMessage(hemail.get("email"), recipient, textBody);
         getSinchServiceInterface().sendMessage(recipient, textBody);
         mTxtTextBody.setText("");
     }

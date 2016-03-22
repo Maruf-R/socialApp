@@ -76,14 +76,12 @@
         <activity
             android:name=".UserProfile.NearPeople"
             android:screenOrientation="portrait" />
+
+        <!-- Messaging stuff -->
         <activity
             android:name=".UserProfile.Messaging.MessagingActivity"
             android:screenOrientation="portrait" />
-
-        <!-- Messaging stuff -->
-        <activity android:name="UserProfile.Messaging.MessagingActivity"
-            android:screenOrientation="portrait"/>
-        <service android:name="UserProfile.Messaging.SinchService"/>
+        <service android:name=".UserProfile.Messaging.SinchService"/>
         
 
     </application>

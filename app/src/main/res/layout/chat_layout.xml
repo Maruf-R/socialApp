@@ -10,17 +10,15 @@
         android:background="@android:color/white"
         android:paddingLeft="10dp">
 
-        <EditText
+        <TextField
             android:id="@+id/Message_Recipient"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Recipient"
             android:background="@android:color/white"
-            android:textColor="@android:color/black"
-            android:inputType="textPersonName">
+            android:textColor="@android:color/black">
 
             <requestFocus/>
-        </EditText>
+        </TextField>
     </RelativeLayout>
 
     <ListView

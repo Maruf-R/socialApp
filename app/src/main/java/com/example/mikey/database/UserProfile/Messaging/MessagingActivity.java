@@ -56,26 +56,27 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
     DatabaseUsernameId dbemail;
     HashMap<String,String> hemail;
 
-    public MessagingActivity(){
-
+    public String getRecipientId() {
+        return recipientId;
     }
 
-    public MessagingActivity(Context context){
-        this.context = context.getApplicationContext();
-        dbHandlerMsg = new DatabaseHandlerMessaging(context);
-        idUserHash = dbHandlerMsg.getUserMessages();
-        dbemail = new DatabaseUsernameId(this);
-       hemail = dbemail.getUserDetails();
-
+    public void setRecipientId(String recipientId) {
+        this.recipientId = recipientId;
     }
+
+    private String recipientId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_layout);
-
+        dbHandlerMsg = new DatabaseHandlerMessaging(this);
+        idUserHash = dbHandlerMsg.getUserMessages();
+        dbemail = new DatabaseUsernameId(this);
+        hemail = dbemail.getUserDetails();
         Intent intent = getIntent();
-        String recipientUsername = intent.getStringExtra("idf");
+      String recipientUsername = intent.getStringExtra("idf");
+        setRecipientId(recipientUsername);
         System.out.println(recipientUsername);
 
         mTxtRecipient = (TextView) findViewById(R.id.Message_Recipient);
@@ -115,9 +116,9 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
     }
 
     private void sendMessage() {
-        String recipient = mTxtRecipient.getText().toString();
+       // String recipient = mTxtRecipient.getText().toString();
         String textBody = mTxtTextBody.getText().toString();
-        if (recipient.isEmpty()) {
+        if (getRecipientId().isEmpty()) {
             Toast.makeText(this, "No recipient added", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -126,9 +127,18 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
             return;
         }
 
-        dbHandlerMsg.addMessage(hemail.get("email"), recipient, textBody);
-        getSinchServiceInterface().sendMessage(recipient, textBody);
+        dbHandlerMsg.addMessage(hemail.get("email"), getRecipientId(), textBody);
+        getSinchServiceInterface().sendMessage(getRecipientId(), textBody);
+
+        System.out.println("sender" + hemail.get("email"));
+        System.out.println("receiver"+getRecipientId());
+        System.out.println("textbody"+textBody);
+
+
+
         mTxtTextBody.setText("");
+
+        new MessagingActivity.SendMessage().execute(hemail.get("email"), getRecipientId(),textBody);
     }
 
     private void setButtonEnabled(boolean enabled) {
@@ -168,10 +178,8 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
 
 
 
-    /**
-     * To push messages to the database
-     * */
-    /*class SendMessage extends AsyncTask<String, String, String> {
+
+    class SendMessage extends AsyncTask<String, String, String> {
         //TODO: complete implementation of this class
         @Override
         protected void onPreExecute() {
@@ -232,5 +240,5 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
             pDialog.dismiss();
         }
 
-    }*/
+    }
 }

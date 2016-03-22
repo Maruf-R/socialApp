@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "Messages";
-    private static final String TABLE_LOGIN = "Messages";
+    private static final String TABLE_MESSAGE = "Messages";
 
 
     // Login Table Column names
@@ -19,6 +19,7 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
     private static final String SENDER_NAME = "senderusername";
     private static final String RECEIVER  = "receiverusername";
     private static final String CONTENT = "msgcontent";
+
     private static final String KEY_CREATED_AT = "created_at";
 
     public DatabaseHandlerMessaging(Context context) {
@@ -30,7 +31,7 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
      * Creates a new table
      * */
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_LOGIN + "("
+        String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_MESSAGE + "("
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + SENDER_NAME + " TEXT,"
                 + RECEIVER + " TEXT,"
@@ -46,7 +47,7 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
      * */
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOGIN);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MESSAGE);
         // Create tables again
         onCreate(db);
     }
@@ -56,7 +57,7 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
      */
     public HashMap getUserDetails() {
         HashMap user = new HashMap();
-        String selectQuery = "SELECT  * FROM " + TABLE_LOGIN;
+        String selectQuery = "SELECT  * FROM " + TABLE_MESSAGE;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -101,15 +102,17 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
         values.put(RECEIVER, rname);
         values.put(CONTENT, content);
 
-        db.insert(TABLE_LOGIN, null, values);
+        db.insert(TABLE_MESSAGE, null, values);
         db.close(); // Closing database connection
     }
 
 
-
+    /**
+     * Retrieve Messages
+     * */
     public HashMap getUserMessages() {
         HashMap user = new HashMap();
-        String selectQuery = "SELECT  * FROM " + TABLE_LOGIN;
+        String selectQuery = "SELECT  * FROM " + TABLE_MESSAGE;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -129,14 +132,12 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
         return user;
     }
 
-
-
     /**
      * Getting users login status
      * return true if rows are in table
      */
     public int getRowCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_LOGIN;
+        String countQuery = "SELECT  * FROM " + TABLE_MESSAGE;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
         int rowCount = cursor.getCount();
@@ -154,7 +155,7 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
     public void resetTables() {
         SQLiteDatabase db = this.getWritableDatabase();
         // Delete All Rows
-        db.delete(TABLE_LOGIN, null, null);
+        db.delete(TABLE_MESSAGE, null, null);
         db.close();
     }
 

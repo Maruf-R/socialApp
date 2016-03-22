@@ -19,7 +19,10 @@ import com.example.mikey.database.Database.DatabaseHandler;
 import com.example.mikey.database.Database.DatabaseUsernameId;
 import com.example.mikey.database.Database.JSONParser;
 import com.example.mikey.database.R;
+import com.example.mikey.database.UserProfile.Messaging.BaseActivity;
+import com.example.mikey.database.UserProfile.Messaging.SinchService;
 import com.example.mikey.database.UserProfile.Password.ForgotPassword;
+import com.sinch.android.rtc.SinchError;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -37,7 +40,7 @@ import java.util.List;
  * Created by mikey on 02/02/2016.
  */
 
-public class Login extends AppCompatActivity {
+public class Login extends BaseActivity implements SinchService.StartFailedListener {
     private static final String LOGIN_URL = "http://www.companion4me.x10host.com/webservice/login.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
@@ -103,11 +106,11 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(emailBox.getWindowToken(), 0);
 
-               String usernamer = emailBox.getText().toString();
-               String passwordr = passwordBox.getText().toString();
+                String usernamer = emailBox.getText().toString();
+                String passwordr = passwordBox.getText().toString();
 
                 if (saveLoginCheckBox.isChecked()) {
                     loginPrefsEditor.putBoolean("saveLogin", true);
@@ -120,25 +123,24 @@ public class Login extends AppCompatActivity {
                 }
 
 
-
-
-                if (validateEmail(emailBox.getText().toString())==true && validatePassword(passwordBox.getText().toString())) {
+                if (validateEmail(emailBox.getText().toString()) == true && validatePassword(passwordBox.getText().toString())) {
                     setEmail(emailBox.getText().toString());
 
                     String username = getEmail();
                     String password = computeMD5Hash(passwordBox.getText().toString());
                     dbHandler.resetTables();
-                    dbHandler.addUser(null, null, null, getEmail(), null, null, null,null,null,null,null);
+                    dbHandler.addUser(null, null, null, getEmail(), null, null, null, null, null, null, null);
                     dbHandlerId.resetTables();
 
-                    dbHandlerId.addUser(null, null,null,getEmail(),null,null,null);
-                    new AttemptLogin().execute(username,password);
+                    dbHandlerId.addUser(null, null, null, getEmail(), null, null, null);
+                    idUserHash = dbHandler.getUserDetails();
+                    messagingSetup();
+                    new AttemptLogin().execute(username, password);
 
 
                 }
             }
         });
-
 
     }
 
@@ -216,6 +218,33 @@ public class Login extends AppCompatActivity {
         Intent intent = new Intent(this, ForgotPassword.class);
         startActivity(intent);
     }
+
+
+    //---------------MESSAGING STUFF----------------------------
+    public void messagingSetup(){
+        if (!getSinchServiceInterface().isStarted()) {
+            getSinchServiceInterface().startClient(idUserHash.get("email"));
+        }
+    }
+
+
+    @Override
+    protected void onServiceConnected() {
+        getSinchServiceInterface().setStartListener(this);
+    }
+
+    @Override
+    public void onStartFailed(SinchError error) {
+        Toast.makeText(this, error.toString(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onStarted() {
+
+    }
+    //------------------------------------------------------------
+
+
 
     class AttemptLogin extends AsyncTask<String, String, String> {
 

@@ -159,7 +159,7 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
     /**
      * To push messages to the database
      * */
-    class SendMessage extends AsyncTask<String, String, String> {
+    /*class SendMessage extends AsyncTask<String, String, String> {
         //TODO: complete implementation of this class
         @Override
         protected void onPreExecute() {
@@ -220,5 +220,5 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
             pDialog.dismiss();
         }
 
-    }
+    }*/
 }

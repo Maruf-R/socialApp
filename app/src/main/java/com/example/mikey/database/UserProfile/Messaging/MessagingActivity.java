@@ -1,5 +1,6 @@
 package com.example.mikey.database.UserProfile.Messaging;
 
+import com.example.mikey.database.Database.DatabaseHandlerMessaging;
 import com.example.mikey.database.R;
 import com.sinch.android.rtc.PushPair;
 import com.sinch.android.rtc.messaging.Message;
@@ -9,6 +10,7 @@ import com.sinch.android.rtc.messaging.MessageDeliveryInfo;
 import com.sinch.android.rtc.messaging.MessageFailureInfo;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class MessagingActivity extends BaseActivity implements MessageClientListener {
@@ -27,6 +30,17 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
     private EditText mTxtRecipient;
     private EditText mTxtTextBody;
     private Button mBtnSend;
+    protected Context context;
+
+    //For database purposes
+    DatabaseHandlerMessaging dbHandlerMsg;
+    HashMap<String,String> idUserHash;
+
+    public MessagingActivity(Context context){
+        this.context = context.getApplicationContext();
+        dbHandlerMsg = new DatabaseHandlerMessaging(context);
+        idUserHash = dbHandlerMsg.getUserDetails();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +94,7 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
             return;
         }
 
+        dbHandlerMsg.addMessage(idUserHash.get("email"), recipient, textBody);
         getSinchServiceInterface().sendMessage(recipient, textBody);
         mTxtTextBody.setText("");
     }

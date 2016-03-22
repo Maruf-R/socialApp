@@ -52,6 +52,10 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
     DatabaseHandlerMessaging dbHandlerMsg;
     HashMap<String,String> idUserHash;
 
+    public MessagingActivity(){
+
+    }
+
     public MessagingActivity(Context context){
         this.context = context.getApplicationContext();
         dbHandlerMsg = new DatabaseHandlerMessaging(context);
@@ -172,8 +176,8 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
 
             // Check for success tag
             int success;
-            String ToUser = args[0];
-            String FromUser = args[1];
+            String FromUser = args[0];
+            String ToUser = args[1];
             String MessageBody = args[2];
 
             //TODO: double check the order of these parameters with the php class
@@ -185,12 +189,12 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
             try {
                 // Building Parameters
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("ToUser", ToUser));
                 params.add(new BasicNameValuePair("FromUser", FromUser));
+                params.add(new BasicNameValuePair("ToUser", ToUser));
                 params.add(new BasicNameValuePair("MessageBody", MessageBody));
 
-                System.out.println("ToUser in php" + ToUser);
                 System.out.println("FromUser in php" + FromUser);
+                System.out.println("ToUser in php" + ToUser);
                 System.out.println("Message in php" + MessageBody);
                 Log.d("request!", "starting");
 

@@ -68,13 +68,13 @@
         <activity android:name=".UserProfile.UserInterests" />
         <activity android:name=".UserProfile.Profile.EditUserProfile" />
         <activity android:name=".UserProfile.testActivity"></activity>
-        <activity
-            android:name=".UserProfile.ChangeSecurityQuestionAnswer"
+        <activity android:name=".UserProfile.ChangeSecurityQuestionAnswer"
             android:screenOrientation="portrait" />
         .UserProfile.Favourites
         <activity
             android:name=".UserProfile.Favourites"
             android:screenOrientation="portrait" />
+
 
     </application>
 

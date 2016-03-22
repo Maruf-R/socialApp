@@ -172,21 +172,25 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
 
             // Check for success tag
             int success;
-            String username = args[0];
-            String verificationcode = args[1];
+            String ToUser = args[0];
+            String FromUser = args[1];
+            String MessageBody = args[2];
 
-            System.out.println("args0 in php" + username);
-            System.out.println("args1 in php" + verificationcode);
+            System.out.println("args0 in php" + ToUser);
+            System.out.println("args1 in php" + FromUser);
+            System.out.println("args2 in php" + MessageBody);
 
 
             try {
                 // Building Parameters
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("username", username));
-                params.add(new BasicNameValuePair("verificationcode", verificationcode));
+                params.add(new BasicNameValuePair("ToUser", ToUser));
+                params.add(new BasicNameValuePair("FromUser", FromUser));
+                params.add(new BasicNameValuePair("MessageBody", MessageBody));
 
-                System.out.println("username: in php" + username);
-                System.out.println("code in php" + verificationcode);
+                System.out.println("ToUser in php" + ToUser);
+                System.out.println("FromUser in php" + FromUser);
+                System.out.println("Message in php" + MessageBody);
                 Log.d("request!", "starting");
 
                 //Posting user data to script

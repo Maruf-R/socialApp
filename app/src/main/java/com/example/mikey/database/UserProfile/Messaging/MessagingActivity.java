@@ -1,7 +1,9 @@
 package com.example.mikey.database.UserProfile.Messaging;
 
 import com.example.mikey.database.Database.DatabaseHandlerMessaging;
+import com.example.mikey.database.Database.JSONParser;
 import com.example.mikey.database.R;
+import com.example.mikey.database.UserProfile.EmailVerification;
 import com.sinch.android.rtc.PushPair;
 import com.sinch.android.rtc.messaging.Message;
 import com.sinch.android.rtc.messaging.MessageClient;
@@ -11,6 +13,8 @@ import com.sinch.android.rtc.messaging.MessageFailureInfo;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,12 +23,24 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class MessagingActivity extends BaseActivity implements MessageClientListener {
 
     private static final String TAG = MessagingActivity.class.getSimpleName();
+
+    //for online database
+    private ProgressDialog pDialog;
+    JSONParser jsonParser = new JSONParser();
+    private static final String LOGIN_URL ="http://www.companion4me.x10host.com/webservice/messaging.php";
+    private static final String TAG_SUCCESS = "success";
+
 
     private MessageAdapter mMessageAdapter;
     private EditText mTxtRecipient;
@@ -132,5 +148,68 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
     @Override
     public void onMessageDelivered(MessageClient client, MessageDeliveryInfo deliveryInfo) {
         Log.d(TAG, "onDelivered");
+    }
+
+
+
+    /**
+     * To push messages to the database
+     * */
+    class SendMessage extends AsyncTask<String, String, String> {
+        //TODO: complete implementation of this class
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(MessagingActivity.this);
+            pDialog.setMessage("Sending message...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... args) {
+
+            // Check for success tag
+            int success;
+            String username = args[0];
+            String verificationcode = args[1];
+
+            System.out.println("args0 in php" + username);
+            System.out.println("args1 in php" + verificationcode);
+
+
+            try {
+                // Building Parameters
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("username", username));
+                params.add(new BasicNameValuePair("verificationcode", verificationcode));
+
+                System.out.println("username: in php" + username);
+                System.out.println("code in php" + verificationcode);
+                Log.d("request!", "starting");
+
+                //Posting user data to script
+                JSONObject json = jsonParser.makeHttpRequest(
+                        LOGIN_URL, "POST", params);
+
+                // full json response
+                Log.d("Login attempt", json.toString());
+
+                // json success element
+                success = json.getInt(TAG_SUCCESS);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+
+        }
+
+        protected void onPostExecute(String file_url) {
+            pDialog.dismiss();
+        }
+
     }
 }

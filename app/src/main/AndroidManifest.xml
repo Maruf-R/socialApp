@@ -79,9 +79,9 @@
 
         <!-- Messaging stuff -->
         <activity
-            android:name=".UserProfile.Messaging.MessagingActivity"
+            android:name="com.example.mikey.database.UserProfile.Messaging.MessagingActivity"
             android:screenOrientation="portrait" />
-        <service android:name=".UserProfile.Messaging.SinchService"/>
+        <service android:name="com.example.mikey.database.UserProfile.Messaging.SinchService"/>
         
 
     </application>

@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
@@ -44,7 +45,7 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
 
 
     private MessageAdapter mMessageAdapter;
-    private EditText mTxtRecipient;
+    private TextView mTxtRecipient;
     private EditText mTxtTextBody;
     private Button mBtnSend;
     protected Context context;
@@ -73,16 +74,17 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_layout);
 
-        mTxtRecipient = (EditText) findViewById(R.id.Message_Recipient);
+        Intent intent = getIntent();
+        String recipientUsername = intent.getStringExtra("idf");
+        System.out.println(recipientUsername);
+
+        mTxtRecipient = (TextView) findViewById(R.id.Message_Recipient);
+        mTxtRecipient.setText(recipientUsername);
         mTxtTextBody = (EditText) findViewById(R.id.Message_TextBody);
 
         mMessageAdapter = new MessageAdapter(this);
         ListView messagesList = (ListView) findViewById(R.id.Messages);
         messagesList.setAdapter(mMessageAdapter);
-
-        Intent intent = getIntent();
-        String id = intent.getStringExtra("idf");
-        System.out.println(id);
 
         mBtnSend = (Button) findViewById(R.id.sendButton);
         mBtnSend.setOnClickListener(new View.OnClickListener() {

@@ -133,8 +133,8 @@ public class Login extends BaseActivity implements SinchService.StartFailedListe
                     dbHandlerId.resetTables();
 
                     dbHandlerId.addUser(null, null, null, getEmail(), null, null, null);
-                    idUserHash = dbHandler.getUserDetails();
-                    messagingSetup();
+                   // idUserHash = dbHandler.getUserDetails();
+                    messagingSetup(username);
                     new AttemptLogin().execute(username, password);
 
 
@@ -221,9 +221,9 @@ public class Login extends BaseActivity implements SinchService.StartFailedListe
 
 
     //---------------MESSAGING STUFF----------------------------
-    public void messagingSetup(){
+    public void messagingSetup(String username){
         if (!getSinchServiceInterface().isStarted()) {
-            getSinchServiceInterface().startClient(idUserHash.get("email"));
+            getSinchServiceInterface().startClient(username);
         }
     }
 

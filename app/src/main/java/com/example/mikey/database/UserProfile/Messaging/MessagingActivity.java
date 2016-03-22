@@ -38,7 +38,7 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
     //for online database
     private ProgressDialog pDialog;
     JSONParser jsonParser = new JSONParser();
-    private static final String LOGIN_URL ="http://www.companion4me.x10host.com/webservice/messaging.php";
+    private static final String SEND_MSG_URL ="http://www.companion4me.x10host.com/webservice/messaging.php";
     private static final String TAG_SUCCESS = "success";
 
 
@@ -196,7 +196,7 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
 
                 //Posting user data to script
                 JSONObject json = jsonParser.makeHttpRequest(
-                        LOGIN_URL, "POST", params);
+                        SEND_MSG_URL, "POST", params);
 
                 // full json response
                 Log.d("Login attempt", json.toString());

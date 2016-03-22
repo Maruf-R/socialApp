@@ -176,6 +176,7 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
             String FromUser = args[1];
             String MessageBody = args[2];
 
+            //TODO: double check the order of these parameters with the php class
             System.out.println("args0 in php" + ToUser);
             System.out.println("args1 in php" + FromUser);
             System.out.println("args2 in php" + MessageBody);

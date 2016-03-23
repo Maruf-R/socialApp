@@ -34,7 +34,7 @@ public class Search extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent display = new Intent(getApplicationContext(), DisplayContact.class);
+                Intent display = new Intent(getApplicationContext(), NearPeople.class);
                 startActivity(display);
             }
         });

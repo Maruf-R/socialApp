@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.mikey.database.Database.DatabaseCity;
 import com.example.mikey.database.Database.DatabaseHandlerContacts;
 import com.example.mikey.database.Database.DatabaseUsernameId;
 import com.example.mikey.database.Database.JSONParser;
@@ -44,6 +45,9 @@ public class NearPeople extends AppCompatActivity {
     JSONParser jParserC = new JSONParser();
     JSONArray ldataC = null;
 
+    DatabaseCity dbcity;
+    HashMap<String, String> hashcity;
+
     DatabaseHandlerContacts dbHandler;
   DatabaseUsernameId dbId;
     HashMap<String, String> userHash;
@@ -57,6 +61,10 @@ public class NearPeople extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display_results);
+        dbcity = new DatabaseCity(this);
+        hashcity = dbcity.getCity();
+        System.out.println("city oncreate"+hashcity.get("city"));
+
         dbId = new DatabaseUsernameId(this);
         hashId= dbId.getUserDetails();
         dbHandler = new DatabaseHandlerContacts(this);
@@ -156,11 +164,11 @@ public class NearPeople extends AppCompatActivity {
 
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                 params.add(new BasicNameValuePair("username", hashId.get("email")));
+                 params.add(new BasicNameValuePair("city", hashcity.get("city")));
 
-                System.out.println("this is the email db for real" +
-                        hashId.get("movies"));
-                System.out.println("this is the natio db for real" +hashId.get("food"));
+                System.out.println("this is the city db for real new" +
+                        hashcity.get("city"));
+
 
 
                 Log.d("request!", "starting");
@@ -181,7 +189,7 @@ public class NearPeople extends AppCompatActivity {
                     String username = c.getString(TAG_USERNAME);
                     String name = c.getString(TAG_NAME);
                     String age = c.getString("age");
-                    String nationality = c.getString(TAG_NATIONALITY);
+
                     String avatar = c.getString("avatar");
 
                     //  setAvatar(avatar);
@@ -189,9 +197,7 @@ public class NearPeople extends AppCompatActivity {
                     System.out.println("this is the age tesetinh" + age );
                     System.out.println("this is the name php:  C " + name);
 
-                    //    System.out.println("this is the age php: C " + age);
-                    System.out.println("this is the natio php: C " + nationality);
-                    //  userNameArray.add(name);
+
 
                     userHash.put(name, username);
                     hashAvatar.put(username,avatar);

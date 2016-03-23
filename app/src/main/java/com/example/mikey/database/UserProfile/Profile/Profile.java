@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mikey.database.Database.DatabaseCity;
 import com.example.mikey.database.Database.DatabaseHandler;
 import com.example.mikey.database.Database.JSONParser;
 import com.example.mikey.database.R;
@@ -36,7 +37,7 @@ public class Profile extends AppCompatActivity {
     TextView nameV;
     TextView ageV;
     TextView nationalityV;
-
+DatabaseCity dbcity;
 
     JSONParser jParser = new JSONParser();
     JSONArray ldata = null;
@@ -213,9 +214,11 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         dbHandler = new DatabaseHandler(this);
+        dbcity = new DatabaseCity(this);
         hash = dbHandler.getUserDetails();
 
         new Profile.GetTheProfileData().execute();
+
 
 
     }
@@ -282,11 +285,7 @@ public class Profile extends AppCompatActivity {
 
 
 
-                    System.out.println("this is the username php: " + username);
-                    System.out.println("this is the name php: " + name);
-
-                    System.out.println("this is the age php: " + age);
-                    System.out.println("this is the natio php: " + nationality);
+                    System.out.println("this is the city php: " + c.getString("city"));
 
                 }
 
@@ -315,7 +314,8 @@ public class Profile extends AppCompatActivity {
            countryv= (TextView) findViewById(R.id.Country_profile);
             cityv= (TextView) findViewById(R.id.City_profile);
 
-
+            dbcity.resetTables();
+            dbcity.addCity(null, getCity());
 
             int imgId = getResources().getIdentifier(getAvatar(), "drawable", getPackageName());
             avatarv.setImageResource(imgId);

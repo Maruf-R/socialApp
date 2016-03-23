@@ -460,10 +460,12 @@ public class Spec extends AppCompatActivity implements AdapterView.OnItemSelecte
         List<String> countriesSpinner = new ArrayList<String>();
 
         String[] locales = Locale.getISOCountries();
-
+        countriesSpinner.add("No selected");
         for (String countryCode : locales) {
 
             Locale obj = new Locale("", countryCode);
+
+
             countriesSpinner.add(obj.getDisplayCountry());
         }
 

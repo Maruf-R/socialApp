@@ -6,7 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
@@ -64,10 +67,20 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
         values.put(SENDER_UNAME, sname );
         values.put(RECEIVER_UNAME, rname);
         values.put(CONTENT, content);
-        //TODO: add here the date and time
+        values.put(KEY_CREATED_AT, getDateTime());
 
         db.insert(TABLE_MESSAGE, null, values);
         db.close(); // Closing database connection
+    }
+
+    /**
+     * Gets the date and time
+     * */
+    private String getDateTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
 

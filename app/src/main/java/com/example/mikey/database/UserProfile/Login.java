@@ -20,8 +20,6 @@ import com.example.mikey.database.Database.DatabaseUsernameId;
 import com.example.mikey.database.Database.JSONParser;
 import com.example.mikey.database.R;
 import com.example.mikey.database.UserProfile.Messaging.BaseActivity;
-import com.example.mikey.database.UserProfile.Messaging.MessagingActivity;
-import com.example.mikey.database.UserProfile.Messaging.MessagingSetup;
 import com.example.mikey.database.UserProfile.Messaging.SinchService;
 import com.example.mikey.database.UserProfile.Password.ForgotPassword;
 import com.sinch.android.rtc.SinchError;
@@ -42,7 +40,7 @@ import java.util.List;
  * Created by mikey on 02/02/2016.
  */
 
-public class Login extends AppCompatActivity/*BaseActivity implements SinchService.StartFailedListener*/ {
+public class Login extends BaseActivity implements SinchService.StartFailedListener {
     private static final String LOGIN_URL = "http://www.companion4me.x10host.com/webservice/login.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
@@ -224,14 +222,13 @@ public class Login extends AppCompatActivity/*BaseActivity implements SinchServi
 
     //---------------MESSAGING STUFF----------------------------
     public void messagingSetup(String username){
-        /*if (!getSinchServiceInterface().isStarted()) {
+        if (!getSinchServiceInterface().isStarted()) {
             getSinchServiceInterface().startClient(username);
-        }*/
-        new MessagingSetup().setup(username);
+        }
     }
 
 
-    /*@Override
+    @Override
     protected void onServiceConnected() {
         getSinchServiceInterface().setStartListener(this);
     }
@@ -244,7 +241,7 @@ public class Login extends AppCompatActivity/*BaseActivity implements SinchServi
     @Override
     public void onStarted() {
 
-    }*/
+    }
     //------------------------------------------------------------
 
 

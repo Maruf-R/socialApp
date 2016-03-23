@@ -22,7 +22,6 @@ import com.example.mikey.database.Database.DatabaseUsernameId;
 import com.example.mikey.database.Database.JSONParser;
 import com.example.mikey.database.R;
 import com.example.mikey.database.UserProfile.Messaging.MessagingActivity;
-import com.example.mikey.database.UserProfile.Messaging.MessagingSetup;
 import com.example.mikey.database.UserProfile.UserInterests;
 import com.example.mikey.database.UserProfile.VoiceCall.AudioPlayer;
 import com.sinch.android.rtc.PushPair;
@@ -350,7 +349,7 @@ ImageView avatarcall;
     }
 
     private void openMessagingActivity() {
-        Intent messagingActivity = new Intent(this, MessagingSetup.class);
+        Intent messagingActivity = new Intent(this, MessagingActivity.class);
         messagingActivity.putExtra("idf", hashC.get("namef"));
         startActivity(messagingActivity);
     }

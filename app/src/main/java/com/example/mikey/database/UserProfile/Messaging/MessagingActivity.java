@@ -4,7 +4,6 @@ import com.example.mikey.database.Database.DatabaseHandlerMessaging;
 import com.example.mikey.database.Database.DatabaseUsernameId;
 import com.example.mikey.database.Database.JSONParser;
 import com.example.mikey.database.R;
-import com.example.mikey.database.UserProfile.EmailVerification;
 import com.sinch.android.rtc.PushPair;
 import com.sinch.android.rtc.messaging.Message;
 import com.sinch.android.rtc.messaging.MessageClient;
@@ -53,9 +52,9 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
 
     //For database purposes
     DatabaseHandlerMessaging dbHandlerMsg;
-    HashMap<String,String> idUserHash;
-    DatabaseUsernameId dbemail;
-    HashMap<String,String> hemail;
+    HashMap<String,String> AllUserMessages_Hash;
+    DatabaseUsernameId userDB;
+    HashMap<String,String> userDB_Hash;
 
     public String getRecipientId() {
         return recipientId;
@@ -72,9 +71,9 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_layout);
         dbHandlerMsg = new DatabaseHandlerMessaging(this);
-        idUserHash = dbHandlerMsg.getUserMessages();
-        dbemail = new DatabaseUsernameId(this);
-        hemail = dbemail.getUserDetails();
+        AllUserMessages_Hash = dbHandlerMsg.getUserMessages();
+        userDB = new DatabaseUsernameId(this);
+        userDB_Hash = userDB.getUserDetails();
         Intent intent = getIntent();
       String recipientUsername = intent.getStringExtra("idf");
         setRecipientId(recipientUsername);
@@ -128,10 +127,10 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
             return;
         }
 
-        dbHandlerMsg.addMessage(hemail.get("email"), getRecipientId(), textBody);
+        dbHandlerMsg.addMessage(userDB_Hash.get("email"), getRecipientId(), textBody);
         getSinchServiceInterface().sendMessage(getRecipientId(), textBody);
 
-        System.out.println("sender" + hemail.get("email"));
+        System.out.println("sender" + userDB_Hash.get("email"));
         System.out.println("receiver"+getRecipientId());
         System.out.println("textbody"+textBody);
 
@@ -139,7 +138,7 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
 
         mTxtTextBody.setText("");
 
-        new MessagingActivity.SendMessage().execute(hemail.get("email"), getRecipientId(),textBody);
+        new MessagingActivity.SendMessage().execute(userDB_Hash.get("email"), getRecipientId(),textBody);
     }
 
     private void setButtonEnabled(boolean enabled) {

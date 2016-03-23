@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+
+
+<RelativeLayout
+                android:id="@+id/RelativeLayout01"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="#03A9F4"
+                android:scrollIndicators="bottom">
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:text="Getting Started on Companion4me"
+        android:id="@+id/howTo"
+        android:layout_margin="20dp"
+        android:textColor="#000000"
+        android:textSize="22dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Compaion4Me! Using our app is so easy! Just follow the steps!"
+        android:id="@+id/textView21"
+        android:layout_margin="20dp"
+        android:textColor="#ffffff"
+        android:textSize="20dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1. Set your profile by choosing your interests and you’re ready to find your future mates!"
+        android:id="@+id/textView22"
+        android:layout_margin="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2.Search for people by tapping on Search button. You can either search for users around you by using Near Me button or you can search for people by using the filters on Search by Criteria tool"
+        android:id="@+id/textView23"
+        android:layout_margin="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3.View the listed profiles in your sear results and add the people who you wish to message to your contacts."
+        android:id="@+id/textView24"
+        android:layout_margin="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4.You can view your contacts, from the Friends bar and message them by selecting the profile and then the message symbol. "
+        android:id="@+id/textView25"
+        android:layout_margin="20dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5. You also have the options to make a voice call/phone the user, delete from your contacts or block him/her. "
+        android:id="@+id/textView26"
+        android:layout_margin="20dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="6. In Edit (Settings) section you can edit your profile, edit your security details, change your password, edit your interests, block the contact(?), log out or delete your account by selecting the options(?)."
+        android:id="@+id/textView27"
+        android:layout_margin="20dp"/>
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="7."
+        android:id="@+id/textView28"
+        android:layout_margin="20dp"/>
+
+    </LinearLayout>
+</RelativeLayout>
+</ScrollView>

@@ -5,17 +5,15 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.mikey.database.Database.DatabaseHandler;
 import com.example.mikey.database.Database.DatabaseUsernameId;
 import com.example.mikey.database.Database.JSONParser;
 import com.example.mikey.database.R;
@@ -41,6 +39,7 @@ public class UserSettings extends AppCompatActivity {
     private Button btnLogOut;
     private Button btnDeleteAccount;
     private Button btnChangeSecurityDetails;
+    private Button btnUserGuide;
 
     DatabaseUsernameId dbHandlerId;
     HashMap<String, String> idUserHash;
@@ -65,6 +64,16 @@ public class UserSettings extends AppCompatActivity {
         final EditText input = new EditText(UserSettings.this);
         dbHandlerId = new DatabaseUsernameId(this);
         idUserHash = dbHandlerId.getUserDetails();
+
+
+        // Userguide button
+        btnUserGuide = (Button) findViewById(R.id.btnUserGuide);
+        btnUserGuide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.gguide_layout);
+            }
+        });
 
 
         // Starting EditUserProfile activity

@@ -64,6 +64,7 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
         values.put(SENDER_UNAME, sname );
         values.put(RECEIVER_UNAME, rname);
         values.put(CONTENT, content);
+        //TODO: add here the date and time
 
         db.insert(TABLE_MESSAGE, null, values);
         db.close(); // Closing database connection

@@ -72,33 +72,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:orientation="horizontal"
                 android:weightSum="1">
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add to Contacts"
+                    android:text="Add"
                     android:id="@+id/btnAddUser"
                     android:background="@drawable/button_login"
-                    android:padding="10dip"
-                    android:layout_weight="0.26"
+                    android:padding="5dp"
                     android:visibility="invisible"
                     />
-            </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:weightSum="1">
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Delete from Contacts"
+                    android:text="Delete"
                     android:id="@+id/btnDeleteUser"
                     android:background="@drawable/button_login"
-                    android:padding="10dip"
+                    android:padding="5dip"
                     android:visibility="invisible"
                     />
             </LinearLayout>

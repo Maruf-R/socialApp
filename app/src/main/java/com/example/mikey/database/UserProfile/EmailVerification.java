@@ -43,7 +43,6 @@ public class EmailVerification extends AppCompatActivity implements DialogInterf
     Button verifyRegister;
     DatabaseHandler dbHandler;
     DatabaseUsernameId dbHandlerId;
-    
 
     HashMap<String, String> hash;
     JSONParser jsonParser = new JSONParser();

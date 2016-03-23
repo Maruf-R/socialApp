@@ -13,7 +13,7 @@ import java.io.Serializable;
 /**
  * Created by mikey on 23/03/2016.
  */
-public class Catch {
+public class Cache {
     /**
      * Saves an Object to the Cache of the app
      * @param context Context of the Activity

@@ -16,8 +16,8 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
 
     // Login Table Column names
     private static final String KEY_ID = "id";
-    private static final String SENDER_NAME = "senderusername";
-    private static final String RECEIVER  = "receiverusername";
+    private static final String SENDER_UNAME = "senderusername";
+    private static final String RECEIVER_UNAME  = "receiverusername";
     private static final String CONTENT = "msgcontent";
 
     private static final String KEY_CREATED_AT = "created_at";
@@ -31,13 +31,13 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
      * Creates a new table
      * */
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_MESSAGE + "("
+        String CREATE_MESSAGES_TABLE = "CREATE TABLE " + TABLE_MESSAGE + "("
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + SENDER_NAME + " TEXT,"
-                + RECEIVER + " TEXT,"
+                + SENDER_UNAME + " TEXT,"
+                + RECEIVER_UNAME + " TEXT,"
                 + CONTENT + " TEXT,"
                 + KEY_CREATED_AT + " TEXT" + ")";
-        db.execSQL(CREATE_LOGIN_TABLE);     //TODO: change this for the messaging sql table once created
+        db.execSQL(CREATE_MESSAGES_TABLE);
 
     }
 
@@ -61,8 +61,8 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(SENDER_NAME, sname );
-        values.put(RECEIVER, rname);
+        values.put(SENDER_UNAME, sname );
+        values.put(RECEIVER_UNAME, rname);
         values.put(CONTENT, content);
 
         db.insert(TABLE_MESSAGE, null, values);

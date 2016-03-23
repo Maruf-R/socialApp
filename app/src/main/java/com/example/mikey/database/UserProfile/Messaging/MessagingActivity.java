@@ -29,11 +29,12 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MessagingActivity extends BaseActivity implements MessageClientListener {
+public class MessagingActivity extends BaseActivity implements MessageClientListener, Serializable {
 
     private static final String TAG = MessagingActivity.class.getSimpleName();
 

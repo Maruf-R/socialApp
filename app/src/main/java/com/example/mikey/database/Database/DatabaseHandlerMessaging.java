@@ -71,9 +71,9 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
 
 
     /**
-     * Retrieve Messages
+     * Retrieve all of the users Messages
      * */
-    public HashMap getUserMessages() {
+    public HashMap getAllUserMessages() {
         HashMap user = new HashMap();
         String selectQuery = "SELECT  * FROM " + TABLE_MESSAGE;
 
@@ -93,6 +93,30 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
 
         // return user
         return user;
+    }
+
+    /**
+     * Retrieves messages user sent to a particular recipient
+     * */
+    public HashMap getMessagesTo(String r){
+        HashMap recipient = new HashMap();
+        String selectQuery = "SELECT  * FROM " + TABLE_MESSAGE; //TODO: implement the correct query
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        // Move to first row
+        cursor.moveToFirst();
+        if (cursor.getCount() > 0) {
+            recipient.put("sname", cursor.getString(1));
+            recipient.put("rname", cursor.getString(2));
+            recipient.put("content", cursor.getString(3));
+
+        }
+        cursor.close();
+        db.close();
+
+        // return user
+        return recipient;
     }
 
     /**

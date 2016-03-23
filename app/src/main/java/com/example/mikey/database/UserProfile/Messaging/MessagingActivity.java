@@ -71,7 +71,7 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_layout);
         dbHandlerMsg = new DatabaseHandlerMessaging(this);
-        AllUserMessages_Hash = dbHandlerMsg.getUserMessages();
+        AllUserMessages_Hash = dbHandlerMsg.getAllUserMessages();
         userDB = new DatabaseUsernameId(this);
         userDB_Hash = userDB.getUserDetails();
         Intent intent = getIntent();

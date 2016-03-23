@@ -20,6 +20,8 @@ import com.example.mikey.database.Database.DatabaseUsernameId;
 import com.example.mikey.database.Database.JSONParser;
 import com.example.mikey.database.R;
 import com.example.mikey.database.UserProfile.Messaging.BaseActivity;
+import com.example.mikey.database.UserProfile.Messaging.MessagingActivity;
+import com.example.mikey.database.UserProfile.Messaging.MessagingSetup;
 import com.example.mikey.database.UserProfile.Messaging.SinchService;
 import com.example.mikey.database.UserProfile.Password.ForgotPassword;
 import com.sinch.android.rtc.SinchError;
@@ -222,9 +224,10 @@ public class Login extends BaseActivity implements SinchService.StartFailedListe
 
     //---------------MESSAGING STUFF----------------------------
     public void messagingSetup(String username){
-        if (!getSinchServiceInterface().isStarted()) {
+        /*if (!getSinchServiceInterface().isStarted()) {
             getSinchServiceInterface().startClient(username);
-        }
+        }*/
+        new MessagingSetup().setup(username);
     }
 
 

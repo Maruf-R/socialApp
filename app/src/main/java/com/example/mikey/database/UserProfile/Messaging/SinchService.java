@@ -5,20 +5,27 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
+import android.util.Pair;
 
+import com.example.mikey.database.Database.Catch;
 import com.sinch.android.rtc.*;
 import com.sinch.android.rtc.messaging.MessageClientListener;
 import com.sinch.android.rtc.messaging.WritableMessage;
 
+import java.io.IOException;
+import java.io.Serializable;
+import java.security.KeyStore;
 import java.util.HashMap;
+import java.util.List;
 
-public class SinchService extends Service {
+public class SinchService extends Service implements Serializable{
 
     private static final String APP_KEY = "0b73e092-90ed-4432-ac38-192e1e3d19fd";
     private static final String APP_SECRET = "FDlVTHVvD0WSGnGx3Jugjw==";
     private static final String ENVIRONMENT = "sandbox.sinch.com";
 
     private static final String TAG = SinchService.class.getSimpleName();
+    private static final String Msg = "Msg";
 
     private final SinchServiceInterface mServiceInterface = new SinchServiceInterface();
 
@@ -82,6 +89,24 @@ public class SinchService extends Service {
         if (isStarted()) {
             WritableMessage message = new WritableMessage(recipientUserId, textBody);
             mSinchClient.getMessageClient().send(message);
+
+            try{
+                Catch.writeObject(this, Msg, message);
+
+                //temporary just for testing
+                List<KeyStore.Entry> cachedEntries = (List<KeyStore.Entry>) Catch.readObject(this, Msg);
+
+                // Display the items from the list retrieved.
+                for (KeyStore.Entry entry : cachedEntries) {
+                    System.out.println("asdhsaliudhasdjnhsadhsaidhnaiucyshn9 odyha98srydawpsohd cpyao");
+                    Log.d(Msg, entry.toString());
+                }
+
+            } catch(IOException e){
+                Log.e(Msg, e.getMessage());
+            } catch (ClassNotFoundException e) {
+                Log.e(Msg, e.getMessage());
+            }
         }
     }
 

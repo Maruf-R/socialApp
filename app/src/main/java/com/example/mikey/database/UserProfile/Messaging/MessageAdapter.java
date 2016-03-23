@@ -1,6 +1,8 @@
 package com.example.mikey.database.UserProfile.Messaging;
 
 import android.app.Activity;
+import android.content.Context;
+import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,9 +10,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.mikey.database.Database.Catch;
 import com.example.mikey.database.R;
 import com.sinch.android.rtc.messaging.Message;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +24,7 @@ public class MessageAdapter extends BaseAdapter {
     public static final int DIRECTION_INCOMING = 0;
 
     public static final int DIRECTION_OUTGOING = 1;
+    public static final String KEY = "message";
 
     private List<Pair<Message, Integer>> mMessages;
 

@@ -138,7 +138,7 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
 
         mTxtTextBody.setText("");
 
-       // new MessagingActivity.SendMessage().execute(hemail.get("email"), getRecipientId(),textBody);
+        new MessagingActivity.SendMessage().execute(hemail.get("email"), getRecipientId(),textBody);
     }
 
     private void setButtonEnabled(boolean enabled) {
@@ -177,7 +177,7 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
     }
 
 
-/*
+
 
     class SendMessage extends AsyncTask<String, String, String> {
         //TODO: complete implementation of this class
@@ -240,6 +240,5 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
             pDialog.dismiss();
         }
 
-    }*/
-
+    }
 }

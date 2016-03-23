@@ -1,9 +1,12 @@
 package com.example.mikey.database.UserProfile;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -147,6 +150,32 @@ ap = new AudioPlayer(this);
 
     }
 
+    public void notification() {
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.end_call)
+                .setContentTitle("Companion4Me")
+                .setContentText("Incoming Call!")
+                .setAutoCancel(true);
+
+        Intent answer = new Intent (this, Home.class);
+        PendingIntent pendingIntentAnswer = PendingIntent.getActivity(this, 0, answer, PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+        Intent decline = new Intent (this, Home.class);
+        PendingIntent pendingIntentDecline = PendingIntent.getActivity(this, 0, decline, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        mBuilder.addAction(R.drawable.end_call,"Accept",pendingIntentAnswer);
+        mBuilder.addAction(R.drawable.end_call,"Decline",pendingIntentDecline);
+
+
+        int mNotificationID =001;
+        NotificationManager mNotify = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        mNotify.notify(mNotificationID, mBuilder.build());
+
+
+    }
+
 
 
 
@@ -158,6 +187,7 @@ public class SinchCallClientListener implements CallClientListener {
         tablay.setVisibility(View.INVISIBLE);
         sec.setVisibility(View.VISIBLE);
         ap.playRingtone();
+        notification();
 
         Toast.makeText(Home.this, "receiving call", Toast.LENGTH_LONG).show();
 

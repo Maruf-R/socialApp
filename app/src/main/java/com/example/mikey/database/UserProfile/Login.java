@@ -42,7 +42,7 @@ import java.util.List;
  * Created by mikey on 02/02/2016.
  */
 
-public class Login extends BaseActivity implements SinchService.StartFailedListener {
+public class Login extends AppCompatActivity/*BaseActivity implements SinchService.StartFailedListener*/ {
     private static final String LOGIN_URL = "http://www.companion4me.x10host.com/webservice/login.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
@@ -231,7 +231,7 @@ public class Login extends BaseActivity implements SinchService.StartFailedListe
     }
 
 
-    @Override
+    /*@Override
     protected void onServiceConnected() {
         getSinchServiceInterface().setStartListener(this);
     }
@@ -244,7 +244,7 @@ public class Login extends BaseActivity implements SinchService.StartFailedListe
     @Override
     public void onStarted() {
 
-    }
+    }*/
     //------------------------------------------------------------
 
 

@@ -41,7 +41,7 @@ public class UserSettings extends AppCompatActivity {
     private Button btnLogOut;
     private Button btnDeleteAccount;
     private Button btnChangeSecurityDetails;
-
+    private Button btnUserGuide;
     DatabaseUsernameId dbHandlerId;
     HashMap<String, String> idUserHash;
     JSONParser jsonParserg = new JSONParser();
@@ -62,9 +62,22 @@ public class UserSettings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_settings);
-        final EditText input = new EditText(UserSettings.this);
+
         dbHandlerId = new DatabaseUsernameId(this);
         idUserHash = dbHandlerId.getUserDetails();
+
+        // Userguide button
+              btnUserGuide = (Button) findViewById(R.id.btnUserGuide);
+               btnUserGuide.setOnClickListener(new View.OnClickListener() {
+                      @Override
+                       public void onClick(View v) {
+                               Intent guide = new Intent(UserSettings.this, Guide.class);
+                          startActivity(guide);
+
+
+                           }
+                    });
+
 
 
         // Starting EditUserProfile activity
@@ -149,8 +162,8 @@ public class UserSettings extends AppCompatActivity {
 
                 // TODO ask the user to enter their password, confirm they want to delete account,
                 // TODO then use the appropriate SQL command to delete and redirecet to login activity.
-                final AlertDialog.Builder builder = new AlertDialog.Builder(UserSettings.this);
-
+                AlertDialog.Builder builder = new AlertDialog.Builder(UserSettings.this);
+              final  EditText input = new EditText(UserSettings.this);
                 builder.setTitle("Enter your password to delete account");
 
 
@@ -172,11 +185,11 @@ public class UserSettings extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
+
                     }
                 });
 
                 builder.show();
-
             }
         });
 

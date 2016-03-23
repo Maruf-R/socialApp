@@ -44,6 +44,9 @@
             android:name=".UserProfile.Profile.ContactProfile"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".UserProfile.Guide"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".UserProfile.Profile.Profile"
             android:screenOrientation="portrait" />
         <activity

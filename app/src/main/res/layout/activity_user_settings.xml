@@ -23,6 +23,15 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="User Guide"
+            android:id="@+id/btnUserGuide"
+            android:background="@drawable/button_login"
+            android:layout_margin="5dp"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Edit Profile"
             android:id="@+id/btnEditProfile"
             android:background="@drawable/button_login"

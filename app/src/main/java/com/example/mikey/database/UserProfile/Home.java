@@ -142,13 +142,17 @@ ap = new AudioPlayer(this);
 
 
         /** Add the tabs  to the TabHost to display. */
-        tabHost.addTab(tab1);
         tabHost.addTab(tab2);
+
+        tabHost.addTab(tab1);
+
         tabHost.addTab(tab4);
+
         tabHost.addTab(tab3);
 
 
     }
+
 
     public void notification() {
 
@@ -180,7 +184,7 @@ ap = new AudioPlayer(this);
 
 
 
-public class SinchCallClientListener implements CallClientListener {
+    public class SinchCallClientListener implements CallClientListener {
     @Override
     public void onIncomingCall(CallClient callClient, Call incomingCall) {
         //Pick up the call!
@@ -188,7 +192,6 @@ public class SinchCallClientListener implements CallClientListener {
         sec.setVisibility(View.VISIBLE);
         ap.playRingtone();
         notification();
-
         Toast.makeText(Home.this, "receiving call", Toast.LENGTH_LONG).show();
 
         call = incomingCall;

@@ -98,6 +98,10 @@ ImageView avatarv;
                 Home.call.addCallListener(new SinchCallListener() {
                 });
 
+                Intent h = new Intent(receiveCallTest.this, Home.class);
+                finish();
+                startActivity(h);
+                finish();
                 //Toast.makeText(ContactProfile.this,"Call ended by you." , Toast.LENGTH_LONG).show();
 
 

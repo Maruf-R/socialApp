@@ -3,7 +3,10 @@ package com.example.mikey.database.UserProfile;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TabActivity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
@@ -35,11 +38,13 @@ public class Home extends TabActivity{
     private static final String ENVIRONMENT = "sandbox.sinch.com";
     DatabaseUsernameId dbHandlerId;
     HashMap<String, String> idUserHash;
-    ImageButton accept, decline;
+    static ImageButton accept, decline;
     TabHost tablay;
     LinearLayout sec;
     private Call call;
     AudioPlayer ap;//holds the audio player
+    static int mNotificationID =001;
+    static NotificationManager mNotify;
 
 /*ReceiveCallHolder mike;*/
     @Override
@@ -113,6 +118,7 @@ ap = new AudioPlayer(this);
 
         // create the TabHost that will contain the Tabs
         TabHost tabHost = (TabHost) findViewById(android.R.id.tabhost);
+        tabHost.getTabWidget().setBackgroundColor(Color.parseColor("#B6B6B6"));
 
 
         TabHost.TabSpec tab1 = tabHost.newTabSpec("FirstTab");
@@ -150,7 +156,6 @@ ap = new AudioPlayer(this);
 
         tabHost.addTab(tab3);
 
-
     }
 
 
@@ -162,25 +167,40 @@ ap = new AudioPlayer(this);
                 .setContentText("Incoming Call!")
                 .setAutoCancel(true);
 
-        Intent answer = new Intent (this, Home.class);
-        PendingIntent pendingIntentAnswer = PendingIntent.getActivity(this, 0, answer, PendingIntent.FLAG_UPDATE_CURRENT);
+        Intent answer = new Intent (this, NotificationAcceptAction.class);
+        PendingIntent pendingIntentAnswer = PendingIntent.getBroadcast(this, 0, answer, PendingIntent.FLAG_UPDATE_CURRENT);
 
+        Intent decline = new Intent (this, NotificationDeclineAction.class);
+        PendingIntent pendingIntentDecline = PendingIntent.getBroadcast(this, 0, decline, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        Intent decline = new Intent (this, Home.class);
-        PendingIntent pendingIntentDecline = PendingIntent.getActivity(this, 0, decline, PendingIntent.FLAG_UPDATE_CURRENT);
 
         mBuilder.addAction(R.drawable.end_call,"Accept",pendingIntentAnswer);
         mBuilder.addAction(R.drawable.end_call,"Decline",pendingIntentDecline);
 
-
-        int mNotificationID =001;
-        NotificationManager mNotify = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        mNotify = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         mNotify.notify(mNotificationID, mBuilder.build());
-
 
     }
 
 
+    public static class NotificationAcceptAction extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            accept.performClick();
+            mNotify.cancel(mNotificationID);
+
+        }
+    }
+
+    public static class NotificationDeclineAction extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            decline.performClick();
+            mNotify.cancel(mNotificationID);
+
+        }
+    }
 
 
 

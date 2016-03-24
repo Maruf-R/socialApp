@@ -82,6 +82,8 @@
         <activity
             android:name=".UserProfile.NearPeople"
             android:screenOrientation="portrait" />
+        <receiver android:name=".UserProfile.Home$NotificationAcceptAction"/>
+        <receiver android:name=".UserProfile.Home$NotificationDeclineAction"/>
 
         <!-- Messaging stuff -->
         <activity

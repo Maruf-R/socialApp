@@ -34,7 +34,7 @@
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="400dip"
+                android:layout_height="200dip"
                 android:inputType="textMultiLine"
                 android:maxLength="240"
                 android:ems="10"

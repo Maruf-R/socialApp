@@ -112,19 +112,19 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
     /**
      * Retrieves messages user sent to a particular recipient
      * */
-    public HashMap getMessagesTo(String r){
+    public HashMap getMessages_SentTo(String r){
         HashMap recipient = new HashMap();
-        String selectQuery = "SELECT  * FROM " + TABLE_MESSAGE; //TODO: implement the correct query
+        String selectQuery = "SELECT  * FROM " + TABLE_MESSAGE + " WHERE " + SENDER_UNAME + " =" + r; //TODO: implement the correct query
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         // Move to first row
         cursor.moveToFirst();
         if (cursor.getCount() > 0) {
-            recipient.put("sname", cursor.getString(1));
-            recipient.put("rname", cursor.getString(2));
-            recipient.put("content", cursor.getString(3));
-
+            recipient.put(SENDER_UNAME, cursor.getString(1));
+            recipient.put(RECEIVER_UNAME, cursor.getString(2));
+            recipient.put(CONTENT, cursor.getString(3));
+            recipient.put((KEY_CREATED_AT), cursor.getString(4));
         }
         cursor.close();
         db.close();

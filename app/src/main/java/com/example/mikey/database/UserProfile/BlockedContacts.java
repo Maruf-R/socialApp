@@ -42,12 +42,15 @@ public class BlockedContacts extends AppCompatActivity{
 
     private static final String GET_BLOCKED = "http://www.companion4me.x10host.com/webservice/getblocked.php";
 
+    private static final String UNBLOCK_FRIEND = "http://www.companion4me.x10host.com/webservice/unblockcontact.php";
+
     private static final String TAG_MESSAGE = "message";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_USERS = "userdataC";
     private static final String TAG_USERNAME = "username";
     private static final String TAG_NAME = "name";
     private static final String TAG_AVATAR = "avatar";
+    JSONParser jParser2 = new JSONParser();
 
     JSONParser jParserC = new JSONParser();
     JSONArray ldataC = null;
@@ -92,7 +95,7 @@ public class BlockedContacts extends AppCompatActivity{
 
     }
 
-    public void unblockPopUp(){
+    public void unblockPopUp(final String contact){
         AlertDialog.Builder builder = new AlertDialog.Builder(BlockedContacts.this);
         builder.setTitle("Are you sure you want to unblock this person?");
 
@@ -103,6 +106,8 @@ public class BlockedContacts extends AppCompatActivity{
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                new  BlockedContacts.UnblockContact().execute(contact);
+                new BlockedContacts.GetBlockedContacts().execute();
 
                dialog.cancel();
 
@@ -111,6 +116,8 @@ public class BlockedContacts extends AppCompatActivity{
         builder.setNeutralButton("Yes, go to Profile", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                new  BlockedContacts.UnblockContact().execute(contact);
+                new BlockedContacts.GetBlockedContacts().execute();
 
                 Intent friend = new Intent(getApplicationContext(), ContactProfile.class);
                 startActivity(friend);
@@ -177,7 +184,7 @@ public class BlockedContacts extends AppCompatActivity{
                 dbHandler.addUserContacts(null, null, null, null, null, null, userHash.get(itemValue), null, null, null, null);
 
 
-               unblockPopUp();
+               unblockPopUp(userHash.get(itemValue));
 
 
             }
@@ -269,5 +276,60 @@ public class BlockedContacts extends AppCompatActivity{
         }
 
 
+    }
+
+
+    public class UnblockContact extends AsyncTask<String, String, String> {
+
+
+        @Override
+        protected String doInBackground(String... args) {
+
+            String contactToUnblock = args[0];
+
+
+            try {
+// namef is the email(username) of the friend
+                //  System.out.println("this is the email db " + hashC.get("email"));
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("username", idUserHash.get("email")));
+                params.add(new BasicNameValuePair("blocked", contactToUnblock));
+            /*    params.add(new BasicNameValuePair("selected", "ADD TO CONTACTS"));
+                params.add(new BasicNameValuePair("name", get_name()));
+                params.add(new BasicNameValuePair("avatar",getAvatar()));
+                params.add(new BasicNameValuePair("age", get_age()));*/
+
+
+                System.out.println("delete of friend" + hashC.get("namef"));
+                System.out.println("delete DATA USERNAME" + idUserHash.get("email"));
+
+                Log.d("request!", "starting");
+
+                JSONObject json = jParser2.makeHttpRequest(
+                        UNBLOCK_FRIEND, "POST", params);
+                // check your log for json response
+                Log.d("Login attempt delete", json.toString());
+
+            }
+
+
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+
+        }
+
+        protected void onPostExecute(String file_url) {
+
+       
+
+
+            if (file_url != null){
+                Toast.makeText(BlockedContacts.this, file_url, Toast.LENGTH_LONG).show();
+            }
+
+        }
     }
 }

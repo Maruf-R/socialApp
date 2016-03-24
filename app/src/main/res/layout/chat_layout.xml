@@ -8,7 +8,9 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@android:color/white"
-        android:paddingLeft="10dp">
+        android:paddingLeft="10dp"
+        android:visibility="invisible"
+        >
 
 
         <TextView
@@ -18,8 +20,9 @@
             android:layout_height="match_parent"
             android:background="@android:color/white"
             android:textColor="@android:color/black">
+            android:visibility="invisible"
 
-            <requestFocus/>
+
 
         </TextView>
 
@@ -35,7 +38,8 @@
         android:background="@drawable/bg_shadow"
         android:padding="0dip"
         android:divider="@null"
-        android:dividerHeight="0dp" android:stackFromBottom="true" tools:listitem="@layout/chat_me"/>
+        android:dividerHeight="0dp" android:stackFromBottom="true" tools:listitem="@layout/chat_me"
+        android:backgroundTint="#03A9F4" />
 
     <RelativeLayout
         android:id="@+id/relSendMessage"

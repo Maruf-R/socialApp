@@ -61,8 +61,7 @@ public class NearPeople extends AppCompatActivity {
     HashMap<String, String> hashId;
     HashMap<String, String> hashAvatar;
     HashMap<String, String> hashAge;
-    HashMap<String, String> hashIB;
-    HashMap<String, String> hashBM;
+
 
     ArrayList<String> arrayIB;
     ArrayList<String> arrayBM;
@@ -83,8 +82,6 @@ public class NearPeople extends AppCompatActivity {
         userHash = new HashMap<>();
         hashAvatar = new HashMap<>();
         hashAge = new HashMap<>();
-        hashIB = new HashMap<>();
-        hashBM = new HashMap<>();
         arrayIB = new ArrayList<>();
         arrayBM = new ArrayList<>();
 
@@ -339,7 +336,6 @@ else{
                 String avatar = c.getString("avatar");*/
 
                 arrayIB.add(usernameIB);
-                hashIB.put("IB", usernameIB);
 
 
             }
@@ -374,7 +370,6 @@ else{
                 String avatar = c.getString("avatar");*/
 
                 arrayBM.add(usernameBM);
-                hashBM.put("BM", usernameBM);
 
 
             }

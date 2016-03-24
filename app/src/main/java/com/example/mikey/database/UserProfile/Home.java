@@ -38,13 +38,14 @@ public class Home extends TabActivity{
     private static final String ENVIRONMENT = "sandbox.sinch.com";
     DatabaseUsernameId dbHandlerId;
     HashMap<String, String> idUserHash;
-    static ImageButton accept, decline;
+   // ImageButton accept, decline;
     TabHost tablay;
     LinearLayout sec;
     private Call call;
     AudioPlayer ap;//holds the audio player
     static int mNotificationID =001;
     static NotificationManager mNotify;
+    static ImageButton accept, decline;
 
 /*ReceiveCallHolder mike;*/
     @Override
@@ -120,7 +121,6 @@ ap = new AudioPlayer(this);
         TabHost tabHost = (TabHost) findViewById(android.R.id.tabhost);
         tabHost.getTabWidget().setBackgroundColor(Color.parseColor("#B6B6B6"));
 
-
         TabHost.TabSpec tab1 = tabHost.newTabSpec("FirstTab");
         TabHost.TabSpec tab2 = tabHost.newTabSpec("SecondTab");
         TabHost.TabSpec tab3 = tabHost.newTabSpec("Thirdtab");
@@ -156,9 +156,8 @@ ap = new AudioPlayer(this);
 
         tabHost.addTab(tab3);
 
+
     }
-
-
 
     public void notification() {
 
@@ -202,6 +201,7 @@ ap = new AudioPlayer(this);
 
         }
     }
+
 
 
 

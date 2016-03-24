@@ -25,7 +25,7 @@
             android:layout_height="125dp"
             android:layout_margin="24dp"
             android:background="#0288D1"
-            android:src="@drawable/companiontext" />
+            android:src="@drawable/finaltextlogo" />
 
         <!--Email-->
         <EditText android:id="@+id/emailBoxLogin"

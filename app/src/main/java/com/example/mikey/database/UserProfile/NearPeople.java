@@ -102,21 +102,6 @@ public class NearPeople extends AppCompatActivity {
         final ArrayList<Integer> imgIdArray = new ArrayList<>();
         final ArrayList<String> ageIdArray = new ArrayList<>();
 
-       /* Iterator<String> IB = arrayIB.iterator();
-        Iterator<String> BM = arrayBM.iterator();*/
-
-/*
-        for(String list2Val : ){
-            for(String list1Val : myList1){
-                for (String list3Val : myList3) {
-                    if(list3Val.equalsIgnoreCase(list1Val) && list3Val.equalsIgnoreCase(list2Val)){
-                        commonList.add(list3Val);
-                    }
-                }
-
-            }
-        }
-*/
 
         Iterator it = userHash.entrySet().iterator();
         if(!arrayIB.isEmpty() && !arrayBM.isEmpty()) {
@@ -147,52 +132,52 @@ public class NearPeople extends AppCompatActivity {
 
         }
 
-else if(arrayIB.isEmpty()) {
+        else if(arrayIB.isEmpty()&&!arrayBM.isEmpty()) {
 
-        for (String list1Val : arrayBM) {
-            while (it.hasNext()) {
-                Map.Entry pair = (Map.Entry) it.next();
-                if (!pair.getValue().toString().equals(list1Val)) {
-
-
-                    textViewObjects.add(pair.getKey().toString());
-                    int imgId = getResources().getIdentifier(hashAvatar.get(pair.getValue().toString()), "drawable", getPackageName());
-                    String hAge = hashAge.get(pair.getValue().toString());
-                    ageIdArray.add(hAge);
-                    imgIdArray.add(imgId);
-                    System.out.println("while " + pair.getValue().toString());
-                    System.out.println("bm " + list1Val);
+            for (String list1Val : arrayBM) {
+                while (it.hasNext()) {
+                    Map.Entry pair = (Map.Entry) it.next();
+                    if (!pair.getValue().toString().equals(list1Val)) {
 
 
+                        textViewObjects.add(pair.getKey().toString());
+                        int imgId = getResources().getIdentifier(hashAvatar.get(pair.getValue().toString()), "drawable", getPackageName());
+                        String hAge = hashAge.get(pair.getValue().toString());
+                        ageIdArray.add(hAge);
+                        imgIdArray.add(imgId);
+                        System.out.println("while " + pair.getValue().toString());
+                        System.out.println("bm " + list1Val);
+
+
+
+                    }
 
                 }
 
+
             }
-
-
         }
-    }
 
 
-      else  if(arrayBM.isEmpty()) {
+        else  if(arrayBM.isEmpty()&&!arrayIB.isEmpty()) {
             for (String list2Val : arrayIB) {
 
-                    while (it.hasNext()) {
-                        Map.Entry pair = (Map.Entry) it.next();
-                        if (!pair.getValue().toString().equals(list2Val)) {
+                while (it.hasNext()) {
+                    Map.Entry pair = (Map.Entry) it.next();
+                    if (!pair.getValue().toString().equals(list2Val)) {
 
 
-                            textViewObjects.add(pair.getKey().toString());
-                            int imgId = getResources().getIdentifier(hashAvatar.get(pair.getValue().toString()), "drawable", getPackageName());
-                            String hAge = hashAge.get(pair.getValue().toString());
-                            ageIdArray.add(hAge);
-                            imgIdArray.add(imgId);
-                            System.out.println("while " + pair.getValue().toString());
+                        textViewObjects.add(pair.getKey().toString());
+                        int imgId = getResources().getIdentifier(hashAvatar.get(pair.getValue().toString()), "drawable", getPackageName());
+                        String hAge = hashAge.get(pair.getValue().toString());
+                        ageIdArray.add(hAge);
+                        imgIdArray.add(imgId);
+                        System.out.println("while " + pair.getValue().toString());
 
-                            System.out.println("ib " + list2Val);
+                        System.out.println("ib " + list2Val);
 
 
-                        }
+                    }
 
 
 
@@ -202,26 +187,24 @@ else if(arrayIB.isEmpty()) {
 
         }
 
-else{
+        else{
 
             while (it.hasNext()) {
                 Map.Entry pair = (Map.Entry) it.next();
 
 
 
-                    textViewObjects.add(pair.getKey().toString());
-                    int imgId = getResources().getIdentifier(hashAvatar.get(pair.getValue().toString()), "drawable", getPackageName());
-                    String hAge = hashAge.get(pair.getValue().toString());
-                    ageIdArray.add(hAge);
-                    imgIdArray.add(imgId);
-                    System.out.println("while " + pair.getValue().toString());
+                textViewObjects.add(pair.getKey().toString());
+                int imgId = getResources().getIdentifier(hashAvatar.get(pair.getValue().toString()), "drawable", getPackageName());
+                String hAge = hashAge.get(pair.getValue().toString());
+                ageIdArray.add(hAge);
+                imgIdArray.add(imgId);
+                System.out.println("while " + pair.getValue().toString());
 
 
 
-                }
+            }
         }
-
-
 
 
 

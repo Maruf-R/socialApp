@@ -140,7 +140,7 @@ Button upd;
 
         }
 
-        else if(arrayIB.isEmpty()) {
+        else if(arrayIB.isEmpty()&&!arrayBM.isEmpty()) {
 
             for (String list1Val : arrayBM) {
                 while (it.hasNext()) {
@@ -167,7 +167,7 @@ Button upd;
         }
 
 
-        else  if(arrayBM.isEmpty()) {
+        else  if(arrayBM.isEmpty()&&!arrayIB.isEmpty()) {
             for (String list2Val : arrayIB) {
 
                 while (it.hasNext()) {
@@ -213,9 +213,6 @@ Button upd;
 
             }
         }
-
-
-
 
 
         CustomListAdapter adapter=new CustomListAdapter(this, textViewObjects, imgIdArray, ageIdArray);

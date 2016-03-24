@@ -2,14 +2,17 @@ package com.example.mikey.database.UserProfile;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.app.TabActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -17,6 +20,7 @@ import android.widget.TabHost;
 import android.widget.Toast;
 
 import com.example.mikey.database.Database.DatabaseUsernameId;
+import com.example.mikey.database.Database.JSONParser;
 import com.example.mikey.database.R;
 import com.example.mikey.database.UserProfile.Profile.Profile;
 import com.example.mikey.database.UserProfile.VoiceCall.AudioPlayer;
@@ -29,6 +33,13 @@ import com.sinch.android.rtc.calling.CallClient;
 import com.sinch.android.rtc.calling.CallClientListener;
 import com.sinch.android.rtc.calling.CallListener;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -46,6 +57,44 @@ public class Home extends TabActivity{
     AudioPlayer ap;//holds the audio player
     static int mNotificationID =001;
     static NotificationManager mNotify;
+
+    private static final String CALLER_DATA = "http://www.companion4me.x10host.com/webservice/registerdata.php";
+    private String _username;
+    private String _name;
+    private String _age;
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String get_name() {
+        return _name;
+    }
+
+    public void set_name(String _name) {
+        this._name = _name;
+    }
+
+    public String get_age() {
+        return _age;
+    }
+
+    public void set_age(String _age) {
+        this._age = _age;
+    }
+
+    private String avatar;
+
+    private ProgressDialog pDialog;
+    JSONParser jParser = new JSONParser();
+    JSONArray ldata = null;
+
+
+
 
 /*ReceiveCallHolder mike;*/
     @Override
@@ -211,16 +260,19 @@ public class Home extends TabActivity{
     @Override
     public void onIncomingCall(CallClient callClient, Call incomingCall) {
         //Pick up the call!
-
-        Intent h = new Intent(Home.this,receiveCallTest.class);
-        startActivity(h);
+        call = incomingCall;
         ap.playRingtone();
+
+        call.addCallListener(new SinchCallListener());
+        new Home.GetTheProfileData().execute(call.getRemoteUserId().toString());
+
+
         notification();
+
         Toast.makeText(Home.this, "receiving call", Toast.LENGTH_LONG).show();
 
 
-        call = incomingCall;
-        call.addCallListener(new SinchCallListener());
+
 
     }
 }
@@ -251,6 +303,78 @@ public class Home extends TabActivity{
             //don't worry about this right now
         }
     }
+
+
+    public class GetTheProfileData extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... args) {
+
+            String caller = args[0];
+
+            try {
+// namef is the email(username) of the friend
+
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("username", caller));
+                System.out.println("username of caller" + caller );
+
+                Log.d("request!", "starting");
+
+                JSONObject json = jParser.makeHttpRequest(
+                        CALLER_DATA, "POST", params);
+                // check your log for json response
+                Log.d("Login attempt getdata", json.toString());
+                ldata = json.getJSONArray("userdata");
+                // looping through all users according to the json object returned
+                for (int i = 0; i < ldata.length(); i++) {
+                    JSONObject c = ldata.getJSONObject(i);
+
+                    //gets the content of each tag
+
+                    String name = c.getString("name");
+                    String age = c.getString("age");
+
+
+                    setAvatar(c.getString("avatar"));
+                    set_name(name);
+                    set_age(age);
+
+
+
+                }
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+
+            return null;
+
+        }
+
+        protected void onPostExecute(String file_url) {
+
+            Intent h = new Intent(Home.this,receiveCallTest.class);
+            h.putExtra("callingto", get_name());
+            h.putExtra("avatar", getAvatar());
+            h.putExtra("age", get_age());
+
+            startActivity(h);
+            if (file_url != null){
+                Toast.makeText(Home.this, file_url, Toast.LENGTH_LONG).show();
+            }
+
+        }
+    }
+
+
+
+
+
+
 
 }
 

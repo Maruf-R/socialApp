@@ -1,19 +1,33 @@
 package com.example.mikey.database.UserProfile.VoiceCall;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mikey.database.Database.DatabaseUsernameId;
+import com.example.mikey.database.Database.JSONParser;
 import com.example.mikey.database.R;
 import com.example.mikey.database.UserProfile.Home;
 import com.sinch.android.rtc.PushPair;
 import com.sinch.android.rtc.calling.Call;
 import com.sinch.android.rtc.calling.CallListener;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,7 +40,8 @@ public class receiveCallTest extends AppCompatActivity {
    ImageButton accept, decline;
     AudioPlayer ap;//holds the audio player
 
-
+ImageView avatarv;
+    TextView nametext,fixtext;
     @Override
     public void onBackPressed() {
 
@@ -44,6 +59,19 @@ public class receiveCallTest extends AppCompatActivity {
         setContentView(R.layout.receivecalls_layout);
         dbHandlerId = new DatabaseUsernameId(this);
         idUserHash = dbHandlerId.getUserDetails();
+        avatarv = (ImageView) findViewById(R.id.incomingavatar);
+        nametext = (TextView) findViewById(R.id.incomingname);
+        fixtext = (TextView) findViewById(R.id.incomingfixtext);
+
+        Intent intent = getIntent();
+        String namef = intent.getStringExtra("callingto");
+        String ava = intent.getStringExtra("avatar");
+        String age = intent.getStringExtra("age");
+    int imgId = getResources().getIdentifier(ava, "drawable", getPackageName());
+        avatarv.setImageResource(imgId);
+
+        nametext.setText(namef+" "+age);
+
 
         ap = new AudioPlayer(this);
 
@@ -56,22 +84,24 @@ public class receiveCallTest extends AppCompatActivity {
                 Home.call.answer();
                 Home.call.addCallListener(new SinchCallListener());
 
-
-            } });
+                fixtext.setText("You are in a call with ....");
+            }
+        });
 
         decline = (ImageButton) findViewById(R.id.end_incoming_call);
         decline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                fixtext.setText("You ended a call with....");
 
                 Home.call.hangup();
                 Home.call.addCallListener(new SinchCallListener() {
                 });
 
-                    //Toast.makeText(ContactProfile.this,"Call ended by you." , Toast.LENGTH_LONG).show();
+                //Toast.makeText(ContactProfile.this,"Call ended by you." , Toast.LENGTH_LONG).show();
 
 
-                }
+            }
         });
 
 
@@ -125,7 +155,20 @@ public class receiveCallTest extends AppCompatActivity {
         }
     }
 
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
 
 
 

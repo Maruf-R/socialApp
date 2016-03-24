@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Incoming Call From.."
-        android:id="@+id/textView4"
+        android:id="@+id/incomingfixtext"
         android:layout_gravity="center_horizontal"
         android:textColor="#FFFFFF"
         android:textSize="20dp"
@@ -26,22 +26,21 @@
     <ImageView
         android:layout_width="179dp"
         android:layout_height="100dp"
-        android:id="@+id/imageView2"
+        android:id="@+id/incomingavatar"
         android:layout_below="@+id/textView4"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.31"
-        android:src="@drawable/oldman"/>
+        />
 
     <TextView
         android:layout_width="136dp"
         android:layout_height="wrap_content"
-        android:text="Ze oldman"
-        android:id="@+id/textView5"
+        android:id="@+id/incomingname"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.06"
         android:gravity="center"
         android:textColor="#FFFFFF"
-        android:textSize="15dp"
+        android:textSize="20dp"
         android:textStyle="bold" />
 
     <LinearLayout

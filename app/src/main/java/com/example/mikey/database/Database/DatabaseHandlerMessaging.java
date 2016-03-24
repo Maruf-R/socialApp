@@ -114,7 +114,7 @@ public class DatabaseHandlerMessaging extends SQLiteOpenHelper {
      * */
     public HashMap getMessages_SentTo(String r){
         HashMap recipient = new HashMap();
-        String selectQuery = "SELECT  * FROM " + TABLE_MESSAGE + " WHERE " + SENDER_UNAME + " =" + r; //TODO: implement the correct query
+        String selectQuery = "SELECT  * FROM " + TABLE_MESSAGE + " WHERE " + SENDER_UNAME + " =" + r;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);

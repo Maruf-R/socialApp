@@ -20,6 +20,7 @@ import com.example.mikey.database.Database.DatabaseUsernameId;
 import com.example.mikey.database.R;
 import com.example.mikey.database.UserProfile.Profile.Profile;
 import com.example.mikey.database.UserProfile.VoiceCall.AudioPlayer;
+import com.example.mikey.database.UserProfile.VoiceCall.receiveCallTest;
 import com.sinch.android.rtc.PushPair;
 import com.sinch.android.rtc.Sinch;
 import com.sinch.android.rtc.SinchClient;
@@ -38,33 +39,31 @@ public class Home extends TabActivity{
     private static final String ENVIRONMENT = "sandbox.sinch.com";
     DatabaseUsernameId dbHandlerId;
     HashMap<String, String> idUserHash;
-   // ImageButton accept, decline;
-    TabHost tablay;
-    LinearLayout sec;
-    private Call call;
+    static ImageButton accept, decline;
+
+   public static Call call;
+   public static SinchClient sinchClient;
     AudioPlayer ap;//holds the audio player
     static int mNotificationID =001;
     static NotificationManager mNotify;
-    static ImageButton accept, decline;
 
 /*ReceiveCallHolder mike;*/
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tablay = (TabHost)findViewById(android.R.id.tabhost);
-        tablay.setVisibility(View.VISIBLE);
-        sec = (LinearLayout) findViewById(R.id.call_window);
+
+
       /*  mike = new ReceiveCallHolder(this);
         mike.startMike(this);*/
-ap = new AudioPlayer(this);
+        ap = new AudioPlayer(this);
 
       dbHandlerId = new DatabaseUsernameId(this);
 
         idUserHash = dbHandlerId.getUserDetails();
 
 ///////////////////////////////////////////////////////////////////////////// this is receiving calls
-        SinchClient sinchClient = Sinch.getSinchClientBuilder()
+       sinchClient = Sinch.getSinchClientBuilder()
                 .context(this)
                 .userId(idUserHash.get("email"))
                 .applicationKey(APP_KEY)
@@ -79,7 +78,7 @@ ap = new AudioPlayer(this);
         sinchClient.start();
 
 
-
+/*
 
         accept = (ImageButton) findViewById(R.id.answer_call);
         accept.setOnClickListener(new View.OnClickListener() {
@@ -104,8 +103,6 @@ ap = new AudioPlayer(this);
                 call.addCallListener(new SinchCallListener() {
                 });
 
-                tablay.setVisibility(View.VISIBLE);
-                sec.setVisibility(View.INVISIBLE);
 
                 //Toast.makeText(ContactProfile.this,"Call ended by you." , Toast.LENGTH_LONG).show();
 
@@ -113,13 +110,14 @@ ap = new AudioPlayer(this);
             }
         });
 
-
+*/
 ///////////////////////////////////////////////////////////////////////////////
 
 
         // create the TabHost that will contain the Tabs
         TabHost tabHost = (TabHost) findViewById(android.R.id.tabhost);
         tabHost.getTabWidget().setBackgroundColor(Color.parseColor("#B6B6B6"));
+
 
         TabHost.TabSpec tab1 = tabHost.newTabSpec("FirstTab");
         TabHost.TabSpec tab2 = tabHost.newTabSpec("SecondTab");
@@ -156,33 +154,38 @@ ap = new AudioPlayer(this);
 
         tabHost.addTab(tab3);
 
-
     }
+
+
 
     public void notification() {
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.end_call)
+                .setSmallIcon(R.drawable.companion)
                 .setContentTitle("Companion4Me")
                 .setContentText("Incoming Call!")
-                .setAutoCancel(true);
-
+                .setAutoCancel(true)
+                .setWhen(System.currentTimeMillis());
+/*
+        Intent resultIntent = new Intent(this, receiveCallTest.class);
+        PendingIntent h = PendingIntent.getActivity(this, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);*/
+/*
         Intent answer = new Intent (this, NotificationAcceptAction.class);
         PendingIntent pendingIntentAnswer = PendingIntent.getBroadcast(this, 0, answer, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Intent decline = new Intent (this, NotificationDeclineAction.class);
         PendingIntent pendingIntentDecline = PendingIntent.getBroadcast(this, 0, decline, PendingIntent.FLAG_UPDATE_CURRENT);
-
-
-        mBuilder.addAction(R.drawable.end_call,"Accept",pendingIntentAnswer);
-        mBuilder.addAction(R.drawable.end_call,"Decline",pendingIntentDecline);
+*/
+       // mBuilder.setContentIntent(h);
+     //   mBuilder.addAction(R.drawable.incoming_phone,"Accept",pendingIntentAnswer);
+      //  mBuilder.addAction(R.drawable.end_call,"Decline",pendingIntentDecline);
 
         mNotify = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         mNotify.notify(mNotificationID, mBuilder.build());
 
     }
 
-
+/*
     public static class NotificationAcceptAction extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -201,27 +204,27 @@ ap = new AudioPlayer(this);
 
         }
     }
-
-
+*/
 
 
     public class SinchCallClientListener implements CallClientListener {
     @Override
     public void onIncomingCall(CallClient callClient, Call incomingCall) {
         //Pick up the call!
-        tablay.setVisibility(View.INVISIBLE);
-        sec.setVisibility(View.VISIBLE);
+
+        Intent h = new Intent(Home.this,receiveCallTest.class);
+        startActivity(h);
         ap.playRingtone();
         notification();
         Toast.makeText(Home.this, "receiving call", Toast.LENGTH_LONG).show();
 
+
         call = incomingCall;
         call.addCallListener(new SinchCallListener());
-     /*  call.answer();
 
-*/
     }
 }
+
     class SinchCallListener implements CallListener {
         @Override
         public void onCallEnded(Call endedCall) {

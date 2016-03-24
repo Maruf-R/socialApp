@@ -108,9 +108,9 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
 
     @Override
     public void onDestroy() {
-        if (getSinchServiceInterface() != null) {
+        /*if (getSinchServiceInterface() != null) {
             getSinchServiceInterface().removeMessageClientListener(this);
-        }
+        }*/
         super.onDestroy();
     }
 

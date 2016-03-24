@@ -81,6 +81,9 @@
             android:name=".UserProfile.BlockedContacts"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".UserProfile.VoiceCall.PlaceCallTest"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".UserProfile.NearPeople"
             android:screenOrientation="portrait" />
         <receiver android:name=".UserProfile.Home$NotificationAcceptAction"/>

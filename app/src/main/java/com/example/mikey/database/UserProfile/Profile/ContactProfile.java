@@ -25,6 +25,7 @@ import com.example.mikey.database.UserProfile.Home;
 import com.example.mikey.database.UserProfile.Messaging.MessagingActivity;
 import com.example.mikey.database.UserProfile.UserInterests;
 import com.example.mikey.database.UserProfile.VoiceCall.AudioPlayer;
+import com.example.mikey.database.UserProfile.VoiceCall.PlaceCallTest;
 import com.sinch.android.rtc.PushPair;
 import com.sinch.android.rtc.Sinch;
 import com.sinch.android.rtc.SinchClient;
@@ -72,15 +73,14 @@ public class ContactProfile extends AppCompatActivity {
     JSONArray ldata = null;
     DatabaseHandlerContacts dbHandler;
     HashMap<String, String> hashC;
-    ImageButton callUser, endCall, messageUser;
-    RelativeLayout contactProf;
-    LinearLayout callWin;
-    SinchCallListener callListener;
+    ImageButton callUser, messageUser;
+
+  public static SinchCallListener callListener;
     private String _username;
     private String _name;
     private String _age;
     private String _nationality;
-    private Call call;
+    public static Call call;
     private ProgressDialog pDialog;
 
     public String getEducation() {
@@ -247,12 +247,14 @@ ImageView avatarcall;
 
     Button add,delete;
     ImageButton blockUser;
+    public static SinchClient sinchClient;
 
   AudioPlayer ap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_profile);
+
         add = (Button) findViewById(R.id.btnAddUser);
         delete = (Button) findViewById(R.id.btnDeleteUser);
 
@@ -262,16 +264,13 @@ ImageView avatarcall;
         idUserHash = dbHandlerId.getUserDetails();
 
 
-        contactProf = (RelativeLayout) findViewById(R.id.contact_layout);
-
-        callWin = (LinearLayout) findViewById(R.id.call_window);
-        blockUser = (ImageButton) findViewById(R.id.Block_btn);
 
         callUser = (ImageButton) findViewById(R.id.btnCallUser);
-        endCall = (ImageButton) findViewById(R.id.end_call);
+
+        blockUser = (ImageButton) findViewById(R.id.Block_btn);
 
 
-        actioncalling = (TextView) findViewById(R.id.calltextid);
+
 
         messageUser = (ImageButton) findViewById(R.id.btnMessageUser);
 
@@ -282,7 +281,7 @@ ImageView avatarcall;
         new ContactProfile.GetTheProfileData().execute();
 
 
-       final SinchClient sinchClient = Sinch.getSinchClientBuilder()
+        sinchClient = Sinch.getSinchClientBuilder()
                 .context(this)
                .userId(idUserHash.get("email"))
                .applicationKey(APP_KEY)
@@ -311,42 +310,27 @@ ImageView avatarcall;
             }
         });
 
-
         callUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               contactProf.setVisibility(View.INVISIBLE);
-                callWin.setVisibility(View.VISIBLE);
-                actioncalling.setText("Calling...");
+
+
 
 
                 call = sinchClient.getCallClient().callUser(hashC.get("namef"));
-               /////// call = sinchClient.getCallClient().callUser(hashC.get("namef"));
+                /////// call = sinchClient.getCallClient().callUser(hashC.get("namef"));
 
                 call.addCallListener(callListener);
 
-
-
+                Intent h = new Intent(ContactProfile.this, PlaceCallTest.class);
+                h.putExtra("callingto", get_name());
+                h.putExtra("avatar", getAvatar());
+                startActivity(h);
 
 
             }
         });
-        endCall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                actioncalling.setText("Call ended");
 
-                call.hangup();
-
-                call.addCallListener(callListener);
-                callWin.setVisibility(View.INVISIBLE);
-                contactProf.setVisibility(View.VISIBLE);
-
-
-                Toast.makeText(ContactProfile.this,"Call ended by you." , Toast.LENGTH_LONG).show();
-
-            }
-        });
 
         messageUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -370,8 +354,8 @@ ImageView avatarcall;
         @Override
         public void onCallEnded(Call endedCall) {
             ap.stopProgressTone();
-            callWin.setVisibility(View.INVISIBLE);
-            contactProf.setVisibility(View.VISIBLE);
+
+
             Toast.makeText(ContactProfile.this,"Call ended by your friend."+ "SHOULD I PUT USER'S NAME?." , Toast.LENGTH_LONG).show();
 
             setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
@@ -504,15 +488,11 @@ ImageView avatarcall;
             countryv= (TextView) findViewById(R.id.txtUserCountryFriend);
             cityv= (TextView) findViewById(R.id.txtCityFriend);
 
-            usercallingto= (TextView) findViewById(R.id.namepersoncallingto);
-            usercallingto.setText(get_name());
+
+
 
             int imgId = getResources().getIdentifier(getAvatar(), "drawable", getPackageName());
             avatarv.setImageResource(imgId);
-
-            avatarcall= (ImageView) findViewById(R.id.imgUserAvatarCallingProfile);
-
-            avatarcall.setImageResource(imgId);
 
             countryv.setText(getCountry());
             cityv.setText(getCity());
@@ -535,7 +515,6 @@ ImageView avatarcall;
 
 
           pDialog.dismiss();
-            contactProf.setVisibility(View.VISIBLE);
 
 
             if (file_url != null){

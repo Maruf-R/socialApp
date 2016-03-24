@@ -98,12 +98,13 @@ public class receiveCallTest extends AppCompatActivity {
         public void onCallEnded(Call endedCall) {
             //  Toast.makeText(ContactProfile.this, "Call ended by your friend." + "SHOULD I PUT USER'S NAME?.", Toast.LENGTH_LONG).show();
             Home.call.hangup();
+            ap.stopRingtone();
+            setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
             Intent h = new Intent(receiveCallTest.this, Home.class);
             finish();
             startActivity(h);
             finish();
-            ap.stopRingtone();
-            setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
+
         }
 
         @Override

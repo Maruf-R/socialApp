@@ -21,6 +21,7 @@ import com.example.mikey.database.Database.DatabaseHandlerContacts;
 import com.example.mikey.database.Database.DatabaseUsernameId;
 import com.example.mikey.database.Database.JSONParser;
 import com.example.mikey.database.R;
+import com.example.mikey.database.UserProfile.Home;
 import com.example.mikey.database.UserProfile.Messaging.MessagingActivity;
 import com.example.mikey.database.UserProfile.UserInterests;
 import com.example.mikey.database.UserProfile.VoiceCall.AudioPlayer;
@@ -47,6 +48,7 @@ public class ContactProfile extends AppCompatActivity {
     private static final String ENVIRONMENT = "sandbox.sinch.com";
     private static final String REGISTER_DATA = "http://www.companion4me.x10host.com/webservice/registerdata.php";
     private static final String INSERT_FRIEND = "http://www.companion4me.x10host.com/webservice/insertfavourites.php";
+    private static final String BLOCK_FRIEND = "http://www.companion4me.x10host.com/webservice/insertblocked.php";
 
     private static final String DELETE_FRIEND = "http://www.companion4me.x10host.com/webservice/deletefavourites.php";
 
@@ -244,7 +246,7 @@ ImageView avatarcall;
     TextView actioncalling;
 
     Button add,delete;
-
+    ImageButton blockUser;
 
   AudioPlayer ap;
     @Override
@@ -263,9 +265,12 @@ ImageView avatarcall;
         contactProf = (RelativeLayout) findViewById(R.id.contact_layout);
 
         callWin = (LinearLayout) findViewById(R.id.call_window);
+        blockUser = (ImageButton) findViewById(R.id.Block_btn);
 
         callUser = (ImageButton) findViewById(R.id.btnCallUser);
         endCall = (ImageButton) findViewById(R.id.end_call);
+
+
         actioncalling = (TextView) findViewById(R.id.calltextid);
 
         messageUser = (ImageButton) findViewById(R.id.btnMessageUser);
@@ -289,14 +294,22 @@ ImageView avatarcall;
 
         sinchClient.setSupportCalling(true);
 
-     /*   sinchClient.startListeningOnActiveConnection();
-        sinchClient.getCallClient().addCallClientListener(new SinchCallClientListener());
-*/
+
+
         sinchClient.start();
           callListener = new SinchCallListener();
 
 
+        blockUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new blockingContact().execute();
 
+                Intent prof = new Intent(ContactProfile.this, Home.class);
+                startActivity(prof);
+                finish();
+            }
+        });
 
 
         callUser.setOnClickListener(new View.OnClickListener() {
@@ -315,11 +328,7 @@ ImageView avatarcall;
 
 
 
-                /*else {
-                    call.hangup();
-                    call = null;
-                    callUser.setText("Call");
-                }*/
+
             }
         });
         endCall.setOnClickListener(new View.OnClickListener() {
@@ -351,6 +360,9 @@ ImageView avatarcall;
     private void openMessagingActivity() {
         Intent messagingActivity = new Intent(this, MessagingActivity.class);
         messagingActivity.putExtra("idf", hashC.get("namef"));
+       // FOR EMERGENCY ONLY messagingActivity.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
+
         startActivity(messagingActivity);
     }
 
@@ -585,6 +597,79 @@ ImageView avatarcall;
         }
 
         protected void onPostExecute(String file_url) {
+
+            pDialog.dismiss();
+
+
+
+            if (file_url != null){
+                Toast.makeText(ContactProfile.this, file_url, Toast.LENGTH_LONG).show();
+            }
+
+        }
+    }
+    public class blockingContact extends AsyncTask<String, String, String> {
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(ContactProfile.this);
+            pDialog.setMessage("Blocking Contact...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
+
+
+        }
+
+        @Override
+        protected String doInBackground(String... args) {
+
+            try {
+// namef is the email(username) of the friend
+                System.out.println("this is the email db " + hashC.get("email"));
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("username", idUserHash.get("email")));
+                params.add(new BasicNameValuePair("blocked", hashC.get("namef")));
+                params.add(new BasicNameValuePair("name", get_name()));
+                params.add(new BasicNameValuePair("avatar",getAvatar()));
+                params.add(new BasicNameValuePair("age", get_age()));
+
+
+                System.out.println("username of friend BLOCK" + hashC.get("namef"));
+                System.out.println("INSERT DATA USERNAME BLOCK" + idUserHash.get("email") );
+                System.out.println("INSERT DATA USERNAME BLOCK" + get_name() );
+                System.out.println("INSERT DATA USERNAME BLOCK" + getAvatar() );
+                System.out.println("INSERT DATA USERNAME BLOCK" +  get_age());
+
+                Log.d("request!", "starting");
+
+                JSONObject json = jParser.makeHttpRequest(
+                        BLOCK_FRIEND, "POST", params);
+                // check your log for json response
+                Log.d("Login attempt insert", json.toString());
+
+            }
+
+
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+
+        }
+
+        protected void onPostExecute(String file_url) {
+
+            if(getSuccess()==0){
+                new ContactProfile.DeleteFriend().execute();
+                new ContactProfile.CheckFriendship().execute();
+
+            }
+
+
 
             pDialog.dismiss();
 

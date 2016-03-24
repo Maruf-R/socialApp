@@ -125,7 +125,8 @@ public class UserSettings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //TODO intent for blocked activity
+             Intent getblock = new Intent(UserSettings.this, BlockedContacts.class);
+                startActivity(getblock);
 
             }
         });

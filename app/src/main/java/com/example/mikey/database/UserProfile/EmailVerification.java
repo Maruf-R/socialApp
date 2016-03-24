@@ -32,7 +32,7 @@ import java.util.List;
 /**
  * Created by zapatacajas on 15/03/2016.
  */
-public class EmailVerification extends AppCompatActivity implements DialogInterface.OnClickListener {
+public class EmailVerification extends AppCompatActivity {
 
     private static final String LOGIN_URL = "http://www.companion4me.x10host.com/webservice/register.php";
     private static final String CODE_URL = "http://www.companion4me.x10host.com/webservice/registerGetCode.php";
@@ -43,6 +43,16 @@ public class EmailVerification extends AppCompatActivity implements DialogInterf
     Button verifyRegister;
     DatabaseHandler dbHandler;
     DatabaseUsernameId dbHandlerId;
+
+    public int getSuccessHolder() {
+        return successHolder;
+    }
+
+    public void setSuccessHolder(int successHolder) {
+        this.successHolder = successHolder;
+    }
+
+    private int successHolder;
 
     HashMap<String, String> hash;
     JSONParser jsonParser = new JSONParser();
@@ -71,34 +81,28 @@ public class EmailVerification extends AppCompatActivity implements DialogInterf
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent fp = new Intent(getApplicationContext(), ForgotPassword.class);
+                Intent fp = new Intent(EmailVerification.this, ForgotPassword.class);
                 startActivity(fp);
                 finish();
             }
         });
 
-        builders.setNegativeButton("Back to Log In", new DialogInterface.OnClickListener() {
+        builders.setNeutralButton("Back to Log In", new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-// TODO Auto-generated method stub
-                Intent log = new Intent(getApplicationContext(), Login.class);
+                Intent log = new Intent(EmailVerification.this, Login.class);
                 startActivity(log);
                 finish();
             }
         });
 
-//        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-//
-//            @Override
-//            public void onCancel(DialogInterface dialog) {
-//// TODO Auto-generated method stub
-//
-//            }
-//        });
+
 
         builders.show();
     }
+
+
 
     public void lauchDialogWrong() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -117,14 +121,7 @@ public class EmailVerification extends AppCompatActivity implements DialogInterf
         });
 
 
-//        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-//
-//            @Override
-//            public void onCancel(DialogInterface dialog) {
-//// TODO Auto-generated method stub
-//
-//            }
-//        });
+
 
         builder.show();
     }
@@ -168,10 +165,7 @@ public class EmailVerification extends AppCompatActivity implements DialogInterf
 
     }
 
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
 
-    }
 
 
     class CreateUser extends AsyncTask<String, String, String> {
@@ -237,12 +231,11 @@ public class EmailVerification extends AppCompatActivity implements DialogInterf
                 // json success element
 
                 success = json.getInt(TAG_SUCCESS);
-
+                setSuccessHolder(success);
                 if (success == 1) {
                     Log.d("User Created!", json.toString());
-//                    Intent i = new Intent(EmailVerification.this, Home.class);
-//                    //  finish();
-//                    startActivity(i);
+
+
                     dbHandlerId.resetTables();
 
                     dbHandlerId.addUser(null, null, null, hash.get("email"), null, null, null);
@@ -258,6 +251,8 @@ public class EmailVerification extends AppCompatActivity implements DialogInterf
 
                 } else {
 
+
+
                     Log.d("Login Failure!", json.getString(TAG_MESSAGE));
 
                     return json.getString(TAG_MESSAGE);
@@ -271,6 +266,13 @@ public class EmailVerification extends AppCompatActivity implements DialogInterf
         }
 
         protected void onPostExecute(String file_url) {
+
+            if(getSuccessHolder()==0){
+                lauchDialog();
+
+            }
+
+
 pDialog.dismiss();
 
             if (file_url != null) {

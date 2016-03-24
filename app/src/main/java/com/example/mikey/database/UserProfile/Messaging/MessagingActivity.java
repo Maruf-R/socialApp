@@ -4,6 +4,7 @@ import com.example.mikey.database.Database.DatabaseHandlerMessaging;
 import com.example.mikey.database.Database.DatabaseUsernameId;
 import com.example.mikey.database.Database.JSONParser;
 import com.example.mikey.database.R;
+import com.example.mikey.database.UserProfile.Profile.ContactProfile;
 import com.sinch.android.rtc.PushPair;
 import com.sinch.android.rtc.messaging.Message;
 import com.sinch.android.rtc.messaging.MessageClient;
@@ -66,6 +67,15 @@ public class MessagingActivity extends BaseActivity implements MessageClientList
 
     private String recipientId;
 
+    /* EMERGENCY SOLUTION
+    @Override
+    public void onBackPressed(){
+
+
+        Intent intent = new Intent(MessagingActivity.this, ContactProfile.class);
+     //   moveTaskToBack(true);
+        startActivity(intent);
+    }*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -165,7 +165,7 @@ public class Home extends TabActivity{
 
         // create the TabHost that will contain the Tabs
         TabHost tabHost = (TabHost) findViewById(android.R.id.tabhost);
-        tabHost.getTabWidget().setBackgroundColor(Color.parseColor("#B6B6B6"));
+        tabHost.getTabWidget().setBackgroundColor(Color.parseColor("#CDDC39"));
 
 
         TabHost.TabSpec tab1 = tabHost.newTabSpec("FirstTab");

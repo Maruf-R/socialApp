@@ -61,11 +61,12 @@
         android:text="SAVE"
         android:id="@+id/btnSaveChanges"
         android:background="@drawable/button_login"
-        android:textColor="#ffffff"
+        android:textColor="#727272"
 
 
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:focusable="false" />
 
 
 </RelativeLayout>

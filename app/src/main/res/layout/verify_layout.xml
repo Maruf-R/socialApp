@@ -33,5 +33,6 @@
         android:id="@+id/verify_button"
         android:layout_gravity="center_horizontal"
         android:layout_margin="40dp"
-        android:background="@drawable/button_login" />
+        android:background="@drawable/button_login"
+        android:textColor="#727272" />
 </LinearLayout>

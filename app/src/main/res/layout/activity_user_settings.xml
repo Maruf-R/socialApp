@@ -27,7 +27,7 @@
             android:id="@+id/btnUserGuide"
             android:background="@drawable/button_login"
             android:layout_margin="5dp"
-            android:textColor="#FFFFFF" />
+            android:textColor="#727272" />
 
         <Button
             android:layout_width="match_parent"
@@ -36,7 +36,7 @@
             android:id="@+id/btnEditProfile"
             android:background="@drawable/button_login"
             android:layout_margin="5dp"
-            android:textColor="#FFFFFF" />
+            android:textColor="#727272" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,14 +44,14 @@
             android:id="@+id/btnSecDet"
             android:background="@drawable/button_login"
             android:layout_margin="5dp"
-            android:textColor="#FFFFFF" />
+            android:textColor="#727272" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Change Password"
             android:id="@+id/btnChangePassword"
             android:background="@drawable/button_login"
-            android:textColor="#ffffff"
+            android:textColor="#727272"
             android:layout_margin="5dp" />
 
         <Button
@@ -62,7 +62,7 @@
             android:background="@drawable/button_login"
             android:padding="5dp"
             android:layout_margin="5dp"
-            android:textColor="#FFFFFF" />
+            android:textColor="#727272" />
 
         <Button
             android:layout_width="match_parent"
@@ -71,7 +71,7 @@
             android:id="@+id/btnBlockContact"
             android:background="@drawable/button_login"
             android:layout_margin="5dp"
-            android:textColor="#FFFFFF" />
+            android:textColor="#727272" />
 
         <Button
             android:layout_width="match_parent"
@@ -80,7 +80,7 @@
             android:id="@+id/btnLogOut"
             android:background="@drawable/button_login"
             android:layout_margin="5dp"
-            android:textColor="#FFFFFF" />
+            android:textColor="#727272" />
 
         <Button
             android:layout_width="match_parent"
@@ -89,6 +89,6 @@
             android:id="@+id/btnDeleteAccount"
             android:background="@drawable/button_login"
             android:layout_margin="5dp"
-            android:textColor="#FFFFFF" />
+            android:textColor="#727272" />
     </LinearLayout>
 </RelativeLayout>

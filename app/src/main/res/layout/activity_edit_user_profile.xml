@@ -234,7 +234,7 @@
         android:text="SAVE"
         android:id="@+id/btnSaveChangese"
         android:background="@drawable/button_login"
-        android:textColor="#ffffff"
+        android:textColor="#727272"
 
 
         android:layout_alignParentBottom="true"

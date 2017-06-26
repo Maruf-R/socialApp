@@ -19,9 +19,6 @@ import com.sinch.android.rtc.calling.CallListener;
 
 import java.util.List;
 
-/**
- * Created by zapatacajas on 24/03/2016.
- */
 public class PlaceCallTest extends AppCompatActivity{
     ImageButton  endCall;
     TextView actioncalling, usercallingto;

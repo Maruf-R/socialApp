@@ -8,10 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.HashMap;
 
-/**
- * Created by maruf on 14/02/2016.
- * This class will be used to handle all database functionalities like adding users, deleting users and retrieveing users etc
- */
 public class DatabaseHandlerContacts extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "contacts";

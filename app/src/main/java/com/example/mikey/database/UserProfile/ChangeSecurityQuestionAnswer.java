@@ -28,9 +28,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Created by zapatacajas on 19/03/2016.
- */
 public class ChangeSecurityQuestionAnswer extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Spinner spinnerSecretQuestions;
     private String[] spinnerQuestion={"What was your first pet's name?",

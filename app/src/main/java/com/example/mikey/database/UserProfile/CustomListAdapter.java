@@ -1,7 +1,5 @@
 package com.example.mikey.database.UserProfile;
-/**
- * Created by zapatacajas on 19/03/2016.
- */
+
 import android.app.Activity;
         import android.view.LayoutInflater;
         import android.view.View;

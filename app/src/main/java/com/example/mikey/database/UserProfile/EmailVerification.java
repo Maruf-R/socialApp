@@ -29,9 +29,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Created by zapatacajas on 15/03/2016.
- */
 public class EmailVerification extends AppCompatActivity {
 
     private static final String LOGIN_URL = "http://www.companion4me.x10host.com/webservice/register.php";

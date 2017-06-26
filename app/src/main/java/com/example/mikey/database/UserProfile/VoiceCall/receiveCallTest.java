@@ -31,9 +31,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Created by zapatacajas on 16/03/2016.
- */
 public class receiveCallTest extends AppCompatActivity {
   DatabaseUsernameId dbHandlerId;
     HashMap<String,String> idUserHash;

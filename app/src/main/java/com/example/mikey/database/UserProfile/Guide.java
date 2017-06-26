@@ -5,9 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.mikey.database.R;
 
-/**
- * Created by zapatacajas on 23/03/2016.
- */
 public class Guide extends AppCompatActivity {
 
     @Override

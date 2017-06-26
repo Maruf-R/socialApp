@@ -1,8 +1,5 @@
 package com.example.mikey.database.Database;
 
-/**
- * Created by zapatacajas on 11/03/2016.
- */
 
 import java.io.BufferedReader;
 import java.io.IOException;

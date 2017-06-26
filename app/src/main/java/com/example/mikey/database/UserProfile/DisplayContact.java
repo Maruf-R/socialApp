@@ -31,9 +31,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by zapatacajas on 13/03/2016.
- */
 public class DisplayContact extends AppCompatActivity {
     private static final String REGISTER_DATA = "http://www.companion4me.x10host.com/webservice/allregisterdata.php";
     private static final String GET_BLOCKED = "http://www.companion4me.x10host.com/webservice/getblocked.php";

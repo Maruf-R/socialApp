@@ -30,9 +30,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by zapatacajas on 22/03/2016.
- */
 public class NearPeople extends AppCompatActivity {
 
     private static final String REGISTER_DATA = "http://www.companion4me.x10host.com/webservice/getNearPeople.php";

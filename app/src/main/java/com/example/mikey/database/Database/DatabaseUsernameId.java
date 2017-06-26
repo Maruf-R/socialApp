@@ -15,12 +15,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.HashMap;
 
-/**
- * Created by zapatacajas on 15/03/2016.
- */
-
-
-
 
 public class DatabaseUsernameId extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;

@@ -32,9 +32,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by zapatacajas on 19/03/2016.
- */
 public class Favourites extends AppCompatActivity {
    private static final String GET_FRIEND = "http://www.companion4me.x10host.com/webservice/getfavourites.php";
     private static final String GET_BLOCKED = "http://www.companion4me.x10host.com/webservice/getblocked.php";
